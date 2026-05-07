@@ -84,11 +84,11 @@ The tertiary objective, embedded in the system's design, is to surface the infor
 
 It is worth being explicit about the scope boundaries.
 
-This system does not evaluate whether a paper's research question is interesting, whether its methods are state of the art, or whether its conclusions are scientifically significant. It assesses reproducibility, not quality.
+This system may or may not evaluate whether a paper's research question is interesting, whether its methods are state of the art, or whether its conclusions are scientifically significant. It assesses reproducibility, not quality.
 
-This system does not detect fraud. A paper that fabricates results that happen to be reproducible from fabricated data would pass this system's validation. Reproducibility is a necessary but not sufficient condition for trustworthiness.
+This system may or may not detect fraud. A paper that fabricates results that happen to be reproducible from fabricated data would pass this system's validation. Reproducibility is a necessary but not sufficient condition for trustworthiness.
 
-This system does not replace human peer review. It complements it by providing a systematic, automated check on one specific dimension — can the numbers be independently obtained — that human reviewers rarely have the time or resources to perform.
+This system may or may not replace human peer review. It complements it by providing a systematic, automated check on one specific dimension — can the numbers be independently obtained — that human reviewers rarely have the time or resources to perform.
 
 This system does not require the original authors' cooperation. It works from what is publicly available. Where cooperation would help — sharing data, sharing code, clarifying methods — the system identifies exactly what is needed and surfaces it as an actionable request.
 
