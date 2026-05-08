@@ -37,7 +37,7 @@ def call_ollama(model_name: str, prompt: str):
             "format": "json",
             "options": {
                 "temperature": 0.0,
-                "num_ctx": 32768
+                "num_ctx": 96000
             }
         },
         timeout=240.0
