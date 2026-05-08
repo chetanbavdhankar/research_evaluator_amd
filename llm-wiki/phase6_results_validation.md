@@ -36,6 +36,8 @@ For each reported result in the PKA, create a **Result Record** containing:
 
 ## Comparison Methodology
 
+Result comparisons use deterministic threshold-based classification (implemented in `tools/deterministic_comparison.py`). The LLM is strictly used for narrative generation and discrepancy attribution, not for making the actual classification judgments.
+
 ### Exact Comparison
 Apply when reproducibility target is Exact. Compare outputs bit-for-bit or floating-point identical. Any difference, however small, is a discrepancy.
 

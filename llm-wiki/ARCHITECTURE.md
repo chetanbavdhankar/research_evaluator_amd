@@ -59,6 +59,13 @@ Agents are categorized by role:
 
 A single phase may use multiple agent roles. Phase 1 uses primarily Reader agents. Phase 4 uses Coder, Executor, and Validator agents in tight collaboration.
 
+### Component 3b: GPU Compute Layer
+
+The system uses AMD MI300X to run PyTorch tensor workloads alongside the LLM inference. This layer provides three primary endpoints:
+- **/bootstrap**: Batched bootstrap confidence intervals using PyTorch.
+- **/permutation**: Permutation test for independent p-value verification.
+- **/robustness**: Specification sweep (vary thresholds, quality cuts, line choices) to return robustness surface data.
+
 ### Component 4: Tool Layer
 
 Tools are deterministic capabilities exposed to agents. Tools include:
@@ -184,7 +191,7 @@ A single `config.json` file controls all run-level settings:
   "run_directory": "runs/run_20260507_143022_paper-slug",
   "mode": "auto",
   "model": {
-    "name": "Qwen3.6-32B",
+    "name": "Qwen3.6-27B",
     "vllm_endpoint": "http://localhost:8000/v1",
     "max_tokens": 4096,
     "temperature": 0.0
@@ -232,7 +239,7 @@ Logs are plain text in standard Python logging format. No external logging servi
 
 ```
 research-reproducibility-engine/
-  PROJECT_OVERVIEW.md
+  phase0_project_overview.md
   ARCHITECTURE.md
   STACK.md
   SCHEMAS.md
@@ -244,7 +251,7 @@ research-reproducibility-engine/
   phase5_analysis_execution.md
   phase6_results_validation.md
   
-  src/
+  src/research_repro/
     orchestrator.py          # LangGraph StateGraph
     config.py                # Pydantic config models
     schemas/                 # all Pydantic schemas

@@ -14,9 +14,14 @@ This document fixes the technology choices for the system. Every implementation 
 
 - Inference server: vLLM with ROCm backend
 - Endpoint: OpenAI-compatible HTTP API at `http://localhost:8000/v1`
-- Primary model: Qwen3.6 (32B or 14B depending on VM GPU memory)
-- Fallback model: Gemma 4 (for comparison or if Qwen is unavailable)
+- Single model: Qwen3.6-27B for all agent roles.
 - Client library: `openai` Python SDK pointed at the vLLM endpoint, since vLLM speaks the OpenAI-compatible API
+
+### GPU Compute Layer
+
+**PyTorch tensor workloads on AMD MI300X.**
+
+- MI300X also runs PyTorch tensor workloads (bootstrap, permutation, robustness) alongside vLLM.
 
 All LLM calls go through a single thin wrapper in `src/tools/vllm_client.py` that handles retries, timeouts, and structured-output extraction. No agent calls vLLM directly.
 
@@ -362,3 +367,4 @@ When a stack choice is contested or revisited, log the decision here:
 | 2026-05-07 | Pydantic v2, strict mode, JSON serialization | Single source of truth for inter-phase contracts |
 | 2026-05-07 | Direct subprocess execution, no Docker | User preference; hackathon simplicity |
 | 2026-05-07 | Conda for replication environments | Standard in scientific Python; handles non-Python deps |
+| 2026-05-08 | Single model for all roles, deterministic Phase 6 comparisons | Simplicity; eval is primarily threshold math, not subjective LLM judgment |

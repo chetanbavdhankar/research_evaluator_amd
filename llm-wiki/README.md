@@ -9,7 +9,7 @@ The documents are organized as a layered LLM wiki. They are designed to be read 
 ## Reading Order
 
 ### 1. Start here
-**`PROJECT_OVERVIEW.md`** — the philosophy, motivation, and high-level idea. Read this first to understand what the project is and why it exists. Do not skip it; everything else assumes this context.
+**`phase0_project_overview.md`** — the philosophy, motivation, and high-level idea. Read this first to understand what the project is and why it exists. Do not skip it; everything else assumes this context.
 
 ### 2. Operational layer
 Read these next, in order. Together they define how the system is built and how it behaves at runtime.
@@ -34,7 +34,7 @@ Read these in numerical order. Each defines what one phase of the pipeline must 
 ## How These Documents Relate
 
 ```
-PROJECT_OVERVIEW.md
+phase0_project_overview.md
         |
         |  (defines the why)
         v
@@ -49,7 +49,7 @@ phase1 -> phase2 -> phase3 -> phase4 -> phase5 -> phase6
                   (define the what, per stage)
 ```
 
-- `PROJECT_OVERVIEW.md` is the entry point and context anchor
+- `phase0_project_overview.md` is the entry point and context anchor
 - The four operational docs (`ARCHITECTURE`, `STACK`, `SCHEMAS`, `GLOSSARY`) are the cross-cutting reference layer; any phase can rely on them
 - The six phase docs are sequential and reference each other through the artifacts they produce and consume
 
@@ -59,7 +59,7 @@ phase1 -> phase2 -> phase3 -> phase4 -> phase5 -> phase6
 
 | File | Purpose | Length | When to read |
 |------|---------|--------|--------------|
-| `PROJECT_OVERVIEW.md` | Why the project exists | ~5 min | First |
+| `phase0_project_overview.md` | Why the project exists | ~5 min | First |
 | `ARCHITECTURE.md` | How the runtime works | ~10 min | Before writing any code |
 | `STACK.md` | Which tools are used | ~5 min | When choosing a library |
 | `SCHEMAS.md` | Data contracts between phases | ~10 min | When implementing a phase |
@@ -77,7 +77,7 @@ phase1 -> phase2 -> phase3 -> phase4 -> phase5 -> phase6
 
 If you are a coding agent generating the codebase from these documents:
 
-1. Read `PROJECT_OVERVIEW.md` first to establish context
+1. Read `phase0_project_overview.md` first to establish context
 2. Read all four operational docs (`ARCHITECTURE`, `STACK`, `SCHEMAS`, `GLOSSARY`) before writing any code
 3. When implementing a specific phase, load that phase's methodology doc plus `SCHEMAS.md` and `ARCHITECTURE.md` into your active context
 4. The Pydantic models in `SCHEMAS.md` are the canonical contract; if a phase doc and a schema disagree, follow the schema and flag the inconsistency
@@ -90,7 +90,7 @@ If you are a coding agent generating the codebase from these documents:
 
 If you are joining the project:
 
-1. Read `PROJECT_OVERVIEW.md` to understand the goal
+1. Read `phase0_project_overview.md` to understand the goal
 2. Skim `ARCHITECTURE.md` to understand the runtime model
 3. Skim the six phase docs to understand the pipeline
 4. Refer to `SCHEMAS.md`, `STACK.md`, and `GLOSSARY.md` as needed during implementation
