@@ -1,0 +1,323 @@
+{
+  "data_inventory": [
+    {
+      "id": "dynamo_survey",
+      "name": "DYnamic of Newly-Assembled Massive Objects (DYNAMO) survey",
+      "kind": "dataset",
+      "cited_in": [
+        "2 DATA",
+        "3 SPECTRAL LINE MODELING",
+        "4 RESULTS",
+        "5 DISCUSSION AND CONCLUSIONS"
+      ],
+      "archive_hint": null,
+      "identifiers": {},
+      "access": {
+        "kind": "unknown",
+        "notes": "The data used in this paper will be shared following mutually agreeable arrangements with the corresponding authors.",
+        "proprietary_until": null
+      },
+      "download_recipe": null,
+      "resolution_log": [
+        "No specific astro-archive matched. Falling back to generic manual resolution.",
+        "No archive hint provided."
+      ]
+    },
+    {
+      "id": "keck_lris_2017A_W246",
+      "name": "Keck/LRIS spectroscopy",
+      "kind": "raw_obs",
+      "cited_in": [
+        "2 DATA",
+        "ACKNOWLEDGEMENTS",
+        "DATA AVAILABILITY"
+      ],
+      "archive_hint": "KOA",
+      "identifiers": {
+        "program_id": "2017A_W246"
+      },
+      "access": {
+        "kind": "gated",
+        "notes": "The data used in this paper will be shared following mutually agreeable arrangements with the corresponding authors.",
+        "proprietary_until": null
+      },
+      "download_recipe": {
+        "language": "python",
+        "body": "from astroquery.koa import Koa\n# Koa.query_target('Keck/LRIS spectroscopy')",
+        "requires": [
+          "astroquery"
+        ],
+        "estimated_volume_mb": null
+      },
+      "resolution_log": [
+        "Identified as Keck/KOA target."
+      ]
+    },
+    {
+      "id": "hst_wfc_acs_imaging",
+      "name": "HST WFC/ACS narrowband imaging",
+      "kind": "raw_obs",
+      "cited_in": [
+        "2 DATA"
+      ],
+      "archive_hint": "MAST",
+      "identifiers": {},
+      "access": {
+        "kind": "unknown",
+        "notes": "The data used in this paper will be shared following mutually agreeable arrangements with the corresponding authors.",
+        "proprietary_until": null
+      },
+      "download_recipe": {
+        "language": "python",
+        "body": "from astroquery.mast import Observations\n# Observations.query_criteria(target_name='HST WFC/ACS narrowband imaging')",
+        "requires": [
+          "astroquery"
+        ],
+        "estimated_volume_mb": null
+      },
+      "resolution_log": [
+        "Identified as HST/MAST target."
+      ]
+    },
+    {
+      "id": "duvet_survey",
+      "name": "DUVET galaxy survey",
+      "kind": "dataset",
+      "cited_in": [
+        "4 RESULTS"
+      ],
+      "archive_hint": null,
+      "identifiers": {},
+      "access": {
+        "kind": "unknown",
+        "notes": "Literature dataset",
+        "proprietary_until": null
+      },
+      "download_recipe": null,
+      "resolution_log": [
+        "No specific astro-archive matched. Falling back to generic manual resolution.",
+        "No archive hint provided."
+      ]
+    }
+  ],
+  "method_pipeline": [
+    {
+      "order": 1,
+      "name": "Target Selection",
+      "inputs": [
+        "DYNAMO survey catalog"
+      ],
+      "outputs": [
+        "Selected galaxy sample (H10-2, G13-1, G14-1)"
+      ],
+      "parameters": [
+        {
+          "name": "Redshift threshold",
+          "value": 0.1,
+          "underspecified": false,
+          "paper_quote": "selected to be at a redshift \ud835\udc67\u22650.1"
+        }
+      ],
+      "software_used": [],
+      "gap_flags": []
+    },
+    {
+      "order": 2,
+      "name": "Spectroscopic Observation",
+      "inputs": [
+        "Selected galaxy sample (H10-2, G13-1, G14-1)"
+      ],
+      "outputs": [
+        "Raw LRIS spectra"
+      ],
+      "parameters": [
+        {
+          "name": "Slit width",
+          "value": "0.7''",
+          "underspecified": false,
+          "paper_quote": "using Low Resolution Imaging Spectrometer (LRIS; Oke et al. 1995) on the Keck telescope with the 0.7\u2032\u2032 slit."
+        },
+        {
+          "name": "Blue CCD grism",
+          "value": "B1200/3400",
+          "underspecified": false,
+          "paper_quote": "employed the B1200/3400 grism in the blue CCD"
+        },
+        {
+          "name": "Red CCD grating",
+          "value": "R1200/3400",
+          "underspecified": false,
+          "paper_quote": "used the R1200/3400 grating with a central wavelength of 7003 \u00c5 in the red CCD"
+        },
+        {
+          "name": "Mean blue exposure time (s)",
+          "value": 6177.0,
+          "underspecified": false,
+          "paper_quote": "The mean galaxy exposure times were 6177 s for the blue side"
+        },
+        {
+          "name": "Mean red exposure time (s)",
+          "value": 5445.0,
+          "underspecified": false,
+          "paper_quote": "and 5445 s for the red side."
+        }
+      ],
+      "software_used": [],
+      "gap_flags": []
+    },
+    {
+      "order": 3,
+      "name": "Spectroscopic Data Reduction",
+      "inputs": [
+        "Raw LRIS spectra"
+      ],
+      "outputs": [
+        "Reduced LRIS spectra",
+        "Spatially binned spectra"
+      ],
+      "parameters": [
+        {
+          "name": "Binning strategy",
+          "value": "Match seeing",
+          "underspecified": false,
+          "paper_quote": "The spectra were then spatially binned to match the seeing on the night of observations."
+        }
+      ],
+      "software_used": [
+        "IRAF"
+      ],
+      "gap_flags": [
+        "Specific IRAF routines used are not detailed"
+      ]
+    },
+    {
+      "order": 4,
+      "name": "Flux Calibration",
+      "inputs": [
+        "Spatially binned spectra",
+        "HST narrowband imaging"
+      ],
+      "outputs": [
+        "Flux-calibrated LRIS spectra"
+      ],
+      "parameters": [],
+      "software_used": [],
+      "gap_flags": []
+    },
+    {
+      "order": 5,
+      "name": "Star Formation Rate Calculation",
+      "inputs": [
+        "Flux-calibrated LRIS spectra"
+      ],
+      "outputs": [
+        "Spatially resolved SFR values"
+      ],
+      "parameters": [
+        {
+          "name": "C_Halpha",
+          "value": "10^-41.257",
+          "underspecified": false,
+          "paper_quote": "\ud835\udc36H \ud835\udefc= 10\u221241.257"
+        }
+      ],
+      "software_used": [],
+      "gap_flags": []
+    },
+    {
+      "order": 6,
+      "name": "Emission Line Modeling",
+      "inputs": [
+        "Flux-calibrated LRIS spectra",
+        "Kinematic 2D models"
+      ],
+      "outputs": [
+        "Halpha and [NII] line parameters"
+      ],
+      "parameters": [
+        {
+          "name": "Number of Gaussians per set",
+          "value": 3.0,
+          "underspecified": false,
+          "paper_quote": "modelled the H\ud835\udefcand [Nii] \ud835\udf06\ud835\udf066548, 6583 emission lines by two sets of three Gaussians to the spectral profiles"
+        },
+        {
+          "name": "Monte Carlo realisations",
+          "value": 1000.0,
+          "underspecified": false,
+          "paper_quote": "For each spectrum, we ran 1000 Monte Carlo realisations"
+        }
+      ],
+      "software_used": [],
+      "gap_flags": []
+    },
+    {
+      "order": 7,
+      "name": "Absorption and Emission Line Modeling (MgII)",
+      "inputs": [
+        "Flux-calibrated LRIS spectra",
+        "Halpha and [NII] line parameters",
+        "Kinematic 2D models"
+      ],
+      "outputs": [
+        "MgII absorption and emission line parameters"
+      ],
+      "parameters": [],
+      "software_used": [],
+      "gap_flags": []
+    },
+    {
+      "order": 8,
+      "name": "Outflow Velocity Calculation",
+      "inputs": [
+        "Halpha and [NII] line parameters",
+        "MgII absorption and emission line parameters"
+      ],
+      "outputs": [
+        "Outflow velocities (v_out)"
+      ],
+      "parameters": [
+        {
+          "name": "v_out definition",
+          "value": "v - 2sigma",
+          "underspecified": false,
+          "paper_quote": "we define \ud835\udc63out = \ud835\udc63\u22122\ud835\udf0e, where \ud835\udc63is the central velocity of the component and \ud835\udf0eis the velocity dispersion."
+        }
+      ],
+      "software_used": [],
+      "gap_flags": []
+    }
+  ],
+  "software_inventory": [
+    {
+      "id": "mnras_latex_style",
+      "name": "MNRAS LATEX style file",
+      "version": "v3.2",
+      "source": "paper_explicit"
+    },
+    {
+      "id": "iraf",
+      "name": "IRAF",
+      "version": null,
+      "source": "paper_explicit"
+    }
+  ],
+  "compute_estimate": {
+    "cpu_hours": 10.0,
+    "gpu_hours": 0.0,
+    "storage_gb": 5.0,
+    "estimator_confidence": "estimated",
+    "rationale": "The methodology involves standard IRAF data reduction for Keck/LRIS spectra and HST imaging of three galaxies, followed by 1D Gaussian spectral line fitting with 1000 Monte Carlo realizations across approximately 16 spatial bins. This requires minimal CPU time, no GPU acceleration, and only a few gigabytes of storage for the raw and processed observational data."
+  },
+  "scorecard": {
+    "data_accessibility": 1,
+    "data_identifiability": 1,
+    "method_specification": 3,
+    "software_stack": 1,
+    "code_availability": 0,
+    "compute_footprint": 3,
+    "dependency_closure": 2,
+    "result_verifiability": 2
+  },
+  "tier": 3
+}

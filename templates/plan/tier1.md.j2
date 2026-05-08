@@ -1,0 +1,16 @@
+# Replication Plan (Tier 1: Full Local Replication)
+
+{{ executive_summary }}
+
+## Scorecard
+{% for axis, score in scorecard.items() %}
+- **{{ axis }}**: {{ score }}/3
+{% endfor %}
+
+## Execution Strategy
+The scaffold directory contains the auto-generated fetch scripts and method skeletons.
+
+1. Fetch data using `scripts/00_fetch_*.py`.
+2. Process inputs via `scripts/01_preprocess.py`.
+3. Compute metrics via `scripts/02_analyze.py`.
+4. Validate results against paper baseline using `scripts/04_validate.py`.

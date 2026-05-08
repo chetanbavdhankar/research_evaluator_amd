@@ -1,0 +1,20 @@
+{
+  "paper_id": "2605.05650",
+  "expected_tier": 3,
+  "scorecard": {
+    "data_accessibility": 1,
+    "data_identifiability": 1,
+    "method_specification": 2,
+    "software_stack": 1,
+    "code_availability": 1,
+    "compute_footprint": 3,
+    "dependency_closure": 2,
+    "result_verifiability": 2
+  },
+  "justification": "Data is behind a gated survey (DYNAMO) without explicit identifiers. Custom analysis code is not provided. Parameters are partially specified but missing MC random seeds.",
+  "expected_gaps": [
+    "DYNAMO survey dataset missing public link",
+    "Missing custom data reduction scripts",
+    "Missing parameters for MC fitting"
+  ]
+}

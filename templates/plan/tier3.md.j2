@@ -1,0 +1,14 @@
+# Replication Plan (Tier 3: Blocked)
+
+{{ executive_summary }}
+
+## Gap Synthesis
+{{ gap_synthesis }}
+
+## Scorecard
+{% for axis, score in scorecard.items() %}
+- **{{ axis }}**: {{ score }}/3
+{% endfor %}
+
+> [!WARNING]
+> Do not proceed without remediation. No code execution scaffold is generated for Tier 3 because critical components (data, code, or parameters) are entirely missing or gated.

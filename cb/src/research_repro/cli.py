@@ -24,7 +24,9 @@ def run(
 ):
     # Setup run directory
     ts = datetime.utcnow().strftime("%Y%m%d_%H%M%S")
-    slug = re.sub(r'[^a-zA-Z0-9]+', '-', paper_input.split('/')[-1])[:20]
+    # Use Path to get the filename/stem for the slug regardless of URL or local path
+    input_path_obj = Path(paper_input)
+    slug = re.sub(r'[^a-zA-Z0-9]+', '-', input_path_obj.name)[:20]
     if not slug:
         slug = "paper"
     run_dir = Path("runs") / f"run_{ts}_{slug}"

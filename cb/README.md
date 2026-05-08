@@ -43,10 +43,16 @@ The engine runs as a LangGraph state machine with the following phases:
 
 ## Usage
 
-Use the provided Typer CLI to run the pipeline:
+Use the provided Typer CLI to run the pipeline. You can provide an arXiv URL or a local path to a PDF file:
 
+### Using an arXiv URL:
 ```bash
 uv run python -m research_repro.cli run https://arxiv.org/html/2605.04781v1
+```
+
+### Using a Local PDF:
+```bash
+uv run python -m research_repro.cli run "C:/path/to/your/paper.pdf"
 ```
 
 A new directory will be created in `runs/run_<timestamp>_<slug>/` containing all generated artifacts, logs, data, and scripts.
