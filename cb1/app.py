@@ -4,8 +4,11 @@ import os
 from pathlib import Path
 from typing import Any
 
+from speccurve_l0.agentic_planner import plan_reproduction_workflow
+from speccurve_l0.agentic_verifier import verify_reproduction_plan
 from speccurve_l0.artifacts import read_json
 from speccurve_l0.benchmark import detect_torch_hardware
+from speccurve_l0.llm_client import OpenAICompatibleLLMClient
 from speccurve_l0.pipeline import run_pipeline
 from speccurve_l0.remote import fetch_backend_health
 from speccurve_l0.report import render_report
@@ -120,6 +123,29 @@ def _result_rows(results: list[dict[str, Any]]) -> list[list[Any]]:
     ]
 
 
+def _plan_workflow_from_text(paper_text: str) -> tuple[dict[str, Any], dict[str, Any]]:
+    if not paper_text.strip():
+        return {}, {
+            "passed": False,
+            "score": 0.0,
+            "checks": [],
+            "failures": ["paper text is required"],
+            "warnings": [],
+        }
+    try:
+        plan = plan_reproduction_workflow(paper_text, OpenAICompatibleLLMClient())
+        verification = verify_reproduction_plan(plan, paper_text)
+        return plan.to_dict(), verification.to_dict()
+    except Exception as exc:
+        return {}, {
+            "passed": False,
+            "score": 0.0,
+            "checks": [],
+            "failures": [str(exc)],
+            "warnings": ["Check SPECCURVE_LLM_ENDPOINT, SPECCURVE_LLM_MODEL, and endpoint reachability."],
+        }
+
+
 try:
     import gradio as gr
 except ImportError as exc:  # pragma: no cover - exercised only outside HF/local deps
@@ -150,6 +176,15 @@ with gr.Blocks(title="SpecCurve L0 AMD MI300X Evidence Lab") as demo:
             )
             run_button = gr.Button("Run isolated demo pipeline")
             summary = gr.JSON(value=INITIAL_SUMMARY, label="Robustness summary")
+        with gr.Tab("Agent Planner"):
+            gr.Markdown(
+                "Paste extracted paper text. The LLM proposes a reproduction workflow; the verifier "
+                "scores whether the plan is grounded and executable before any code path is trusted."
+            )
+            paper_text = gr.Textbox(label="Paper text", lines=12)
+            plan_button = gr.Button("Construct verified workflow")
+            workflow_plan = gr.JSON(label="workflow-plan.json")
+            verification_report = gr.JSON(label="verification-report.json")
         with gr.Tab("Surface"):
             surface = gr.HTML(value=INITIAL_SURFACE)
             table = gr.Dataframe(
@@ -186,6 +221,7 @@ with gr.Blocks(title="SpecCurve L0 AMD MI300X Evidence Lab") as demo:
 
     reload_button.click(_load_report, outputs=[report, surface, summary, table])
     run_button.click(_run_demo, outputs=[report, surface, summary, table])
+    plan_button.click(_plan_workflow_from_text, inputs=[paper_text], outputs=[workflow_plan, verification_report])
     amd_button.click(_amd_panel, outputs=[amd_panel])
 
 

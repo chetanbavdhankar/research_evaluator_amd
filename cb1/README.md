@@ -17,6 +17,10 @@ This folder is a separate local build based on the Wiki C blueprint. It packages
 
 ## What Is Built
 
+- Software 3.0 planning layer that asks an OpenAI-compatible LLM to construct a
+  verifiable reproduction workflow for unfamiliar paper text.
+- Deterministic workflow verifier that scores the LLM plan before any executable step can
+  be trusted.
 - Dataset card and hash artifact.
 - Locked LaLonde-style claim surface.
 - Pre-declared 240-spec Wiki C grid spanning OLS, ridge, propensity-score matching,
@@ -28,6 +32,30 @@ This folder is a separate local build based on the Wiki C blueprint. It packages
   `benchmark.json.sha256`, and `methodology/hardware.log` evidence bundle.
 - Gradio webapp for hosted review on Hugging Face Spaces.
 - Static Hugging Face Space export for the strict Wiki C execution-isolation path.
+
+## Agentic Workflow Planning
+
+Set an OpenAI-compatible LLM endpoint:
+
+```bash
+SPECCURVE_LLM_ENDPOINT=http://localhost:11434/v1
+SPECCURVE_LLM_MODEL=qwen3.5:4b
+SPECCURVE_LLM_API_KEY=none
+```
+
+Then ask the agent to construct a reproduction workflow from extracted paper text:
+
+```bash
+python scripts/plan_reproduction.py --paper-text path/to/paper.txt --output-dir agent-runs/example
+```
+
+The command writes:
+
+- `workflow-plan.json` - the LLM-proposed reproduction workflow.
+- `verification-report.json` - deterministic checks, score, failures, and warnings.
+
+This is the AI-agent path. The existing SpecCurve statistical pipeline remains the
+evidence engine used after a plan passes verification.
 
 ## Local Core Run
 

@@ -3,6 +3,8 @@ __pycache__/
 .env
 .venv/
 artifacts-demo/
+agent-runs/
+dist/
 .pytest_cache/
 .chrome-profile/
 preview.png
