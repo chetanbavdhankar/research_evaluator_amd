@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+.env
+.venv/
+artifacts-demo/
+.pytest_cache/
+.chrome-profile/
+preview.png
+gradio-running.png
+server.out
+server.err
+server-job.log
+server-*.out
+server-*.err
+server-*.log
+gradio.out
+gradio.err

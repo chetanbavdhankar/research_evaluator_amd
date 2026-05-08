@@ -1,0 +1,115 @@
+[
+  {
+    "approved": false,
+    "errors": [
+      "outcome must stay locked to re78",
+      "missing dataset columns: re79"
+    ],
+    "spec": {
+      "covariates": [
+        "age",
+        "educ"
+      ],
+      "estimator": "ols",
+      "outcome": "re79",
+      "outcome_transform": "raw",
+      "propensity_model": "none",
+      "rationale": "Invalid claim mutation fixture.",
+      "sample_filter": "none",
+      "spec_id": "X001",
+      "support_rule": "none",
+      "treatment": "treat"
+    },
+    "spec_id": "X001"
+  },
+  {
+    "approved": false,
+    "errors": [
+      "outcome leakage: outcome appears in covariates"
+    ],
+    "spec": {
+      "covariates": [
+        "age",
+        "educ",
+        "re78"
+      ],
+      "estimator": "ols",
+      "outcome": "re78",
+      "outcome_transform": "raw",
+      "propensity_model": "none",
+      "rationale": "Invalid outcome leakage fixture.",
+      "sample_filter": "none",
+      "spec_id": "X002",
+      "support_rule": "none",
+      "treatment": "treat"
+    },
+    "spec_id": "X002"
+  },
+  {
+    "approved": false,
+    "errors": [
+      "missing dataset columns: missing_column"
+    ],
+    "spec": {
+      "covariates": [
+        "age",
+        "educ",
+        "missing_column"
+      ],
+      "estimator": "ols",
+      "outcome": "re78",
+      "outcome_transform": "raw",
+      "propensity_model": "none",
+      "rationale": "Invalid missing-column fixture.",
+      "sample_filter": "none",
+      "spec_id": "X003",
+      "support_rule": "none",
+      "treatment": "treat"
+    },
+    "spec_id": "X003"
+  },
+  {
+    "approved": false,
+    "errors": [
+      "sample filter is not in the approved grid"
+    ],
+    "spec": {
+      "covariates": [
+        "age",
+        "educ"
+      ],
+      "estimator": "ols",
+      "outcome": "re78",
+      "outcome_transform": "raw",
+      "propensity_model": "none",
+      "rationale": "Invalid undocumented exclusion fixture.",
+      "sample_filter": "drop_low_earners",
+      "spec_id": "X004",
+      "support_rule": "none",
+      "treatment": "treat"
+    },
+    "spec_id": "X004"
+  },
+  {
+    "approved": false,
+    "errors": [
+      "matching/weighting estimator requires a declared propensity model"
+    ],
+    "spec": {
+      "covariates": [
+        "age",
+        "educ"
+      ],
+      "estimator": "ipw_att",
+      "outcome": "re78",
+      "outcome_transform": "raw",
+      "propensity_model": "none",
+      "rationale": "Invalid weighting fixture without a propensity model.",
+      "sample_filter": "none",
+      "spec_id": "X005",
+      "support_rule": "none",
+      "treatment": "treat"
+    },
+    "spec_id": "X005"
+  }
+]

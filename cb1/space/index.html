@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SpecCurve L0 AMD MI300X Evidence Lab</title>
+    <style>
+      :root {
+        --bg: #f8fafc;
+        --ink: #172033;
+        --muted: #596579;
+        --line: #d7dee8;
+        --panel: #ffffff;
+        --accent: #0f766e;
+        --warn: #a15c07;
+        --bad: #b42318;
+        --soft: #edf6f4;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        line-height: 1.45;
+      }
+      .wrap { width: min(1180px, calc(100vw - 32px)); margin: 0 auto; }
+      header { background: var(--panel); border-bottom: 1px solid var(--line); }
+      .top { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 18px; padding: 26px 0 18px; align-items: end; }
+      h1 { margin: 0; font-size: 30px; line-height: 1.1; letter-spacing: 0; }
+      h2 { margin: 0 0 12px; font-size: 20px; letter-spacing: 0; }
+      h3 { margin: 18px 0 8px; font-size: 16px; letter-spacing: 0; }
+      p { margin: 0 0 12px; }
+      .subtitle { margin-top: 8px; color: var(--muted); max-width: 780px; }
+      .badge { border: 1px solid var(--line); border-radius: 999px; padding: 8px 12px; background: var(--soft); color: var(--accent); font-weight: 700; white-space: nowrap; }
+      .metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; padding: 0 0 20px; }
+      .metric, .section { border: 1px solid var(--line); border-radius: 8px; background: var(--panel); }
+      .metric { padding: 12px 14px; min-height: 82px; }
+      .metric-label { color: var(--muted); font-size: 12px; text-transform: uppercase; }
+      .metric-value { margin-top: 6px; font-size: 21px; font-weight: 750; overflow-wrap: anywhere; }
+      nav { display: flex; gap: 8px; border-bottom: 1px solid var(--line); overflow-x: auto; }
+      .tab { border: 1px solid var(--line); border-bottom: 0; border-radius: 8px 8px 0 0; background: var(--panel); color: var(--muted); padding: 10px 14px; cursor: pointer; font: inherit; }
+      .tab[aria-selected="true"] { color: var(--ink); background: var(--bg); font-weight: 700; }
+      main { padding: 20px 0 40px; }
+      .panel { display: none; }
+      .panel.active { display: block; }
+      .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; }
+      .section { padding: 18px; margin-bottom: 16px; }
+      .notice { border-left: 4px solid var(--warn); background: #fff7ed; color: #4b2a08; padding: 12px 14px; border-radius: 6px; }
+      img.surface { width: 100%; height: auto; border: 1px solid var(--line); border-radius: 8px; background: #fff; }
+      table { width: 100%; border-collapse: collapse; font-size: 13px; }
+      th, td { border-bottom: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; }
+      th { color: var(--muted); text-transform: uppercase; font-size: 12px; background: #f3f6fa; }
+      .table-wrap { max-height: 540px; overflow: auto; border: 1px solid var(--line); border-radius: 8px; }
+      pre { white-space: pre-wrap; overflow-wrap: anywhere; background: #111827; color: #e5edf7; padding: 14px; border-radius: 8px; overflow: auto; }
+      code { background: #eef2f7; border-radius: 5px; padding: 1px 5px; }
+      @media (max-width: 820px) {
+        .top, .metrics, .grid { grid-template-columns: 1fr; }
+        .badge { justify-self: start; }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="wrap">
+        <div class="top">
+          <div>
+            <h1>SpecCurve L0 AMD MI300X Evidence Lab</h1>
+            <p class="subtitle">Static Wiki C Space: frozen LaLonde artifacts, verifier output, robustness surface, and AMD benchmark proof when loaded.</p>
+          </div>
+          <div class="badge" id="proofBadge">benchmark pending</div>
+        </div>
+        <section class="metrics" aria-label="Artifact metrics">
+          <div class="metric"><div class="metric-label">Dataset</div><div class="metric-value" id="datasetValue">loading</div></div>
+          <div class="metric"><div class="metric-label">Approved Specs</div><div class="metric-value" id="approvedValue">loading</div></div>
+          <div class="metric"><div class="metric-label">Median ATT</div><div class="metric-value" id="medianValue">loading</div></div>
+          <div class="metric"><div class="metric-label">Benchmark</div><div class="metric-value" id="benchmarkValue">loading</div></div>
+        </section>
+        <nav aria-label="Sections">
+          <button class="tab" data-panel="overview" aria-selected="true">Overview</button>
+          <button class="tab" data-panel="surface" aria-selected="false">Surface</button>
+          <button class="tab" data-panel="results" aria-selected="false">Results</button>
+          <button class="tab" data-panel="specs" aria-selected="false">Verifier</button>
+          <button class="tab" data-panel="amd" aria-selected="false">AMD Proof</button>
+        </nav>
+      </div>
+    </header>
+    <main class="wrap">
+      <section class="panel active" id="overview">
+        <div class="grid">
+          <article class="section">
+            <h2>Claim Under Test</h2>
+            <p id="claimText">loading</p>
+            <h3>Interpretation Boundary</h3>
+            <p id="limitText">loading</p>
+            <h3>Dataset Hash</h3>
+            <pre id="datasetHash">loading</pre>
+          </article>
+          <aside class="section">
+            <h2>Execution Isolation</h2>
+            <p class="notice">This public Space is a static artifact viewer. It does not execute the statistical pipeline, accept uploads, evaluate code, or call a backend.</p>
+            <h3>Artifact Status</h3>
+            <pre id="statusJson">loading</pre>
+          </aside>
+        </div>
+      </section>
+      <section class="panel" id="surface">
+        <div class="section">
+          <h2>Robustness Surface</h2>
+          <img class="surface" src="data/surface.svg" alt="Specification robustness surface" />
+          <pre id="surfaceJson">loading</pre>
+        </div>
+      </section>
+      <section class="panel" id="results">
+        <div class="section">
+          <h2>Result Table</h2>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Spec</th><th>ATT</th><th>CI low</th><th>CI high</th><th>n</th><th>Estimator</th><th>Filter</th></tr></thead>
+              <tbody id="resultRows"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+      <section class="panel" id="specs">
+        <div class="grid">
+          <div class="section"><h2>Approved Spec Sample</h2><pre id="approvedSample">loading</pre></div>
+          <div class="section"><h2>Rejected Fixtures</h2><pre id="rejectedSample">loading</pre></div>
+        </div>
+      </section>
+      <section class="panel" id="amd">
+        <div class="section">
+          <h2>AMD MI300X Proof</h2>
+          <p id="benchmarkSummary">loading</p>
+          <h3>SHA-256 verification</h3>
+          <pre id="benchmarkVerification">loading</pre>
+          <h3>benchmark.json</h3>
+          <pre id="benchmarkJson">loading</pre>
+          <h3>benchmark.json.sha256</h3>
+          <pre id="benchmarkHash">loading</pre>
+          <h3>methodology/hardware.log</h3>
+          <pre id="hardwareLog">loading</pre>
+        </div>
+      </section>
+    </main>
+    <script>
+      const byId = (id) => document.getElementById(id);
+      const asNumber = (value, digits) => Number(value).toFixed(digits);
+      async function loadJson(path) {
+        const response = await fetch(path);
+        if (!response.ok) throw new Error(path);
+        return response.json();
+      }
+      async function loadTextStrict(path) {
+        const response = await fetch(path);
+        if (!response.ok) throw new Error(path);
+        return response.text();
+      }
+      async function loadText(path) {
+        const response = await fetch(path);
+        if (!response.ok) throw new Error(path);
+        return response.text();
+      }
+      async function sha256Hex(text) {
+        if (!window.crypto || !window.crypto.subtle) {
+          throw new Error("SubtleCrypto unavailable");
+        }
+        const digest = await window.crypto.subtle.digest("SHA-256", new TextEncoder().encode(text));
+        return Array.from(new Uint8Array(digest))
+          .map((byte) => byte.toString(16).padStart(2, "0"))
+          .join("");
+      }
+      function parseShaSidecar(text) {
+        return text.trim().split(/\s+/)[0] || "";
+      }
+      function setText(id, value) { byId(id).textContent = String(value); }
+      function setJson(id, value) { byId(id).textContent = JSON.stringify(value, null, 2); }
+      function activate(panelId) {
+        document.querySelectorAll(".panel").forEach((panel) => panel.classList.toggle("active", panel.id === panelId));
+        document.querySelectorAll(".tab").forEach((tab) => tab.setAttribute("aria-selected", String(tab.dataset.panel === panelId)));
+      }
+      function appendCell(row, value) {
+        const cell = document.createElement("td");
+        cell.textContent = String(value);
+        row.appendChild(cell);
+      }
+      function renderRows(results) {
+        const body = byId("resultRows");
+        results.slice(0, 240).forEach((item) => {
+          const row = document.createElement("tr");
+          appendCell(row, item.spec_id);
+          appendCell(row, asNumber(item.estimate_att, 3));
+          appendCell(row, asNumber(item.ci_low, 3));
+          appendCell(row, asNumber(item.ci_high, 3));
+          appendCell(row, item.n);
+          appendCell(row, item.estimator);
+          appendCell(row, item.sample_filter);
+          body.appendChild(row);
+        });
+      }
+      async function loadBenchmark() {
+        try {
+          const benchmarkText = await loadTextStrict("data/benchmark.json");
+          const benchmark = JSON.parse(benchmarkText);
+          const hash = await loadTextStrict("data/benchmark.json.sha256");
+          const hardwareLog = await loadTextStrict("methodology/hardware.log");
+          const expectedHash = parseShaSidecar(hash);
+          const actualHash = await sha256Hex(benchmarkText);
+          const verified = expectedHash === actualHash;
+          setJson("benchmarkJson", benchmark);
+          setText("benchmarkHash", hash.trim());
+          setText("hardwareLog", hardwareLog.trim());
+          setText("benchmarkVerification", verified ? `pass: ${actualHash}` : `fail: expected ${expectedHash}, computed ${actualHash}`);
+          setText("benchmarkValue", benchmark.submission_ready && verified ? "ready" : "not ready");
+          setText("proofBadge", benchmark.submission_ready && verified ? "MI300X benchmark loaded" : "benchmark failed");
+          setText("benchmarkSummary", `GPU ${benchmark.hardware.gpu}; speedup ${asNumber(benchmark.speedup, 2)}x; tolerance ${benchmark.tolerance_check}; sha256 ${verified ? "pass" : "fail"}.`);
+        } catch {
+          setText("benchmarkValue", "pending");
+          setText("benchmarkJson", "No benchmark artifact is packaged yet. Generate artifacts/benchmark.json on AMD MI300X and rebuild the static Space export.");
+          setText("benchmarkHash", "pending");
+          setText("hardwareLog", "pending");
+          setText("benchmarkVerification", "pending");
+          setText("benchmarkSummary", "Benchmark proof is pending until the AMD MI300X ROCm run is packaged.");
+        }
+      }
+      async function main() {
+        document.querySelectorAll(".tab").forEach((tab) => tab.addEventListener("click", () => activate(tab.dataset.panel)));
+        const claim = await loadJson("data/claim.json");
+        const status = await loadJson("data/status.json");
+        const baseline = await loadJson("data/baseline.json");
+        const surface = await loadJson("data/robustness-surface.json");
+        const results = await loadJson("data/results.json");
+        const specs = await loadJson("data/specs-sample.json");
+        setText("datasetValue", `${claim.row_count} rows`);
+        setText("approvedValue", status.approved_spec_count);
+        setText("medianValue", asNumber(surface.median_estimate, 1));
+        setText("claimText", claim.target_claim);
+        setText("limitText", `${claim.limitations} PSM baseline ATT ${asNumber(baseline.matching_att, 1)} with CI ${asNumber(baseline.matching_ci_low, 1)} to ${asNumber(baseline.matching_ci_high, 1)}.`);
+        setText("datasetHash", claim.dataset_hash);
+        setJson("statusJson", status);
+        setJson("surfaceJson", surface);
+        setJson("approvedSample", specs.approved_sample);
+        setJson("rejectedSample", specs.rejected);
+        renderRows(results);
+        await loadBenchmark();
+      }
+      main().catch((error) => {
+        setText("claimText", `Static artifact load failed: ${error.message}`);
+      });
+    </script>
+  </body>
+</html>

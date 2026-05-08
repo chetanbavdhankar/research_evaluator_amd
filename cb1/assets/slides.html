@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SpecCurve L0 Pitch Deck</title>
+  <style>
+    body { margin: 0; font-family: Arial, sans-serif; background: #f7f5ef; color: #152033; }
+    main { scroll-snap-type: y mandatory; height: 100vh; overflow-y: auto; }
+    section { box-sizing: border-box; height: 100vh; padding: 7vh 8vw; scroll-snap-align: start; display: flex; flex-direction: column; justify-content: center; }
+    h1 { font-size: 72px; margin: 0 0 24px; }
+    h2 { font-size: 54px; margin: 0 0 24px; }
+    p, li { font-size: 30px; line-height: 1.35; max-width: 1120px; }
+    .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; margin-top: 32px; }
+    .card { background: #fff; border: 3px solid #2d5fb8; border-radius: 16px; padding: 26px; }
+    .card strong { display: block; font-size: 34px; color: #16366f; margin-bottom: 14px; }
+    .dark { background: #111827; color: #fff; }
+    .muted { color: #46515f; }
+  </style>
+</head>
+<body>
+<main>
+  <section>
+    <h1>SpecCurve L0</h1>
+    <p class="muted">AMD MI300X Evidence Lab for specification robustness.</p>
+    <div class="kpis">
+      <div class="card"><strong>2675</strong>frozen NBER rows</div>
+      <div class="card"><strong>240</strong>approved specs</div>
+      <div class="card"><strong>5</strong>invalid fixtures rejected</div>
+      <div class="card"><strong>11.7%</strong>positive raw estimates</div>
+    </div>
+  </section>
+  <section>
+    <h2>Problem</h2>
+    <p>Research readers often see one headline estimate. Methods reviewers need the map of how that result moves under defensible choices.</p>
+  </section>
+  <section>
+    <h2>Wiki C Build</h2>
+    <ul>
+      <li>Frozen NBER Dehejia-Wahba NSW + PSID source files.</li>
+      <li>Locked ATT claim on 1978 earnings.</li>
+      <li>OLS, ridge, PSM, IPW, Mahalanobis, and CEM estimators.</li>
+      <li>Verifier blocks claim drift and invalid specs before execution.</li>
+    </ul>
+  </section>
+  <section>
+    <h2>Reviewer Readout</h2>
+    <p>PSM baseline ATT: 1461.2, with CI -209.7 to 3132.1.</p>
+    <p>Raw surface median: -3147.0. Positive share: 11.7%.</p>
+  </section>
+  <section class="dark">
+    <h2>AMD MI300X Path</h2>
+    <p>The ROCm/PyTorch benchmark writes hardware, HIP, CPU/GPU runtime, speedup, throughput, tolerance, and submission readiness into benchmark.json.</p>
+  </section>
+</main>
+</body>
+</html>

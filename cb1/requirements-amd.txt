@@ -1,0 +1,4 @@
+# Install ROCm-enabled PyTorch from the AMD/ROCm image or the official ROCm-specific
+# PyTorch index before running the benchmark. Do not install a plain CPU torch wheel here.
+fastapi>=0.115
+uvicorn[standard]>=0.30

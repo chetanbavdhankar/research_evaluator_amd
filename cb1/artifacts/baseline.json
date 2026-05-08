@@ -1,0 +1,61 @@
+{
+  "adjusted_att": 4.157945410065455,
+  "adjusted_ci_high": 1991.5508731074463,
+  "adjusted_ci_low": -1983.2349822873155,
+  "adjusted_standard_error": 1013.9759835190719,
+  "baseline_id": "lalonde-att-baseline-v2",
+  "control_count": 2490,
+  "matching_att": 1461.2029787654321,
+  "matching_ci_high": 3132.140260011275,
+  "matching_ci_low": -209.73430248041086,
+  "matching_matched_treated": 162,
+  "matching_spec": {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "logit_l2",
+    "rationale": "Paper-shaped propensity-score matching baseline for the NSW + PSID design.",
+    "sample_filter": "none",
+    "spec_id": "BASELINE_PSM_LOGIT",
+    "support_rule": "common_support_pscore",
+    "treatment": "treat"
+  },
+  "matching_standard_error": 852.5190210437975,
+  "spec": {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "ols",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "none",
+    "rationale": "Canonical adjusted LaLonde-style baseline over demographics and prior earnings.",
+    "sample_filter": "none",
+    "spec_id": "BASELINE_OLS",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  "treated_count": 185,
+  "unadjusted_att": -15204.777468026918
+}

@@ -1,0 +1,19 @@
+{
+  "approved_spec_count": 240,
+  "artifacts": [
+    "dataset-card.json",
+    "baseline.json",
+    "specs-approved.json",
+    "specs-rejected.json",
+    "result-table.json",
+    "robustness-surface.json",
+    "surface.svg",
+    "report.md"
+  ],
+  "dataset_hash": "a3a1ae1a7d599650b2a48f3c203764dd04803a994bcb6899e9ccf246168c4081",
+  "generated_at": "2026-05-07T23:21:43Z",
+  "rejected_spec_count": 5,
+  "result_count": 240,
+  "run_id": "speccurve-l0-2026-05-07T23:21:43Z",
+  "spec_batch_id": "10c143adafff3ccd"
+}
