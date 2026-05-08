@@ -1,0 +1,41 @@
+{
+  "approved_result_count": 240,
+  "ci_crosses_zero_share": 0.23333333333333334,
+  "estimator_levels": [
+    "cem_att",
+    "ipw_att",
+    "mahalanobis_1nn",
+    "ols",
+    "psm_1nn",
+    "ridge_1e-6"
+  ],
+  "filter_levels": [
+    "age_18_45",
+    "common_support_re75",
+    "none",
+    "positive_prior_earnings"
+  ],
+  "max_estimate": 2824.824235892857,
+  "median_estimate": -3146.9767183333333,
+  "min_estimate": -13104.25148037904,
+  "positive_share": 0.11666666666666667,
+  "primary_transform": "raw",
+  "propensity_model_levels": [
+    "logit_l2",
+    "none",
+    "probit_gradient"
+  ],
+  "scale_note": "Headline surface statistics use raw re78 specifications only.",
+  "support_rule_levels": [
+    "caliper_0.05",
+    "clip_0.02_0.98",
+    "common_support_pscore",
+    "none",
+    "trim_0.05_0.95"
+  ],
+  "surface_result_count": 120,
+  "transform_levels": [
+    "log1p",
+    "raw"
+  ]
+}

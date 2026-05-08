@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">SpecCurve L0 AMD MI300X Evidence Lab</title>
+  <desc id="desc">Submission cover showing a public dataset, verifier gate, MI300X batch path, and robustness surface.</desc>
+  <rect width="1600" height="900" fill="#f7f5ef"/>
+  <rect x="72" y="64" width="1456" height="772" rx="18" fill="#ffffff" stroke="#1d2433" stroke-width="4"/>
+  <text x="120" y="148" font-family="Arial, Helvetica, sans-serif" font-size="64" font-weight="700" fill="#152033">SpecCurve L0</text>
+  <text x="120" y="204" font-family="Arial, Helvetica, sans-serif" font-size="30" fill="#46515f">AMD MI300X Evidence Lab for specification robustness</text>
+
+  <g transform="translate(120 284)">
+    <rect width="330" height="210" rx="12" fill="#e7f0ff" stroke="#2d5fb8" stroke-width="3"/>
+    <text x="28" y="52" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" fill="#16366f">Public Data</text>
+    <text x="28" y="94" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#263447">NBER NSW + PSID</text>
+    <text x="28" y="132" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#263447">2,675 rows frozen</text>
+    <text x="28" y="170" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#263447">SHA-256 provenance</text>
+  </g>
+
+  <g transform="translate(484 284)">
+    <rect width="330" height="210" rx="12" fill="#ecf8ee" stroke="#2f7d45" stroke-width="3"/>
+    <text x="28" y="52" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" fill="#1f5e32">Verifier</text>
+    <text x="28" y="94" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#263447">240 approved specs</text>
+    <text x="28" y="132" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#263447">5 invalid fixtures rejected</text>
+    <text x="28" y="170" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#263447">Locked ATT claim</text>
+  </g>
+
+  <g transform="translate(848 284)">
+    <rect width="330" height="210" rx="12" fill="#fff2dc" stroke="#a86413" stroke-width="3"/>
+    <text x="28" y="52" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" fill="#75450d">MI300X Path</text>
+    <text x="28" y="94" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#263447">ROCm/PyTorch benchmark</text>
+    <text x="28" y="132" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#263447">CPU/GPU tolerance check</text>
+    <text x="28" y="170" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#263447">Backend health proof</text>
+  </g>
+
+  <g transform="translate(1212 284)">
+    <rect width="238" height="210" rx="12" fill="#f1eefb" stroke="#6849b8" stroke-width="3"/>
+    <text x="28" y="52" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" fill="#4c3192">Report</text>
+    <text x="28" y="94" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#263447">Cautious</text>
+    <text x="28" y="132" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#263447">Provenanced</text>
+    <text x="28" y="170" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#263447">Exportable</text>
+  </g>
+
+  <g transform="translate(120 586)">
+    <rect width="1330" height="176" rx="12" fill="#111827"/>
+    <line x1="52" x2="1278" y1="110" y2="110" stroke="#9ca3af" stroke-width="2" stroke-dasharray="8 8"/>
+    <circle cx="96" cy="126" r="9" fill="#dc2626"/>
+    <circle cx="228" cy="122" r="9" fill="#dc2626"/>
+    <circle cx="360" cy="116" r="9" fill="#dc2626"/>
+    <circle cx="492" cy="106" r="9" fill="#dc2626"/>
+    <circle cx="624" cy="82" r="9" fill="#16a34a"/>
+    <circle cx="756" cy="132" r="9" fill="#dc2626"/>
+    <circle cx="888" cy="101" r="9" fill="#dc2626"/>
+    <circle cx="1020" cy="72" r="9" fill="#16a34a"/>
+    <circle cx="1152" cy="128" r="9" fill="#dc2626"/>
+    <circle cx="1236" cy="92" r="9" fill="#16a34a"/>
+    <text x="40" y="48" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700" fill="#ffffff">Robustness surface, not one p-value</text>
+    <text x="40" y="154" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#d1d5db">Raw-scale tested space: 11.7% positive estimates; PSM baseline positive but not stable across the broader grid.</text>
+  </g>
+
+  <text x="120" y="814" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#46515f">Hugging Face Space-ready. MI300X proof comes from benchmark.json generated on AMD ROCm hardware.</text>
+</svg>

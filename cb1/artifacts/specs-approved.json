@@ -1,0 +1,4402 @@
+[
+  {
+    "covariates": [
+      "age",
+      "educ"
+    ],
+    "estimator": "ols",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "none",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "none",
+    "spec_id": "S001",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "none",
+    "spec_id": "S004",
+    "support_rule": "common_support_pscore",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "none",
+    "spec_id": "S007",
+    "support_rule": "common_support_pscore",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "none",
+    "spec_id": "S011",
+    "support_rule": "clip_0.02_0.98",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "none",
+    "spec_id": "S014",
+    "support_rule": "clip_0.02_0.98",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ"
+    ],
+    "estimator": "ols",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "none",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "common_support_re75",
+    "spec_id": "S017",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "common_support_re75",
+    "spec_id": "S020",
+    "support_rule": "common_support_pscore",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "common_support_re75",
+    "spec_id": "S023",
+    "support_rule": "common_support_pscore",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "common_support_re75",
+    "spec_id": "S027",
+    "support_rule": "clip_0.02_0.98",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "common_support_re75",
+    "spec_id": "S030",
+    "support_rule": "clip_0.02_0.98",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ"
+    ],
+    "estimator": "ols",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "none",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "positive_prior_earnings",
+    "spec_id": "S033",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "positive_prior_earnings",
+    "spec_id": "S036",
+    "support_rule": "common_support_pscore",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "positive_prior_earnings",
+    "spec_id": "S040",
+    "support_rule": "caliper_0.05",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "positive_prior_earnings",
+    "spec_id": "S043",
+    "support_rule": "clip_0.02_0.98",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "positive_prior_earnings",
+    "spec_id": "S046",
+    "support_rule": "clip_0.02_0.98",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ"
+    ],
+    "estimator": "ols",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "none",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "age_18_45",
+    "spec_id": "S049",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "age_18_45",
+    "spec_id": "S052",
+    "support_rule": "common_support_pscore",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "age_18_45",
+    "spec_id": "S056",
+    "support_rule": "caliper_0.05",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "age_18_45",
+    "spec_id": "S059",
+    "support_rule": "clip_0.02_0.98",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "age_18_45",
+    "spec_id": "S062",
+    "support_rule": "clip_0.02_0.98",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ"
+    ],
+    "estimator": "ols",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "none",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "none",
+    "spec_id": "S065",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "none",
+    "spec_id": "S068",
+    "support_rule": "common_support_pscore",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "none",
+    "spec_id": "S072",
+    "support_rule": "caliper_0.05",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "none",
+    "spec_id": "S075",
+    "support_rule": "clip_0.02_0.98",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "none",
+    "spec_id": "S078",
+    "support_rule": "clip_0.02_0.98",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ"
+    ],
+    "estimator": "ols",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "none",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "common_support_re75",
+    "spec_id": "S081",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "common_support_re75",
+    "spec_id": "S084",
+    "support_rule": "common_support_pscore",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "common_support_re75",
+    "spec_id": "S088",
+    "support_rule": "caliper_0.05",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "common_support_re75",
+    "spec_id": "S091",
+    "support_rule": "clip_0.02_0.98",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "common_support_re75",
+    "spec_id": "S094",
+    "support_rule": "clip_0.02_0.98",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ"
+    ],
+    "estimator": "ols",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "none",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "positive_prior_earnings",
+    "spec_id": "S097",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "positive_prior_earnings",
+    "spec_id": "S100",
+    "support_rule": "common_support_pscore",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "positive_prior_earnings",
+    "spec_id": "S104",
+    "support_rule": "caliper_0.05",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "positive_prior_earnings",
+    "spec_id": "S107",
+    "support_rule": "clip_0.02_0.98",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "positive_prior_earnings",
+    "spec_id": "S110",
+    "support_rule": "clip_0.02_0.98",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ"
+    ],
+    "estimator": "ols",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "none",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "age_18_45",
+    "spec_id": "S113",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "age_18_45",
+    "spec_id": "S117",
+    "support_rule": "caliper_0.05",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "age_18_45",
+    "spec_id": "S120",
+    "support_rule": "caliper_0.05",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "age_18_45",
+    "spec_id": "S123",
+    "support_rule": "clip_0.02_0.98",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "age_18_45",
+    "spec_id": "S126",
+    "support_rule": "clip_0.02_0.98",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan"
+    ],
+    "estimator": "ols",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "none",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "none",
+    "spec_id": "S129",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "none",
+    "spec_id": "S133",
+    "support_rule": "caliper_0.05",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "none",
+    "spec_id": "S136",
+    "support_rule": "caliper_0.05",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "none",
+    "spec_id": "S139",
+    "support_rule": "clip_0.02_0.98",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "none",
+    "spec_id": "S142",
+    "support_rule": "clip_0.02_0.98",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan"
+    ],
+    "estimator": "ols",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "none",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "common_support_re75",
+    "spec_id": "S145",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "common_support_re75",
+    "spec_id": "S149",
+    "support_rule": "caliper_0.05",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "common_support_re75",
+    "spec_id": "S152",
+    "support_rule": "caliper_0.05",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "common_support_re75",
+    "spec_id": "S155",
+    "support_rule": "clip_0.02_0.98",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "common_support_re75",
+    "spec_id": "S158",
+    "support_rule": "clip_0.02_0.98",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan"
+    ],
+    "estimator": "ols",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "none",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "positive_prior_earnings",
+    "spec_id": "S161",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "positive_prior_earnings",
+    "spec_id": "S165",
+    "support_rule": "caliper_0.05",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "positive_prior_earnings",
+    "spec_id": "S168",
+    "support_rule": "caliper_0.05",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "positive_prior_earnings",
+    "spec_id": "S171",
+    "support_rule": "clip_0.02_0.98",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "positive_prior_earnings",
+    "spec_id": "S174",
+    "support_rule": "clip_0.02_0.98",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan"
+    ],
+    "estimator": "ridge_1e-6",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "none",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "age_18_45",
+    "spec_id": "S178",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "age_18_45",
+    "spec_id": "S181",
+    "support_rule": "caliper_0.05",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "age_18_45",
+    "spec_id": "S184",
+    "support_rule": "caliper_0.05",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "age_18_45",
+    "spec_id": "S187",
+    "support_rule": "clip_0.02_0.98",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "age_18_45",
+    "spec_id": "S190",
+    "support_rule": "clip_0.02_0.98",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan"
+    ],
+    "estimator": "ridge_1e-6",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "none",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "none",
+    "spec_id": "S194",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "none",
+    "spec_id": "S197",
+    "support_rule": "caliper_0.05",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "none",
+    "spec_id": "S200",
+    "support_rule": "caliper_0.05",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "none",
+    "spec_id": "S203",
+    "support_rule": "clip_0.02_0.98",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "none",
+    "spec_id": "S206",
+    "support_rule": "clip_0.02_0.98",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan"
+    ],
+    "estimator": "ridge_1e-6",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "none",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "common_support_re75",
+    "spec_id": "S210",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "common_support_re75",
+    "spec_id": "S213",
+    "support_rule": "caliper_0.05",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "common_support_re75",
+    "spec_id": "S216",
+    "support_rule": "caliper_0.05",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "common_support_re75",
+    "spec_id": "S219",
+    "support_rule": "clip_0.02_0.98",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "common_support_re75",
+    "spec_id": "S222",
+    "support_rule": "clip_0.02_0.98",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan"
+    ],
+    "estimator": "ridge_1e-6",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "none",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "positive_prior_earnings",
+    "spec_id": "S226",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "positive_prior_earnings",
+    "spec_id": "S229",
+    "support_rule": "caliper_0.05",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "positive_prior_earnings",
+    "spec_id": "S232",
+    "support_rule": "caliper_0.05",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "positive_prior_earnings",
+    "spec_id": "S235",
+    "support_rule": "clip_0.02_0.98",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "positive_prior_earnings",
+    "spec_id": "S238",
+    "support_rule": "clip_0.02_0.98",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan"
+    ],
+    "estimator": "ridge_1e-6",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "none",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "age_18_45",
+    "spec_id": "S242",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "age_18_45",
+    "spec_id": "S245",
+    "support_rule": "caliper_0.05",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "age_18_45",
+    "spec_id": "S248",
+    "support_rule": "caliper_0.05",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "age_18_45",
+    "spec_id": "S251",
+    "support_rule": "clip_0.02_0.98",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan"
+    ],
+    "estimator": "mahalanobis_1nn",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "none",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "age_18_45",
+    "spec_id": "S255",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "ridge_1e-6",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "none",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "none",
+    "spec_id": "S258",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "none",
+    "spec_id": "S261",
+    "support_rule": "caliper_0.05",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "none",
+    "spec_id": "S264",
+    "support_rule": "caliper_0.05",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "none",
+    "spec_id": "S267",
+    "support_rule": "clip_0.02_0.98",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "mahalanobis_1nn",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "none",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "none",
+    "spec_id": "S271",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "ridge_1e-6",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "none",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "common_support_re75",
+    "spec_id": "S274",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "common_support_re75",
+    "spec_id": "S277",
+    "support_rule": "caliper_0.05",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "common_support_re75",
+    "spec_id": "S280",
+    "support_rule": "caliper_0.05",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "common_support_re75",
+    "spec_id": "S283",
+    "support_rule": "clip_0.02_0.98",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "mahalanobis_1nn",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "none",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "common_support_re75",
+    "spec_id": "S287",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "ridge_1e-6",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "none",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "positive_prior_earnings",
+    "spec_id": "S290",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "positive_prior_earnings",
+    "spec_id": "S293",
+    "support_rule": "caliper_0.05",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "positive_prior_earnings",
+    "spec_id": "S296",
+    "support_rule": "caliper_0.05",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "positive_prior_earnings",
+    "spec_id": "S299",
+    "support_rule": "clip_0.02_0.98",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "mahalanobis_1nn",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "none",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "positive_prior_earnings",
+    "spec_id": "S303",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "ridge_1e-6",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "none",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "age_18_45",
+    "spec_id": "S306",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "age_18_45",
+    "spec_id": "S309",
+    "support_rule": "caliper_0.05",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "age_18_45",
+    "spec_id": "S312",
+    "support_rule": "caliper_0.05",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "age_18_45",
+    "spec_id": "S316",
+    "support_rule": "common_support_pscore",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "mahalanobis_1nn",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "none",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "age_18_45",
+    "spec_id": "S319",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "ridge_1e-6",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "none",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "none",
+    "spec_id": "S322",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "none",
+    "spec_id": "S325",
+    "support_rule": "caliper_0.05",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "none",
+    "spec_id": "S328",
+    "support_rule": "caliper_0.05",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "none",
+    "spec_id": "S332",
+    "support_rule": "common_support_pscore",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "mahalanobis_1nn",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "none",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "none",
+    "spec_id": "S335",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "ridge_1e-6",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "none",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "common_support_re75",
+    "spec_id": "S338",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "common_support_re75",
+    "spec_id": "S341",
+    "support_rule": "caliper_0.05",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "common_support_re75",
+    "spec_id": "S344",
+    "support_rule": "caliper_0.05",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "common_support_re75",
+    "spec_id": "S348",
+    "support_rule": "common_support_pscore",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "mahalanobis_1nn",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "none",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "common_support_re75",
+    "spec_id": "S351",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "ridge_1e-6",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "none",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "positive_prior_earnings",
+    "spec_id": "S354",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "positive_prior_earnings",
+    "spec_id": "S357",
+    "support_rule": "caliper_0.05",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "positive_prior_earnings",
+    "spec_id": "S360",
+    "support_rule": "caliper_0.05",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "positive_prior_earnings",
+    "spec_id": "S364",
+    "support_rule": "common_support_pscore",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "mahalanobis_1nn",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "none",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "positive_prior_earnings",
+    "spec_id": "S367",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "ridge_1e-6",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "none",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "age_18_45",
+    "spec_id": "S370",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "age_18_45",
+    "spec_id": "S373",
+    "support_rule": "caliper_0.05",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "age_18_45",
+    "spec_id": "S376",
+    "support_rule": "caliper_0.05",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "age_18_45",
+    "spec_id": "S380",
+    "support_rule": "common_support_pscore",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "mahalanobis_1nn",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "none",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "age_18_45",
+    "spec_id": "S383",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "ridge_1e-6",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "none",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "none",
+    "spec_id": "S386",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "none",
+    "spec_id": "S389",
+    "support_rule": "caliper_0.05",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "none",
+    "spec_id": "S393",
+    "support_rule": "common_support_pscore",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "none",
+    "spec_id": "S396",
+    "support_rule": "common_support_pscore",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "mahalanobis_1nn",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "none",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "none",
+    "spec_id": "S399",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "ridge_1e-6",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "none",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "common_support_re75",
+    "spec_id": "S402",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "common_support_re75",
+    "spec_id": "S405",
+    "support_rule": "caliper_0.05",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "common_support_re75",
+    "spec_id": "S409",
+    "support_rule": "common_support_pscore",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "common_support_re75",
+    "spec_id": "S412",
+    "support_rule": "common_support_pscore",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "mahalanobis_1nn",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "none",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "common_support_re75",
+    "spec_id": "S415",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "ridge_1e-6",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "none",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "positive_prior_earnings",
+    "spec_id": "S418",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "positive_prior_earnings",
+    "spec_id": "S421",
+    "support_rule": "caliper_0.05",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "positive_prior_earnings",
+    "spec_id": "S425",
+    "support_rule": "common_support_pscore",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "positive_prior_earnings",
+    "spec_id": "S428",
+    "support_rule": "common_support_pscore",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "mahalanobis_1nn",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "none",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "positive_prior_earnings",
+    "spec_id": "S431",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "ridge_1e-6",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "none",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "age_18_45",
+    "spec_id": "S434",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "age_18_45",
+    "spec_id": "S437",
+    "support_rule": "caliper_0.05",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "age_18_45",
+    "spec_id": "S441",
+    "support_rule": "common_support_pscore",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "age_18_45",
+    "spec_id": "S444",
+    "support_rule": "common_support_pscore",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "mahalanobis_1nn",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "none",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "age_18_45",
+    "spec_id": "S447",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "ridge_1e-6",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "none",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "none",
+    "spec_id": "S450",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "none",
+    "spec_id": "S453",
+    "support_rule": "caliper_0.05",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "none",
+    "spec_id": "S457",
+    "support_rule": "common_support_pscore",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "none",
+    "spec_id": "S460",
+    "support_rule": "common_support_pscore",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "mahalanobis_1nn",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "none",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "none",
+    "spec_id": "S463",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "ridge_1e-6",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "none",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "common_support_re75",
+    "spec_id": "S466",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "common_support_re75",
+    "spec_id": "S470",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "common_support_re75",
+    "spec_id": "S473",
+    "support_rule": "common_support_pscore",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "common_support_re75",
+    "spec_id": "S476",
+    "support_rule": "common_support_pscore",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "mahalanobis_1nn",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "none",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "common_support_re75",
+    "spec_id": "S479",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "ridge_1e-6",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "none",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "positive_prior_earnings",
+    "spec_id": "S482",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "positive_prior_earnings",
+    "spec_id": "S486",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "positive_prior_earnings",
+    "spec_id": "S489",
+    "support_rule": "common_support_pscore",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "positive_prior_earnings",
+    "spec_id": "S492",
+    "support_rule": "common_support_pscore",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "mahalanobis_1nn",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "none",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "positive_prior_earnings",
+    "spec_id": "S495",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "ridge_1e-6",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "none",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "age_18_45",
+    "spec_id": "S498",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "age_18_45",
+    "spec_id": "S502",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "age_18_45",
+    "spec_id": "S505",
+    "support_rule": "common_support_pscore",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "age_18_45",
+    "spec_id": "S508",
+    "support_rule": "common_support_pscore",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree"
+    ],
+    "estimator": "mahalanobis_1nn",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "none",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "age_18_45",
+    "spec_id": "S511",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "ridge_1e-6",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "none",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "none",
+    "spec_id": "S514",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "none",
+    "spec_id": "S518",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "none",
+    "spec_id": "S521",
+    "support_rule": "common_support_pscore",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "none",
+    "spec_id": "S524",
+    "support_rule": "common_support_pscore",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "mahalanobis_1nn",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "none",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "none",
+    "spec_id": "S527",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "common_support_re75",
+    "spec_id": "S531",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "common_support_re75",
+    "spec_id": "S534",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "common_support_re75",
+    "spec_id": "S537",
+    "support_rule": "common_support_pscore",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "common_support_re75",
+    "spec_id": "S540",
+    "support_rule": "common_support_pscore",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "mahalanobis_1nn",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "none",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "common_support_re75",
+    "spec_id": "S543",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "positive_prior_earnings",
+    "spec_id": "S547",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "positive_prior_earnings",
+    "spec_id": "S550",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "positive_prior_earnings",
+    "spec_id": "S553",
+    "support_rule": "common_support_pscore",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "positive_prior_earnings",
+    "spec_id": "S556",
+    "support_rule": "common_support_pscore",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "mahalanobis_1nn",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "none",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "positive_prior_earnings",
+    "spec_id": "S559",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "age_18_45",
+    "spec_id": "S563",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "age_18_45",
+    "spec_id": "S566",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "age_18_45",
+    "spec_id": "S569",
+    "support_rule": "common_support_pscore",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "age_18_45",
+    "spec_id": "S572",
+    "support_rule": "common_support_pscore",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "mahalanobis_1nn",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "none",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "age_18_45",
+    "spec_id": "S575",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "none",
+    "spec_id": "S579",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "none",
+    "spec_id": "S582",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "none",
+    "spec_id": "S585",
+    "support_rule": "common_support_pscore",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "none",
+    "spec_id": "S588",
+    "support_rule": "common_support_pscore",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "mahalanobis_1nn",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "none",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "none",
+    "spec_id": "S591",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "common_support_re75",
+    "spec_id": "S595",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "common_support_re75",
+    "spec_id": "S598",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "common_support_re75",
+    "spec_id": "S601",
+    "support_rule": "common_support_pscore",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "common_support_re75",
+    "spec_id": "S604",
+    "support_rule": "common_support_pscore",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "cem_att",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "none",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "common_support_re75",
+    "spec_id": "S608",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "positive_prior_earnings",
+    "spec_id": "S611",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "positive_prior_earnings",
+    "spec_id": "S614",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "positive_prior_earnings",
+    "spec_id": "S617",
+    "support_rule": "common_support_pscore",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "positive_prior_earnings",
+    "spec_id": "S620",
+    "support_rule": "common_support_pscore",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "cem_att",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "none",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "positive_prior_earnings",
+    "spec_id": "S624",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "age_18_45",
+    "spec_id": "S627",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "age_18_45",
+    "spec_id": "S630",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "age_18_45",
+    "spec_id": "S633",
+    "support_rule": "common_support_pscore",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "age_18_45",
+    "spec_id": "S636",
+    "support_rule": "common_support_pscore",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "cem_att",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "none",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "age_18_45",
+    "spec_id": "S640",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "none",
+    "spec_id": "S643",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "none",
+    "spec_id": "S646",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "none",
+    "spec_id": "S649",
+    "support_rule": "common_support_pscore",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "none",
+    "spec_id": "S652",
+    "support_rule": "common_support_pscore",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "cem_att",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "none",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "none",
+    "spec_id": "S656",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "common_support_re75",
+    "spec_id": "S659",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "common_support_re75",
+    "spec_id": "S662",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "common_support_re75",
+    "spec_id": "S665",
+    "support_rule": "common_support_pscore",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "common_support_re75",
+    "spec_id": "S669",
+    "support_rule": "trim_0.05_0.95",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "cem_att",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "none",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "common_support_re75",
+    "spec_id": "S672",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "positive_prior_earnings",
+    "spec_id": "S675",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "positive_prior_earnings",
+    "spec_id": "S678",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "positive_prior_earnings",
+    "spec_id": "S681",
+    "support_rule": "common_support_pscore",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "positive_prior_earnings",
+    "spec_id": "S685",
+    "support_rule": "trim_0.05_0.95",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "cem_att",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "none",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "positive_prior_earnings",
+    "spec_id": "S688",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "age_18_45",
+    "spec_id": "S691",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "age_18_45",
+    "spec_id": "S694",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "age_18_45",
+    "spec_id": "S697",
+    "support_rule": "common_support_pscore",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "age_18_45",
+    "spec_id": "S701",
+    "support_rule": "trim_0.05_0.95",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "cem_att",
+    "outcome": "re78",
+    "outcome_transform": "raw",
+    "propensity_model": "none",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "age_18_45",
+    "spec_id": "S704",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "none",
+    "spec_id": "S707",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "none",
+    "spec_id": "S710",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "none",
+    "spec_id": "S713",
+    "support_rule": "common_support_pscore",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "none",
+    "spec_id": "S717",
+    "support_rule": "trim_0.05_0.95",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "cem_att",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "none",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "none",
+    "spec_id": "S720",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "common_support_re75",
+    "spec_id": "S723",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "common_support_re75",
+    "spec_id": "S726",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "common_support_re75",
+    "spec_id": "S729",
+    "support_rule": "common_support_pscore",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "common_support_re75",
+    "spec_id": "S733",
+    "support_rule": "trim_0.05_0.95",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "cem_att",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "none",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "common_support_re75",
+    "spec_id": "S736",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "positive_prior_earnings",
+    "spec_id": "S739",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "positive_prior_earnings",
+    "spec_id": "S742",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "positive_prior_earnings",
+    "spec_id": "S746",
+    "support_rule": "trim_0.05_0.95",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "positive_prior_earnings",
+    "spec_id": "S749",
+    "support_rule": "trim_0.05_0.95",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "cem_att",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "none",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "positive_prior_earnings",
+    "spec_id": "S752",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "age_18_45",
+    "spec_id": "S755",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "psm_1nn",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "age_18_45",
+    "spec_id": "S758",
+    "support_rule": "none",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "logit_l2",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "age_18_45",
+    "spec_id": "S762",
+    "support_rule": "trim_0.05_0.95",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "ipw_att",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "probit_gradient",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "age_18_45",
+    "spec_id": "S765",
+    "support_rule": "trim_0.05_0.95",
+    "treatment": "treat"
+  },
+  {
+    "covariates": [
+      "age",
+      "educ",
+      "black",
+      "hispan",
+      "married",
+      "nodegree",
+      "re74",
+      "re75",
+      "u74",
+      "u75"
+    ],
+    "estimator": "cem_att",
+    "outcome": "re78",
+    "outcome_transform": "log1p",
+    "propensity_model": "none",
+    "rationale": "Pre-declared LaLonde-style ATT specification over treatment, 1978 earnings, baseline demographics, pre-treatment earnings, unemployment proxies, matching, weighting, support, and outcome-scale choices.",
+    "sample_filter": "age_18_45",
+    "spec_id": "S768",
+    "support_rule": "none",
+    "treatment": "treat"
+  }
+]

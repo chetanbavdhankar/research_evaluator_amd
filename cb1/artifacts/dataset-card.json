@@ -1,0 +1,39 @@
+{
+  "columns": [
+    "treat",
+    "age",
+    "educ",
+    "black",
+    "hispan",
+    "married",
+    "nodegree",
+    "re74",
+    "re75",
+    "re78",
+    "u74",
+    "u75"
+  ],
+  "dataset_hash": "a3a1ae1a7d599650b2a48f3c203764dd04803a994bcb6899e9ccf246168c4081",
+  "dataset_id": "nber-dehejia-wahba-nsw-treated-psid1-controls",
+  "evidence_status": "frozen_nber_source_psid1_controls",
+  "generated_at": "2026-05-07T23:17:51Z",
+  "row_count": 2675,
+  "source": "NBER Dehejia-Wahba NSW treated sample plus PSID controls",
+  "source_files": [
+    {
+      "filename": "nswre74_treated.txt",
+      "sha256": "e7b742fe0ff07a0f45e129b4ff108bb9611cd83d53604732c48a8a0a3e20eda3",
+      "url": "https://www.nber.org/~rdehejia/data/nswre74_treated.txt"
+    },
+    {
+      "filename": "psid_controls.txt",
+      "sha256": "73ffcdd8feb7f965f8e1de9bfdb80a095542c7a95ce7f56b2e2b2a9716e858cc",
+      "url": "https://www.nber.org/~rdehejia/data/psid_controls.txt"
+    }
+  ],
+  "warnings": [
+    "NBER states these data are distributed for attributable non-commercial use.",
+    "Cite Dehejia and Wahba 1999, Dehejia and Wahba 2002, and LaLonde 1986.",
+    "Raw source files frozen in artifacts/data/raw-nber-psid with SHA-256 hashes."
+  ]
+}
