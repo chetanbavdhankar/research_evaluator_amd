@@ -1,0 +1,94 @@
+[
+  {
+    "id": "explicit_paper_offline_fail_closed",
+    "name": "Explicit paper with blocked live evidence fails closed",
+    "kind": "capability",
+    "paper_text": "# Denoising Diffusion Probabilistic Models\n\narXiv: 2006.11239\nDOI: 10.48550/arXiv.2006.11239\nCode: https://github.com/hojonathanho/diffusion\nData: CIFAR-10, LSUN, CelebA-HQ\n\nThe paper evaluates a diffusion-based generative modeling approach against image generation benchmarks. It claims denoising diffusion models produce high quality samples. It reports likelihood estimates and ablation results. It depends on public image datasets and an implementation repository for reproduction.",
+    "autonomy_level": 3,
+    "allow_network": false,
+    "expected": {
+      "min_claims": 4,
+      "identifiers": {
+        "arxiv_ids": ["2006.11239"],
+        "dois": ["10.48550/arxiv.2006.11239"],
+        "github_repos": ["hojonathanho/diffusion"],
+        "dataset_mentions": ["CIFAR-10", "LSUN", "CelebA-HQ"]
+      },
+      "resolver_status": {
+        "arxiv_resolver": "blocked",
+        "doi_resolver": "blocked",
+        "github_resolver": "blocked",
+        "dataset_resolver": "blocked"
+      },
+      "decision": "degraded",
+      "required_gaps": [
+        "paper identity not verified by arXiv or DOI",
+        "GitHub repository not found",
+        "dataset resolver found no public dataset record"
+      ],
+      "code_data_status": "ok",
+      "expect_repair": true
+    }
+  },
+  {
+    "id": "underspecified_claims_no_placeholder_evidence",
+    "name": "Unsupported claims produce missing-evidence report",
+    "kind": "regression",
+    "paper_text": "# Private Benchmark Agent Study\n\nThe method claims state-of-the-art reproducibility prediction accuracy on a private benchmark.\nThe data section describes an internal dataset with no public URL or accession.\nThe code section says source code may be released later but gives no repository.\nThe results section reports a 27 percent improvement over prior systems.",
+    "autonomy_level": 2,
+    "allow_network": false,
+    "expected": {
+      "min_claims": 4,
+      "identifiers": {
+        "arxiv_ids": [],
+        "dois": [],
+        "github_repos": []
+      },
+      "resolver_status": {
+        "arxiv_resolver": "blocked",
+        "doi_resolver": "blocked",
+        "github_resolver": "blocked",
+        "dataset_resolver": "blocked"
+      },
+      "decision": "degraded",
+      "required_gaps": [
+        "paper identity not verified by arXiv or DOI",
+        "GitHub repository not found",
+        "dataset resolver found no public dataset record"
+      ],
+      "code_data_status": "blocked",
+      "expect_repair": false
+    }
+  },
+  {
+    "id": "autonomy_l1_blocks_external_and_code_tools",
+    "name": "Low autonomy gates network and code/data tool classes",
+    "kind": "regression",
+    "paper_text": "# CLIP-Style Multimodal Reproduction Note\n\narXiv: 2103.00020\nDOI: 10.48550/arXiv.2103.00020\nCode: https://github.com/openai/CLIP\nData: WIT, ImageNet, Flickr30k\n\nThe paper claims transferable zero-shot performance using a contrastive language-image method. It reports benchmark results across multiple datasets. It depends on a source repository and dataset provenance for reproduction. It should not execute code unless the autonomy policy allows sandboxed planning.",
+    "autonomy_level": 1,
+    "allow_network": false,
+    "expected": {
+      "min_claims": 4,
+      "identifiers": {
+        "arxiv_ids": ["2103.00020"],
+        "dois": ["10.48550/arxiv.2103.00020"],
+        "github_repos": ["openai/CLIP"],
+        "dataset_mentions": ["WIT", "ImageNet", "Flickr30k"]
+      },
+      "resolver_status": {
+        "arxiv_resolver": "blocked",
+        "doi_resolver": "blocked",
+        "github_resolver": "blocked",
+        "dataset_resolver": "blocked"
+      },
+      "decision": "degraded",
+      "required_gaps": [
+        "paper identity not verified by arXiv or DOI",
+        "GitHub repository not found",
+        "dataset resolver found no public dataset record"
+      ],
+      "code_data_status": "blocked",
+      "expect_repair": false
+    }
+  }
+]

@@ -2,8 +2,24 @@
 
 A production-grade CLI tool to autonomously audit scientific research papers (specifically astronomy) for data and methodological replicability.
 
+## Start Here: Agentic Reproducibility Engine
+
+[`agentic-reproducibility-engine/`](agentic-reproducibility-engine/) is the separate AMD/Qwen multi-agent reproducibility evaluator.
+
+Use that folder when you want the full agentic product: static HTML frontend, FastAPI backend, multi-agent audit graph, live arXiv/DOI/GitHub/dataset resolvers, verifier objections, report provenance, and an eval harness for agent behavior.
+
+It is intentionally separate from the existing CLI/wiki implementations so users can tell immediately which path is the interactive agentic system.
+
+## Repository Map
+
+| Path | Purpose |
+| --- | --- |
+| `agentic-reproducibility-engine/` | New standalone agentic system for AMD/Qwen paper reproducibility audits. |
+| `cb/`, `cb1/`, `src/replicability_audit/` | Existing CLI and staged evaluator implementations. |
+| `llm-wiki/` | Knowledge base, architecture notes, and supporting context. |
+
 ## Overview
-This tool ingests a research paper (PDF or arXiv URL), extracts data assets, method pipelines, and software inventory using an LLM (Gemini or local Ollama), mathematically scores the methodology, and produces a structured JSON audit alongside an executable replication scaffold. 
+This tool ingests a research paper (PDF or arXiv URL), extracts data assets, method pipelines, and software inventory using an LLM (Gemini or local Ollama), mathematically scores the methodology, and produces a structured JSON audit alongside an executable replication scaffold.
 
 ## Architecture
 The system enforces strict determinism, heavily limiting LLM hallucinations by isolating them exclusively to text-to-JSON parsing stages.
