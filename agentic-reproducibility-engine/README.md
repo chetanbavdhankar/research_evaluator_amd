@@ -47,6 +47,7 @@ dataset resolver, scorer, code/data planner, verifier, report writer
 | `tests/` | Unit tests for the graph and eval harness. |
 | `scripts/run_evals.py` | Offline and model-backed eval runner. |
 | `scripts/vllm-qwen35-amd.sh` | AMD/vLLM launch script for Qwen/Qwen3.5-27B. |
+| `deploy-amd-hf/` | Self-serve AMD GPU and Hugging Face deployment kit: runbook, env template, ROCm Docker/Compose scaffold, startup scripts, readiness checker, and static Space notes. |
 | `DIFFERENTIATION.md` | Short explanation of why this product is distinct from the rest of the repo. |
 
 ## Local Quickstart
@@ -101,6 +102,13 @@ python app.py
 ```
 
 ## AMD/Qwen Runtime
+
+For self-serve AMD GPU deployment, start with:
+
+```text
+deploy-amd-hf/README.md
+deploy-amd-hf/DEPLOY_AMD.md
+```
 
 On the AMD instance, serve Qwen/Qwen3.5-27B with vLLM:
 

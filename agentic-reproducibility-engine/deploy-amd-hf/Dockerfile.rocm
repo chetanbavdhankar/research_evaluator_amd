@@ -1,0 +1,42 @@
+ARG ROCM_IMAGE=rocm/dev-ubuntu-22.04:latest
+FROM ${ROCM_IMAGE}
+
+ENV DEBIAN_FRONTEND=noninteractive
+ENV PYTHONUNBUFFERED=1
+ENV HF_HOME=/opt/hf-cache
+ENV HF_HUB_ENABLE_HF_TRANSFER=1
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        bash \
+        ca-certificates \
+        curl \
+        git \
+        python3 \
+        python3-pip \
+        python3-venv \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /opt/agentic-reproducibility-engine
+COPY . .
+
+RUN python3 -m pip install --upgrade pip \
+    && python3 -m pip install -e ".[api,test]" \
+    && python3 -m pip install -r deploy-amd-hf/requirements-amd.txt
+
+# The correct vLLM ROCm install command depends on the base image, ROCm version,
+# Python version, and GPU generation. Pass an explicit command at build time:
+#   docker build \
+#     -f deploy-amd-hf/Dockerfile.rocm \
+#     --build-arg VLLM_INSTALL_COMMAND='python3 -m pip install <rocm-vllm-wheel-or-index>' \
+#     -t agentic-repro-engine-amd .
+ARG VLLM_INSTALL_COMMAND=""
+RUN if [ -n "$VLLM_INSTALL_COMMAND" ]; then \
+        sh -lc "$VLLM_INSTALL_COMMAND"; \
+    else \
+        echo "Skipping vLLM install. Install ROCm-compatible vLLM in a derived image or pass VLLM_INSTALL_COMMAND."; \
+    fi
+
+EXPOSE 8000 8080
+
+CMD ["bash", "deploy-amd-hf/scripts/start_agent_api.sh"]

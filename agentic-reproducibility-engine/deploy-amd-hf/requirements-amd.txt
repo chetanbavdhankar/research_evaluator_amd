@@ -1,0 +1,10 @@
+# Extra utilities for AMD/Hugging Face deployment.
+# Install the app itself from the parent folder with:
+#   pip install -e ".[api,test]"
+
+huggingface-hub>=0.26
+hf-transfer>=0.1.8
+
+# Install vLLM using the ROCm-compatible wheel/container path that matches
+# the host ROCm, Python, and GPU stack. Do not assume a generic wheel is enough.
+# vllm

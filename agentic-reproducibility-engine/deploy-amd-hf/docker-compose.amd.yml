@@ -1,0 +1,48 @@
+services:
+  vllm:
+    build:
+      context: ..
+      dockerfile: deploy-amd-hf/Dockerfile.rocm
+      args:
+        ROCM_IMAGE: ${ROCM_IMAGE:-rocm/dev-ubuntu-22.04:latest}
+        VLLM_INSTALL_COMMAND: ${VLLM_INSTALL_COMMAND:-}
+    image: agentic-repro-engine-amd:latest
+    command: bash deploy-amd-hf/scripts/start_vllm_qwen.sh
+    env_file:
+      - .env
+    environment:
+      MODEL_BASE_URL: http://vllm:8000/v1
+    devices:
+      - /dev/kfd
+      - /dev/dri
+    group_add:
+      - video
+    ipc: host
+    security_opt:
+      - seccomp:unconfined
+    ports:
+      - "${VLLM_PORT:-8000}:8000"
+    volumes:
+      - hf-cache:/opt/hf-cache
+
+  agent-api:
+    image: agentic-repro-engine-amd:latest
+    command: bash deploy-amd-hf/scripts/start_agent_api.sh
+    env_file:
+      - .env
+    environment:
+      MODEL_BASE_URL: http://vllm:8000/v1
+      MODEL_NAME: ${SERVED_MODEL_NAME:-qwen3.5-27b-amd}
+      MODEL_API_KEY: ${MODEL_API_KEY:-EMPTY}
+      AGENT_HOST: 0.0.0.0
+      AGENT_PORT: 8080
+    depends_on:
+      - vllm
+    ports:
+      - "${AGENT_PORT:-8080}:8080"
+    volumes:
+      - run-store:/opt/agentic-reproducibility-engine/runs
+
+volumes:
+  hf-cache:
+  run-store:
