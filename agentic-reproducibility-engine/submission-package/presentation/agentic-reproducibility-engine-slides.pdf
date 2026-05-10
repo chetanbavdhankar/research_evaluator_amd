@@ -1,0 +1,227 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [ 4 0 R 6 0 R 8 0 R 10 0 R 12 0 R 14 0 R 16 0 R 18 0 R 20 0 R 22 0 R ] /Count 10 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+4 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 1280 720] /Resources << /Font << /F1 3 0 R >> >> /Contents 5 0 R >>
+endobj
+5 0 obj
+<< /Length 656 >>
+stream
+q 0.02 0.03 0.08 rg 0 0 1280 720 re f Q
+q 0.00 0.82 0.94 rg 68 64 1144 4 re f Q
+q 0.07 0.13 0.24 rg 780 0 500 720 re f Q
+BT /F1 22 Tf 0.00 0.82 0.94 rg 76 610 Td (AMD Developer Hackathon / Track 1) Tj ET
+BT /F1 52 Tf 0.96 0.97 0.99 rg 76 535 Td (Agentic Reproducibility Engine) Tj ET
+BT /F1 27 Tf 0.80 0.84 0.90 rg 96 450 Td (- AMD-hosted multi-agent research reproducibility evaluator.) Tj ET
+BT /F1 27 Tf 0.80 0.84 0.90 rg 96 402 Td (- Powered by Qwen/Qwen3.5-27B, vLLM, ROCm, and Hugging Face Spaces.) Tj ET
+BT /F1 16 Tf 0.58 0.64 0.72 rg 76 42 Td (Agentic Reproducibility Engine) Tj ET
+BT /F1 16 Tf 0.58 0.64 0.72 rg 1140 42 Td (1 / 10) Tj ET
+
+endstream
+endobj
+6 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 1280 720] /Resources << /Font << /F1 3 0 R >> >> /Contents 7 0 R >>
+endobj
+7 0 obj
+<< /Length 644 >>
+stream
+q 0.02 0.03 0.08 rg 0 0 1280 720 re f Q
+q 0.00 0.82 0.94 rg 68 64 1144 4 re f Q
+q 0.07 0.13 0.24 rg 780 0 500 720 re f Q
+BT /F1 22 Tf 0.00 0.82 0.94 rg 76 610 Td (Reproducibility evidence is scattered) Tj ET
+BT /F1 52 Tf 0.96 0.97 0.99 rg 76 535 Td (Problem) Tj ET
+BT /F1 27 Tf 0.80 0.84 0.90 rg 96 450 Td (- Claims, code, data, and methods live across disconnected systems.) Tj ET
+BT /F1 27 Tf 0.80 0.84 0.90 rg 96 402 Td (- Manual audits are slow, inconsistent, and often hide uncertainty.) Tj ET
+BT /F1 16 Tf 0.58 0.64 0.72 rg 76 42 Td (Agentic Reproducibility Engine) Tj ET
+BT /F1 16 Tf 0.58 0.64 0.72 rg 1140 42 Td (2 / 10) Tj ET
+
+endstream
+endobj
+8 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 1280 720] /Resources << /Font << /F1 3 0 R >> >> /Contents 9 0 R >>
+endobj
+9 0 obj
+<< /Length 624 >>
+stream
+q 0.02 0.03 0.08 rg 0 0 1280 720 re f Q
+q 0.00 0.82 0.94 rg 68 64 1144 4 re f Q
+q 0.07 0.13 0.24 rg 780 0 500 720 re f Q
+BT /F1 22 Tf 0.00 0.82 0.94 rg 76 610 Td (Visible multi-agent audit workflow) Tj ET
+BT /F1 52 Tf 0.96 0.97 0.99 rg 76 535 Td (Solution) Tj ET
+BT /F1 27 Tf 0.80 0.84 0.90 rg 96 450 Td (- Submit a paper and choose autonomy.) Tj ET
+BT /F1 27 Tf 0.80 0.84 0.90 rg 96 402 Td (- Watch the trace, tool calls, evidence, verifier objections, and final report.) Tj ET
+BT /F1 16 Tf 0.58 0.64 0.72 rg 76 42 Td (Agentic Reproducibility Engine) Tj ET
+BT /F1 16 Tf 0.58 0.64 0.72 rg 1140 42 Td (3 / 10) Tj ET
+
+endstream
+endobj
+10 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 1280 720] /Resources << /Font << /F1 3 0 R >> >> /Contents 11 0 R >>
+endobj
+11 0 obj
+<< /Length 728 >>
+stream
+q 0.02 0.03 0.08 rg 0 0 1280 720 re f Q
+q 0.00 0.82 0.94 rg 68 64 1144 4 re f Q
+q 0.07 0.13 0.24 rg 780 0 500 720 re f Q
+BT /F1 22 Tf 0.00 0.82 0.94 rg 76 610 Td (Separate agents, separate artifacts) Tj ET
+BT /F1 52 Tf 0.96 0.97 0.99 rg 76 535 Td (Agentic Workflow) Tj ET
+BT /F1 27 Tf 0.80 0.84 0.90 rg 96 450 Td (- Plan audit scope.) Tj ET
+BT /F1 27 Tf 0.80 0.84 0.90 rg 96 402 Td (- Read claims and artifacts.) Tj ET
+BT /F1 27 Tf 0.80 0.84 0.90 rg 96 354 Td (- Resolve external evidence.) Tj ET
+BT /F1 27 Tf 0.80 0.84 0.90 rg 96 306 Td (- Score, plan, verify, and report.) Tj ET
+BT /F1 16 Tf 0.58 0.64 0.72 rg 76 42 Td (Agentic Reproducibility Engine) Tj ET
+BT /F1 16 Tf 0.58 0.64 0.72 rg 1140 42 Td (4 / 10) Tj ET
+
+endstream
+endobj
+12 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 1280 720] /Resources << /Font << /F1 3 0 R >> >> /Contents 13 0 R >>
+endobj
+13 0 obj
+<< /Length 731 >>
+stream
+q 0.02 0.03 0.08 rg 0 0 1280 720 re f Q
+q 0.00 0.82 0.94 rg 68 64 1144 4 re f Q
+q 0.07 0.13 0.24 rg 780 0 500 720 re f Q
+BT /F1 22 Tf 0.00 0.82 0.94 rg 76 610 Td (Static frontend + AMD-hosted backend) Tj ET
+BT /F1 52 Tf 0.96 0.97 0.99 rg 76 535 Td (AMD Architecture) Tj ET
+BT /F1 27 Tf 0.80 0.84 0.90 rg 96 450 Td (- Hugging Face Static Space hosts index.html.) Tj ET
+BT /F1 27 Tf 0.80 0.84 0.90 rg 96 402 Td (- FastAPI agent backend runs on AMD Developer Cloud.) Tj ET
+BT /F1 27 Tf 0.80 0.84 0.90 rg 96 354 Td (- vLLM serves Qwen on ROCm through an OpenAI-compatible endpoint.) Tj ET
+BT /F1 16 Tf 0.58 0.64 0.72 rg 76 42 Td (Agentic Reproducibility Engine) Tj ET
+BT /F1 16 Tf 0.58 0.64 0.72 rg 1140 42 Td (5 / 10) Tj ET
+
+endstream
+endobj
+14 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 1280 720] /Resources << /Font << /F1 3 0 R >> >> /Contents 15 0 R >>
+endobj
+15 0 obj
+<< /Length 700 >>
+stream
+q 0.02 0.03 0.08 rg 0 0 1280 720 re f Q
+q 0.00 0.82 0.94 rg 68 64 1144 4 re f Q
+q 0.07 0.13 0.24 rg 780 0 500 720 re f Q
+BT /F1 22 Tf 0.00 0.82 0.94 rg 76 610 Td (Live resolvers, fail-closed decisions) Tj ET
+BT /F1 52 Tf 0.96 0.97 0.99 rg 76 535 Td (Evidence Tools) Tj ET
+BT /F1 27 Tf 0.80 0.84 0.90 rg 96 450 Td (- arXiv, DOI, GitHub, and dataset resolver tools.) Tj ET
+BT /F1 27 Tf 0.80 0.84 0.90 rg 96 402 Td (- Missing evidence becomes an explicit gap.) Tj ET
+BT /F1 27 Tf 0.80 0.84 0.90 rg 96 354 Td (- The verifier can degrade the decision.) Tj ET
+BT /F1 16 Tf 0.58 0.64 0.72 rg 76 42 Td (Agentic Reproducibility Engine) Tj ET
+BT /F1 16 Tf 0.58 0.64 0.72 rg 1140 42 Td (6 / 10) Tj ET
+
+endstream
+endobj
+16 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 1280 720] /Resources << /Font << /F1 3 0 R >> >> /Contents 17 0 R >>
+endobj
+17 0 obj
+<< /Length 602 >>
+stream
+q 0.02 0.03 0.08 rg 0 0 1280 720 re f Q
+q 0.00 0.82 0.94 rg 68 64 1144 4 re f Q
+q 0.07 0.13 0.24 rg 780 0 500 720 re f Q
+BT /F1 22 Tf 0.00 0.82 0.94 rg 76 610 Td (Judges inspect the work) Tj ET
+BT /F1 52 Tf 0.96 0.97 0.99 rg 76 535 Td (Demo Flow) Tj ET
+BT /F1 27 Tf 0.80 0.84 0.90 rg 96 450 Td (- Submit paper -> autonomy slider -> live trace.) Tj ET
+BT /F1 27 Tf 0.80 0.84 0.90 rg 96 402 Td (- Evidence panel -> verifier objections -> final report.) Tj ET
+BT /F1 16 Tf 0.58 0.64 0.72 rg 76 42 Td (Agentic Reproducibility Engine) Tj ET
+BT /F1 16 Tf 0.58 0.64 0.72 rg 1140 42 Td (7 / 10) Tj ET
+
+endstream
+endobj
+18 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 1280 720] /Resources << /Font << /F1 3 0 R >> >> /Contents 19 0 R >>
+endobj
+19 0 obj
+<< /Length 707 >>
+stream
+q 0.02 0.03 0.08 rg 0 0 1280 720 re f Q
+q 0.00 0.82 0.94 rg 68 64 1144 4 re f Q
+q 0.07 0.13 0.24 rg 780 0 500 720 re f Q
+BT /F1 22 Tf 0.00 0.82 0.94 rg 76 610 Td (Agent behavior is tested) Tj ET
+BT /F1 52 Tf 0.96 0.97 0.99 rg 76 535 Td (Evaluation) Tj ET
+BT /F1 27 Tf 0.80 0.84 0.90 rg 96 450 Td (- Prompts, contexts, artifacts, and tool calls are graded.) Tj ET
+BT /F1 27 Tf 0.80 0.84 0.90 rg 96 402 Td (- Resolver coverage and verifier behavior are checked.) Tj ET
+BT /F1 27 Tf 0.80 0.84 0.90 rg 96 354 Td (- Placeholder evidence is explicitly banned.) Tj ET
+BT /F1 16 Tf 0.58 0.64 0.72 rg 76 42 Td (Agentic Reproducibility Engine) Tj ET
+BT /F1 16 Tf 0.58 0.64 0.72 rg 1140 42 Td (8 / 10) Tj ET
+
+endstream
+endobj
+20 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 1280 720] /Resources << /Font << /F1 3 0 R >> >> /Contents 21 0 R >>
+endobj
+21 0 obj
+<< /Length 659 >>
+stream
+q 0.02 0.03 0.08 rg 0 0 1280 720 re f Q
+q 0.00 0.82 0.94 rg 68 64 1144 4 re f Q
+q 0.07 0.13 0.24 rg 780 0 500 720 re f Q
+BT /F1 22 Tf 0.00 0.82 0.94 rg 76 610 Td (Faster first-pass reproducibility audits) Tj ET
+BT /F1 52 Tf 0.96 0.97 0.99 rg 76 535 Td (Business Value) Tj ET
+BT /F1 27 Tf 0.80 0.84 0.90 rg 96 450 Td (- For labs, ML teams, funders, reviewers, and benchmark maintainers.) Tj ET
+BT /F1 27 Tf 0.80 0.84 0.90 rg 96 402 Td (- Outputs provenance, uncertainty, and concrete replication next steps.) Tj ET
+BT /F1 16 Tf 0.58 0.64 0.72 rg 76 42 Td (Agentic Reproducibility Engine) Tj ET
+BT /F1 16 Tf 0.58 0.64 0.72 rg 1140 42 Td (9 / 10) Tj ET
+
+endstream
+endobj
+22 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 1280 720] /Resources << /Font << /F1 3 0 R >> >> /Contents 23 0 R >>
+endobj
+23 0 obj
+<< /Length 688 >>
+stream
+q 0.02 0.03 0.08 rg 0 0 1280 720 re f Q
+q 0.00 0.82 0.94 rg 68 64 1144 4 re f Q
+q 0.07 0.13 0.24 rg 780 0 500 720 re f Q
+BT /F1 22 Tf 0.00 0.82 0.94 rg 76 610 Td (From demo to research infrastructure) Tj ET
+BT /F1 52 Tf 0.96 0.97 0.99 rg 76 535 Td (Roadmap) Tj ET
+BT /F1 27 Tf 0.80 0.84 0.90 rg 96 450 Td (- Deploy AMD/Qwen backend and publish HF Space.) Tj ET
+BT /F1 27 Tf 0.80 0.84 0.90 rg 96 402 Td (- Expand resolver sources and eval cases.) Tj ET
+BT /F1 27 Tf 0.80 0.84 0.90 rg 96 354 Td (- Add PDF ingestion and team workflows.) Tj ET
+BT /F1 16 Tf 0.58 0.64 0.72 rg 76 42 Td (Agentic Reproducibility Engine) Tj ET
+BT /F1 16 Tf 0.58 0.64 0.72 rg 1140 42 Td (10 / 10) Tj ET
+
+endstream
+endobj
+xref
+0 24
+0000000000 65535 f 
+0000000010 00000 n 
+0000000062 00000 n 
+0000000186 00000 n 
+0000000259 00000 n 
+0000000389 00000 n 
+0000001099 00000 n 
+0000001229 00000 n 
+0000001927 00000 n 
+0000002057 00000 n 
+0000002735 00000 n 
+0000002867 00000 n 
+0000003650 00000 n 
+0000003782 00000 n 
+0000004568 00000 n 
+0000004700 00000 n 
+0000005455 00000 n 
+0000005587 00000 n 
+0000006244 00000 n 
+0000006376 00000 n 
+0000007138 00000 n 
+0000007270 00000 n 
+0000007984 00000 n 
+0000008116 00000 n 
+trailer
+<< /Size 24 /Root 1 0 R >>
+startxref
+8859
+%%EOF

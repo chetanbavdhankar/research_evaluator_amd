@@ -1,0 +1,30 @@
+{
+  "project_title": "Agentic Reproducibility Engine",
+  "track": "AI Agents & Agentic Workflows",
+  "github_repository": "https://github.com/chetanbavdhankar/research_evaluator_amd",
+  "main_code_path": "agentic-reproducibility-engine",
+  "submission_assets": {
+    "form_copy": "SUBMISSION_FORM.md",
+    "checklist": "FINAL_CHECKLIST.md",
+    "cover_image": "assets/cover-image.png",
+    "slide_source": "presentation/SLIDE_DECK.md",
+    "slide_html": "presentation/slides.html",
+    "slide_pdf": "presentation/agentic-reproducibility-engine-slides.pdf",
+    "video_script": "video/VIDEO_SCRIPT.md",
+    "demo_runbook": "demo/DEMO_RUNBOOK.md",
+    "judging_alignment": "JUDGING_ALIGNMENT.md",
+    "build_in_public": "BUILD_IN_PUBLIC.md"
+  },
+  "runtime": {
+    "frontend": "Static Hugging Face Space",
+    "backend": "FastAPI on AMD Developer Cloud",
+    "model_server": "vLLM on ROCm",
+    "model": "Qwen/Qwen3.5-27B"
+  },
+  "manual_urls_to_fill": {
+    "hugging_face_space_url": "TODO",
+    "amd_backend_url": "TODO",
+    "video_url": "TODO",
+    "slide_pdf_url_or_upload": "TODO"
+  }
+}

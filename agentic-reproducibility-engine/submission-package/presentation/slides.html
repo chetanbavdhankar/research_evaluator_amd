@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Agentic Reproducibility Engine - Submission Slides</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #050816;
+      color: #f5f7fb;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    .deck {
+      display: grid;
+      gap: 24px;
+      padding: 24px;
+    }
+    .slide {
+      position: relative;
+      width: min(1280px, 100%);
+      aspect-ratio: 16 / 9;
+      margin: 0 auto;
+      overflow: hidden;
+      border: 1px solid rgba(130, 155, 255, 0.28);
+      background:
+        radial-gradient(circle at 78% 18%, rgba(0, 214, 255, 0.18), transparent 28%),
+        linear-gradient(135deg, #07111f 0%, #0b1020 52%, #111827 100%);
+      box-shadow: 0 28px 90px rgba(0, 0, 0, 0.42);
+      padding: 64px;
+      page-break-after: always;
+    }
+    .slide::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(148, 163, 184, 0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(148, 163, 184, 0.07) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.72), rgba(0,0,0,0.08));
+      pointer-events: none;
+    }
+    .content {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      max-width: 940px;
+    }
+    .eyebrow {
+      color: #22d3ee;
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: 0;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+    h1 {
+      font-size: 76px;
+      line-height: 0.98;
+      letter-spacing: 0;
+      margin: 0 0 28px;
+    }
+    h2 {
+      font-size: 58px;
+      line-height: 1.02;
+      letter-spacing: 0;
+      margin: 0 0 28px;
+    }
+    p {
+      font-size: 30px;
+      line-height: 1.32;
+      color: #cbd5e1;
+      margin: 0 0 18px;
+      max-width: 980px;
+    }
+    ul {
+      display: grid;
+      gap: 18px;
+      padding-left: 28px;
+      margin: 0;
+      color: #dbeafe;
+      font-size: 28px;
+      line-height: 1.28;
+    }
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+    .tag {
+      border: 1px solid rgba(34, 211, 238, 0.42);
+      background: rgba(15, 23, 42, 0.74);
+      color: #a5f3fc;
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-size: 17px;
+      font-weight: 700;
+    }
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 28px;
+    }
+    .box {
+      min-height: 108px;
+      border: 1px solid rgba(148, 163, 184, 0.24);
+      background: rgba(15, 23, 42, 0.72);
+      border-radius: 18px;
+      padding: 18px;
+      color: #e2e8f0;
+      font-size: 21px;
+      line-height: 1.22;
+      font-weight: 700;
+    }
+    .footer {
+      position: absolute;
+      left: 64px;
+      right: 64px;
+      bottom: 36px;
+      display: flex;
+      justify-content: space-between;
+      color: #64748b;
+      font-size: 16px;
+      font-weight: 700;
+      z-index: 1;
+    }
+    @media print {
+      body { background: white; }
+      .deck { gap: 0; padding: 0; }
+      .slide { width: 100vw; height: 100vh; border: 0; box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="deck">
+    <section class="slide">
+      <div class="content">
+        <div class="eyebrow">AMD Developer Hackathon / Track 1</div>
+        <h1>Agentic Reproducibility Engine</h1>
+        <p>AMD-hosted multi-agent research reproducibility evaluator powered by Qwen, vLLM, ROCm, and Hugging Face Spaces.</p>
+        <div class="tags"><span class="tag">Qwen/Qwen3.5-27B</span><span class="tag">vLLM</span><span class="tag">ROCm</span><span class="tag">Hugging Face</span></div>
+      </div>
+      <div class="footer"><span>Agentic Reproducibility Engine</span><span>1</span></div>
+    </section>
+    <section class="slide">
+      <div class="content">
+        <div class="eyebrow">Problem</div>
+        <h2>Reproducibility evidence is scattered.</h2>
+        <p>Important details live across PDFs, arXiv, DOI metadata, GitHub repositories, datasets, and informal notes.</p>
+        <p>Manual audits are slow, inconsistent, and often hide uncertainty.</p>
+      </div>
+      <div class="footer"><span>Problem</span><span>2</span></div>
+    </section>
+    <section class="slide">
+      <div class="content">
+        <div class="eyebrow">Solution</div>
+        <h2>A visible multi-agent audit workflow.</h2>
+        <ul>
+          <li>Submit a paper or paper reference.</li>
+          <li>Choose autonomy level.</li>
+          <li>Watch trace, tools, evidence, objections, and report provenance.</li>
+        </ul>
+      </div>
+      <div class="footer"><span>Solution</span><span>3</span></div>
+    </section>
+    <section class="slide">
+      <div class="content">
+        <div class="eyebrow">Agentic Workflow</div>
+        <h2>Separate agents, separate artifacts.</h2>
+        <div class="flow">
+          <div class="box">Plan audit scope</div>
+          <div class="box">Read paper claims</div>
+          <div class="box">Retrieve evidence</div>
+          <div class="box">Score reproducibility</div>
+          <div class="box">Plan replication</div>
+          <div class="box">Critique and report</div>
+        </div>
+      </div>
+      <div class="footer"><span>Workflow</span><span>4</span></div>
+    </section>
+    <section class="slide">
+      <div class="content">
+        <div class="eyebrow">AMD Architecture</div>
+        <h2>Static frontend, AMD-hosted backend.</h2>
+        <ul>
+          <li>Hugging Face Static Space hosts the UI.</li>
+          <li>FastAPI agent backend runs on AMD Developer Cloud.</li>
+          <li>vLLM serves Qwen/Qwen3.5-27B on ROCm.</li>
+        </ul>
+      </div>
+      <div class="footer"><span>Architecture</span><span>5</span></div>
+    </section>
+    <section class="slide">
+      <div class="content">
+        <div class="eyebrow">Evidence Tools</div>
+        <h2>Live resolvers, fail-closed decisions.</h2>
+        <ul>
+          <li>arXiv, DOI, GitHub, and dataset resolver tools.</li>
+          <li>Missing evidence becomes an explicit gap.</li>
+          <li>The verifier can degrade the decision.</li>
+        </ul>
+      </div>
+      <div class="footer"><span>Evidence</span><span>6</span></div>
+    </section>
+    <section class="slide">
+      <div class="content">
+        <div class="eyebrow">Demo Flow</div>
+        <h2>Judges inspect the work, not just the answer.</h2>
+        <p>Submit paper -> autonomy slider -> live trace -> evidence panel -> verifier objections -> final report.</p>
+      </div>
+      <div class="footer"><span>Demo</span><span>7</span></div>
+    </section>
+    <section class="slide">
+      <div class="content">
+        <div class="eyebrow">Evaluation</div>
+        <h2>Agent behavior is tested.</h2>
+        <ul>
+          <li>Prompts, contexts, model artifacts, and tool calls are graded.</li>
+          <li>Resolver coverage and verifier behavior are checked.</li>
+          <li>Placeholder evidence is explicitly banned.</li>
+        </ul>
+      </div>
+      <div class="footer"><span>Evals</span><span>8</span></div>
+    </section>
+    <section class="slide">
+      <div class="content">
+        <div class="eyebrow">Business Value</div>
+        <h2>Faster first-pass reproducibility audits.</h2>
+        <p>For research labs, ML teams, funders, reviewers, benchmark maintainers, and enterprise AI teams evaluating research-derived systems.</p>
+      </div>
+      <div class="footer"><span>Value</span><span>9</span></div>
+    </section>
+    <section class="slide">
+      <div class="content">
+        <div class="eyebrow">Roadmap</div>
+        <h2>From audit demo to research infrastructure.</h2>
+        <ul>
+          <li>Deploy AMD/Qwen backend and publish HF Space.</li>
+          <li>Expand resolver sources and eval cases.</li>
+          <li>Add PDF ingestion and team workflows.</li>
+        </ul>
+      </div>
+      <div class="footer"><span>Roadmap</span><span>10</span></div>
+    </section>
+  </main>
+</body>
+</html>
