@@ -165,4 +165,10 @@ def runtime_from_env() -> ModelRuntime:
     api_key = os.environ.get("MODEL_API_KEY", "EMPTY")
     if not base_url:
         return MockModelRuntime()
-    return OpenAICompatibleRuntime(base_url=base_url, model_id=model_id, api_key=api_key)
+    timeout_seconds = int(os.environ.get("MODEL_TIMEOUT_SECONDS", "60"))
+    return OpenAICompatibleRuntime(
+        base_url=base_url,
+        model_id=model_id,
+        api_key=api_key,
+        timeout_seconds=timeout_seconds,
+    )

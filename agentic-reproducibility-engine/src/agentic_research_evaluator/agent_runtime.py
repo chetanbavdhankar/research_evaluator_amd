@@ -141,15 +141,32 @@ def _normalize_tool_requests(
     value: Any,
     default_tool_requests: list[dict[str, Any]],
 ) -> list[dict[str, Any]]:
+    requested: list[dict[str, Any]] = []
     if not isinstance(value, list):
-        return list(default_tool_requests)
-    normalized = []
+        return _merge_tool_requests(default_tool_requests, requested)
     for item in value:
         if isinstance(item, dict) and item.get("tool_id"):
-            normalized.append(item)
+            requested.append(item)
         elif isinstance(item, str):
-            normalized.append({"tool_id": item, "purpose": "model-requested"})
-    return normalized or list(default_tool_requests)
+            requested.append({"tool_id": item, "purpose": "model-requested"})
+    return _merge_tool_requests(default_tool_requests, requested)
+
+
+def _merge_tool_requests(
+    required: list[dict[str, Any]],
+    requested: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    merged: list[dict[str, Any]] = []
+    seen: set[str] = set()
+    for item in [*required, *requested]:
+        tool_id = str(item.get("tool_id", "")).strip()
+        if not tool_id or tool_id in seen:
+            continue
+        normalized = dict(item)
+        normalized["tool_id"] = tool_id
+        merged.append(normalized)
+        seen.add(tool_id)
+    return merged
 
 
 def _normalize_string_list(value: Any) -> list[str]:

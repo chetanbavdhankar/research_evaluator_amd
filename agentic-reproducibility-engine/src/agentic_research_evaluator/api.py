@@ -9,11 +9,12 @@ from typing import Any
 
 from .graph import DEMO_PAPER, run_research_audit
 from .model_runtime import runtime_from_env
+from .pdf_intake import PDF_MAX_BYTES, PdfIntakeError, extract_pdf_paper
 from .schemas import TraceEvent
 from .store import JsonRunStore
 
 try:
-    from fastapi import FastAPI, HTTPException
+    from fastapi import FastAPI, File, HTTPException, UploadFile
     from fastapi.middleware.cors import CORSMiddleware
     from fastapi.responses import FileResponse, PlainTextResponse, StreamingResponse
     from pydantic import BaseModel
@@ -63,6 +64,21 @@ def health() -> dict[str, Any]:
         "service": "agentic-research-evaluator",
         "model": runtime_health.__dict__,
     }
+
+
+@app.post("/papers/extract")
+async def extract_paper(file: UploadFile = File(...)) -> dict[str, Any]:
+    data = await file.read(PDF_MAX_BYTES + 1)
+    if len(data) > PDF_MAX_BYTES:
+        raise HTTPException(
+            status_code=413,
+            detail=f"Uploaded PDF exceeds the {PDF_MAX_BYTES // (1024 * 1024)} MB limit.",
+        )
+
+    try:
+        return extract_pdf_paper(data, filename=file.filename, content_type=file.content_type)
+    except PdfIntakeError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
 
 
 @app.post("/runs")

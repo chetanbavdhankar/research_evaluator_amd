@@ -14,6 +14,18 @@ benchmarks and reports sample quality, likelihood estimates, and ablation result
 """
 
 
+class NonstandardToolRuntime(MockModelRuntime):
+    def chat(self, *, system: str, user: str, temperature: float = 0.0) -> str:
+        del system, user, temperature
+        return """{
+  "summary": "Requested a nonstandard tool name.",
+  "rationale": "The model chose a tool name outside the orchestrator contract.",
+  "tool_requests": [{"tool_id": "paper_metadata_lookup", "purpose": "nonstandard"}],
+  "uncertainties": [],
+  "next_recommended_state": "continue"
+}"""
+
+
 def test_run_contains_required_agents_and_trace():
     result = run_research_audit(TEST_PAPER, runtime=MockModelRuntime(), allow_network=False)
 
@@ -77,3 +89,14 @@ def test_autonomy_level_blocks_and_allows_tool_classes():
     high_code_tool = next(tool for tool in high.tools if tool.tool_id == "code_data_planner")
     assert high_code_tool.status == "ok"
     assert any(event.event_type == "verifier_repair_requested" for event in high.trace)
+
+
+def test_required_default_tools_survive_nonstandard_model_tool_names():
+    result = run_research_audit(TEST_PAPER, runtime=NonstandardToolRuntime(), autonomy_level=1)
+
+    parse_tool = next(tool for tool in result.tools if tool.tool_id == "parse_paper")
+
+    assert result.manifest.status == "complete"
+    assert parse_tool.status == "ok"
+    assert "Title: Denoising Diffusion Probabilistic Models" in result.report_markdown
+    assert "Verifier decision" in result.report_markdown

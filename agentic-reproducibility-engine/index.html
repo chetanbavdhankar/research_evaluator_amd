@@ -398,8 +398,21 @@
 
     .input-actions {
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 8px;
+    }
+
+    .file-status {
+      min-height: 1.1rem;
+      margin: -2px 0 0;
+    }
+
+    .file-status.ok {
+      color: var(--verify);
+    }
+
+    .file-status.bad {
+      color: var(--critical);
     }
 
     .api-grid {
@@ -1747,12 +1760,14 @@
               <label for="paperInput">Target paper</label>
               <textarea id="paperInput" spellcheck="true"></textarea>
             </div>
-            <input id="fileInput" class="hidden" type="file" accept=".txt,.md,.tex,.bib,.json,.csv">
+            <input id="fileInput" class="hidden" type="file" accept=".pdf,application/pdf,.txt,.md,.tex,.bib,.json,.csv">
             <div class="input-actions">
               <button id="sampleBtn" type="button">Sample</button>
-              <button id="fileBtn" type="button">Load</button>
+              <button id="fileBtn" type="button">Load Text</button>
+              <button id="pdfBtn" type="button">Upload PDF</button>
               <button id="clearBtn" type="button">Clear</button>
             </div>
+            <p id="pdfStatus" class="mode-copy file-status"></p>
           </div>
         </section>
 
@@ -2046,9 +2061,11 @@ Audit focus: verify dataset availability, code provenance, experiment detail, an
               <div class="label-mono" style="margin-bottom:10px;">Input actions</div>
               <div class="view-actions" style="justify-content:flex-start;">
                 <button id="newUseSample" type="button">Use Sample</button>
-                <button id="newLoadFile" type="button">Load File</button>
+                <button id="newLoadFile" type="button">Load Text</button>
+                <button id="newUploadPdf" type="button">Upload PDF</button>
                 <button id="newViewArxiv" type="button">View arXiv</button>
               </div>
+              <p id="newPdfStatus" class="mode-copy file-status"></p>
             </div>
           </aside>
         </div>
@@ -2259,6 +2276,8 @@ benchmarks and reports sample quality, likelihood estimates, and ablation result
       paperInput: document.getElementById("paperInput"),
       fileInput: document.getElementById("fileInput"),
       fileBtn: document.getElementById("fileBtn"),
+      pdfBtn: document.getElementById("pdfBtn"),
+      pdfStatus: document.getElementById("pdfStatus"),
       sampleBtn: document.getElementById("sampleBtn"),
       clearBtn: document.getElementById("clearBtn"),
       autonomySlider: document.getElementById("autonomySlider"),
@@ -2312,6 +2331,8 @@ benchmarks and reports sample quality, likelihood estimates, and ablation result
       saveBatchBtn: document.getElementById("saveBatchBtn"),
       newUseSample: document.getElementById("newUseSample"),
       newLoadFile: document.getElementById("newLoadFile"),
+      newUploadPdf: document.getElementById("newUploadPdf"),
+      newPdfStatus: document.getElementById("newPdfStatus"),
       newViewArxiv: document.getElementById("newViewArxiv"),
       resultsTitle: document.getElementById("resultsTitle"),
       resultsSubtitle: document.getElementById("resultsSubtitle"),
@@ -2350,6 +2371,9 @@ benchmarks and reports sample quality, likelihood estimates, and ablation result
     let selectedResultsTab = "report";
     let libraryTier = "all";
     let activeRunAbort = null;
+    let pendingFileTarget = "live";
+    let pendingFileKind = "text";
+    let extractedPdfPaperText = "";
 
     function defaultApiBase() {
       const params = new URLSearchParams(window.location.search);
@@ -2950,6 +2974,9 @@ python run_repro_check.py --scorecard audit_scorecard.json</pre>`;
     function buildPaperFromIntake() {
       const sources = Array.from(document.querySelectorAll(".source-toggle:checked")).map((input) => input.value).join(", ");
       const title = els.newAuditTitle.value.trim() || els.newAuditReference.value.trim() || "Untitled research artifact";
+      const extractedBlock = extractedPdfPaperText
+        ? `\n\n--- Full PDF Text For Audit ---\n${extractedPdfPaperText.trim()}`
+        : "";
       return `# ${title}
 
 Reference: ${els.newAuditReference.value.trim()}
@@ -2958,7 +2985,7 @@ Audit depth: ${els.newAuditDepth.value}
 Enabled sources: ${sources || "none"}
 Verifier repair loop: ${document.getElementById("newAuditVerifier").checked ? "enabled" : "disabled"}
 
-${els.newAuditNotes.value.trim()}`;
+${els.newAuditNotes.value.trim()}${extractedBlock}`;
     }
 
     function startConfiguredAudit() {
@@ -3223,10 +3250,123 @@ ${els.newAuditNotes.value.trim()}`;
       URL.revokeObjectURL(url);
     }
 
-    function loadTextFile(file) {
+    function openFilePicker(target, kind) {
+      pendingFileTarget = target;
+      pendingFileKind = kind;
+      els.fileInput.accept = kind === "pdf"
+        ? ".pdf,application/pdf"
+        : ".txt,.md,.tex,.bib,.json,.csv,text/plain,text/markdown,application/json,text/csv";
+      els.fileInput.click();
+    }
+
+    function loadTextFile(file, target) {
       const reader = new FileReader();
-      reader.onload = () => { els.paperInput.value = String(reader.result || ""); };
+      reader.onload = () => {
+        const text = String(reader.result || "");
+        if (target === "new") {
+          extractedPdfPaperText = "";
+          els.newAuditNotes.value = text;
+          setFileStatus("new", `Loaded ${file.name}.`, "ok");
+        } else {
+          els.paperInput.value = text;
+          setFileStatus("live", `Loaded ${file.name}.`, "ok");
+        }
+      };
+      reader.onerror = () => setFileStatus(target, `Could not read ${file.name}.`, "bad");
       reader.readAsText(file);
+    }
+
+    async function extractPdfFile(file, target) {
+      const base = cleanBase(els.apiBase.value);
+      if (!base) {
+        setFileStatus(target, "Set the Agent API URL before uploading a PDF.", "bad");
+        showError("Set the Agent API URL before uploading a PDF.");
+        return;
+      }
+      localStorage.setItem("agenticEngine.apiBase", base);
+      setFileButtonsBusy(true);
+      setFileStatus(target, `Extracting ${file.name} through the Agent API...`, "");
+      try {
+        const formData = new FormData();
+        formData.append("file", file);
+        const response = await fetch(`${base}/papers/extract`, {
+          method: "POST",
+          headers: { "Accept": "application/json" },
+          body: formData
+        });
+        if (!response.ok) throw new Error(await readApiError(response));
+        applyExtractedPdf(await response.json(), target, file.name);
+      } catch (error) {
+        setFileStatus(target, `PDF extraction failed: ${error.message}`, "bad");
+        showError(`PDF extraction failed: ${error.message}`);
+      } finally {
+        setFileButtonsBusy(false);
+      }
+    }
+
+    function applyExtractedPdf(payload, target, filename) {
+      const identifiers = payload.identifiers || {};
+      const repos = payload.code_repositories || identifiers.github_repos || [];
+      const datasets = payload.datasets || [
+        ...(identifiers.hf_datasets || []),
+        ...(identifiers.dataset_mentions || [])
+      ];
+      const notes = [];
+      if (repos.length) {
+        notes.push(`Code: ${repos.map((repo) => {
+          const value = String(repo);
+          return value.startsWith("http") ? value : `https://github.com/${value}`;
+        }).join(", ")}`);
+      }
+      if (datasets.length) notes.push(`Data: ${datasets.join(", ")}`);
+      if (payload.warnings && payload.warnings.length) {
+        notes.push(`Extraction warnings: ${payload.warnings.join(" ")}`);
+      }
+      notes.push("Audit focus: verify paper identity, code provenance, dataset availability, and reproduction scaffold feasibility.");
+
+      if (target === "new") {
+        extractedPdfPaperText = payload.paper_text || "";
+        els.newAuditReference.value = payload.reference || "";
+        els.newAuditTitle.value = payload.title || extractPaperTitle(payload.paper_text);
+        els.newAuditNotes.value = notes.join("\n");
+        setFileStatus("new", `Extracted ${filename}: ${payload.pages_read || 0} page(s).`, "ok");
+      } else {
+        extractedPdfPaperText = "";
+        els.paperInput.value = payload.paper_text || "";
+        if (payload.reference) els.newAuditReference.value = payload.reference;
+        if (payload.title) els.newAuditTitle.value = payload.title;
+        if (notes.length) els.newAuditNotes.value = notes.join("\n");
+        setFileStatus("live", `Extracted ${filename}: ${payload.pages_read || 0} page(s).`, "ok");
+      }
+      showError("");
+      els.footerStatus.textContent = "pdf extraction ready";
+    }
+
+    async function readApiError(response) {
+      try {
+        const payload = await response.json();
+        return payload.detail || `HTTP ${response.status}`;
+      } catch (error) {
+        return `HTTP ${response.status}`;
+      }
+    }
+
+    function isPdfFile(file) {
+      return file.type === "application/pdf" || /\.pdf$/i.test(file.name || "");
+    }
+
+    function setFileStatus(target, message, state) {
+      const node = target === "new" ? els.newPdfStatus : els.pdfStatus;
+      if (!node) return;
+      node.textContent = message || "";
+      node.className = `mode-copy file-status ${state || ""}`.trim();
+    }
+
+    function setFileButtonsBusy(busy) {
+      [els.fileBtn, els.pdfBtn, els.newLoadFile, els.newUploadPdf].forEach((button) => {
+        if (button) button.disabled = busy;
+      });
+      els.footerStatus.textContent = busy ? "extracting pdf" : "standby";
     }
 
     function timeOnly(value) {
@@ -3260,12 +3400,26 @@ ${els.newAuditNotes.value.trim()}`;
     els.autonomySlider.addEventListener("input", updateAutonomy);
     els.dashboardAutonomySlider.addEventListener("input", updateAutonomy);
     els.newAutonomySlider.addEventListener("input", updateAutonomy);
-    els.sampleBtn.addEventListener("click", () => { els.paperInput.value = DEMO_PAPER; });
-    els.clearBtn.addEventListener("click", () => { els.paperInput.value = ""; els.paperInput.focus(); });
-    els.fileBtn.addEventListener("click", () => els.fileInput.click());
-    els.fileInput.addEventListener("change", () => {
+    els.sampleBtn.addEventListener("click", () => {
+      els.paperInput.value = DEMO_PAPER;
+      setFileStatus("live", "", "");
+    });
+    els.clearBtn.addEventListener("click", () => {
+      els.paperInput.value = "";
+      setFileStatus("live", "", "");
+      els.paperInput.focus();
+    });
+    els.fileBtn.addEventListener("click", () => openFilePicker("live", "text"));
+    els.pdfBtn.addEventListener("click", () => openFilePicker("live", "pdf"));
+    els.fileInput.addEventListener("change", async () => {
       const file = els.fileInput.files && els.fileInput.files[0];
-      if (file) loadTextFile(file);
+      if (file && isPdfFile(file)) {
+        await extractPdfFile(file, pendingFileTarget);
+      } else if (file && pendingFileKind === "pdf") {
+        setFileStatus(pendingFileTarget, "Choose a PDF file for PDF upload.", "bad");
+      } else if (file) {
+        loadTextFile(file, pendingFileTarget);
+      }
       els.fileInput.value = "";
     });
     els.saveApi.addEventListener("click", () => {
@@ -3285,11 +3439,14 @@ ${els.newAuditNotes.value.trim()}`;
     els.newAuditStart.addEventListener("click", startConfiguredAudit);
     els.saveBatchBtn.addEventListener("click", saveBatchDraft);
     els.newUseSample.addEventListener("click", () => {
+      extractedPdfPaperText = "";
       els.newAuditReference.value = "2006.11239";
       els.newAuditTitle.value = "Denoising Diffusion Probabilistic Models";
       els.newAuditNotes.value = "Code: https://github.com/hojonathanho/diffusion\nData: CIFAR-10, LSUN, CelebA-HQ\n\nAudit focus: verify dataset availability, code provenance, experiment detail, and reproduction scaffold feasibility.";
+      setFileStatus("new", "", "");
     });
-    els.newLoadFile.addEventListener("click", () => els.fileInput.click());
+    els.newLoadFile.addEventListener("click", () => openFilePicker("new", "text"));
+    els.newUploadPdf.addEventListener("click", () => openFilePicker("new", "pdf"));
     els.newViewArxiv.addEventListener("click", () => {
       const id = extractPaperId(els.newAuditReference.value);
       if (id) window.open(`https://arxiv.org/abs/${id}`, "_blank", "noopener,noreferrer");

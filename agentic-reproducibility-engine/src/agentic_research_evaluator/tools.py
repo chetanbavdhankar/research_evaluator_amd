@@ -30,6 +30,10 @@ def _short_hash(value: str) -> str:
     return hashlib.sha256(value.encode("utf-8")).hexdigest()[:16]
 
 
+def _paper_title(paper: dict[str, Any]) -> str:
+    return str(paper.get("title") or "Untitled paper")
+
+
 def parse_paper(run_id: str, paper_text: str) -> ToolCall:
     del run_id
     title = paper_text.strip().splitlines()[0].strip("# ").strip() or "Untitled paper"
@@ -62,7 +66,7 @@ def resolve_arxiv(run_id: str, paper: dict[str, Any], *, allow_network: bool = T
             params = {"id_list": ",".join(arxiv_ids), "max_results": "5"}
         else:
             params = {
-                "search_query": f'ti:"{paper["title"]}"',
+                "search_query": f'ti:"{_paper_title(paper)}"',
                 "max_results": "3",
                 "sortBy": "relevance",
                 "sortOrder": "descending",
@@ -136,7 +140,7 @@ def resolve_doi(run_id: str, paper: dict[str, Any], *, allow_network: bool = Tru
                 errors.append(error)
     else:
         try:
-            params = {"query.title": paper["title"], "rows": "1"}
+            params = {"query.title": _paper_title(paper), "rows": "1"}
             payload = _fetch_json(f"{CROSSREF_API}?{urllib.parse.urlencode(params)}")
             items = payload.get("message", {}).get("items", [])
             if items:
@@ -353,7 +357,7 @@ def plan_experiment(run_id: str, audit: dict[str, Any]) -> ToolCall:
 
 def generate_code_data_plan(run_id: str, paper: dict[str, Any]) -> ToolCall:
     del run_id
-    slug = re.sub(r"[^a-z0-9]+", "_", paper["title"].lower()).strip("_")[:48] or "paper"
+    slug = re.sub(r"[^a-z0-9]+", "_", _paper_title(paper).lower()).strip("_")[:48] or "paper"
     output = {
         "script_name": f"fetch_{slug}.py",
         "commands": [
@@ -417,7 +421,7 @@ def _doi_evidence(
 
 def _github_search_query(paper: dict[str, Any]) -> dict[str, str]:
     identifiers = paper.get("identifiers", {})
-    terms = identifiers.get("arxiv_ids") or [paper["title"]]
+    terms = identifiers.get("arxiv_ids") or [_paper_title(paper)]
     query = f'"{terms[0]}" in:name,description,readme'
     return {"q": query, "sort": "stars", "order": "desc", "per_page": "3"}
 

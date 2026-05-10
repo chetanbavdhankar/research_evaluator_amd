@@ -16,19 +16,37 @@ def render_report(
     experiment_tool = _last_tool(tools, "experiment_planner")
     code_tool = _last_tool(tools, "code_data_planner")
 
-    gaps = audit_tool.output.get("gaps", [])
+    paper = paper_tool.output
+    audit = audit_tool.output
+    evidence = evidence_tool.output
+    experiment = experiment_tool.output
+    code = code_tool.output
+
+    paper_title = str(paper.get("title") or "Untitled paper")
+    claims = paper.get("claims", [])
+    document_hash = str(paper.get("document_hash") or "unavailable")
+    score = audit.get("score", "unavailable")
+    decision = audit.get("decision", audit_tool.status)
+
+    gaps = audit.get("gaps", [])
     gap_lines = "\n".join(f"- {gap}" for gap in gaps) if gaps else "- No blocking gaps found."
     plan_lines = "\n".join(
-        f"- {step}" for step in experiment_tool.output.get("replication_plan", [])
+        f"- {step}" for step in experiment.get("replication_plan", [])
     )
-    command_lines = "\n".join(f"- `{command}`" for command in code_tool.output.get("commands", []))
+    if not plan_lines:
+        plan_lines = "- No replication steps generated."
+    command_lines = "\n".join(f"- `{command}`" for command in code.get("commands", []))
+    if not command_lines:
+        command_lines = "- No follow-up commands generated."
     resolver_lines = "\n".join(
         f"- `{name}`: `{status}`"
-        for name, status in evidence_tool.output.get("resolver_status", {}).items()
+        for name, status in evidence.get("resolver_status", {}).items()
     )
+    if not resolver_lines:
+        resolver_lines = "- No resolver status available."
     evidence_lines = "\n".join(
         f"- `{item.get('source_type')}` {item.get('confidence')}: {item.get('locator')}"
-        for item in evidence_tool.output.get("evidence", [])[:10]
+        for item in evidence.get("evidence", [])[:10]
     )
     if not evidence_lines:
         evidence_lines = "- No external evidence records were resolved."
@@ -44,14 +62,14 @@ def render_report(
 
 ## Paper Understanding
 
-- Title: {paper_tool.output["title"]}
-- Claims extracted: {len(paper_tool.output.get("claims", []))}
-- Document hash: `{paper_tool.output["document_hash"]}`
+- Title: {paper_title}
+- Claims extracted: {len(claims) if isinstance(claims, list) else 0}
+- Document hash: `{document_hash}`
 
 ## Reproducibility Score
 
-- Score: `{audit_tool.output["score"]}/100`
-- Decision: `{audit_tool.output["decision"]}`
+- Score: `{score}/100`
+- Decision: `{decision}`
 
 ## Evidence Resolvers
 
@@ -73,7 +91,7 @@ def render_report(
 
 {command_lines}
 
-Sandbox required: `{code_tool.output.get("sandbox_required")}`
+Sandbox required: `{code.get("sandbox_required", "unknown")}`
 
 ## Verifier Decision
 
@@ -92,8 +110,19 @@ show that deployment.
 
 
 def _last_tool(tools: list[ToolCall], tool_id: str) -> ToolCall:
-    return next(tool for tool in reversed(tools) if tool.tool_id == tool_id)
+    return next(
+        (tool for tool in reversed(tools) if tool.tool_id == tool_id),
+        ToolCall(tool_id, "missing", f"{tool_id} did not run.", {}),
+    )
 
 
 def _last_agent(agents: list[AgentOutput], agent_id: str) -> AgentOutput:
-    return next(agent for agent in reversed(agents) if agent.agent_id == agent_id)
+    return next(
+        (agent for agent in reversed(agents) if agent.agent_id == agent_id),
+        AgentOutput(
+            agent_id=agent_id,
+            run_id=agents[-1].run_id if agents else "unknown",
+            status="failed",
+            summary=f"{agent_id} did not complete.",
+        ),
+    )
