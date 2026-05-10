@@ -1,0 +1,3357 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Agentic Reproducibility Engine | Research Intelligence</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg-void: #020208;
+      --bg-deep: #060610;
+      --bg-panel: rgba(8, 10, 20, 0.88);
+      --bg-panel-hover: rgba(14, 17, 30, 0.92);
+      --bg-panel-border: rgba(120, 143, 255, 0.11);
+      --bg-panel-border-hot: rgba(85, 139, 255, 0.42);
+      --bg-input: rgba(255, 255, 255, 0.05);
+      --text-primary: #eef2ff;
+      --text-secondary: #9ca6c4;
+      --text-tertiary: #4a5070;
+      --text-data: #7dd3fc;
+      --accent-orbital: #4d7cff;
+      --accent-orbital-glow: rgba(77, 124, 255, 0.22);
+      --accent-orbital-dim: rgba(77, 124, 255, 0.08);
+      --accent-scan: #00d4ff;
+      --accent-scan-glow: rgba(0, 212, 255, 0.16);
+      --verify: #7cf2b7;
+      --warning: #fbbf24;
+      --critical: #ef4444;
+      --agent-planner: #a78bfa;
+      --agent-reader: #60a5fa;
+      --agent-retriever: #34d399;
+      --agent-auditor: #fb923c;
+      --agent-experiment: #fbbf24;
+      --agent-code: #22d3ee;
+      --agent-verifier: #f87171;
+      --agent-report: #c084fc;
+      --radius-sm: 10px;
+      --radius-md: 14px;
+      --radius-lg: 22px;
+      --shadow-soft: 0 24px 70px rgba(0, 0, 0, 0.36);
+      --font-mono: "Cascadia Mono", "SF Mono", Consolas, ui-monospace, monospace;
+      --font-sans: "Aptos", "Segoe UI", system-ui, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      width: 100%;
+      min-height: 100%;
+      background: var(--bg-void);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.45;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: geometricPrecision;
+      overflow: hidden;
+    }
+
+    body {
+      background-color: var(--bg-void);
+      background-image:
+        radial-gradient(ellipse 80% 50% at 50% 0%, rgba(30, 40, 80, 0.28) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 40% at 86% 90%, rgba(70, 45, 20, 0.08) 0%, transparent 60%),
+        repeating-linear-gradient(0deg, transparent, transparent 79px, rgba(100, 120, 255, 0.012) 79px, rgba(100, 120, 255, 0.012) 80px),
+        repeating-linear-gradient(90deg, transparent, transparent 79px, rgba(100, 120, 255, 0.012) 79px, rgba(100, 120, 255, 0.012) 80px);
+    }
+
+    ::selection {
+      background: rgba(0, 212, 255, 0.28);
+      color: #ffffff;
+    }
+
+    ::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      border: 2px solid rgba(2, 2, 8, 0.92);
+      border-radius: 999px;
+      background: rgba(142, 157, 190, 0.46);
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(0, 212, 255, 0.55);
+    }
+
+    button,
+    input,
+    textarea,
+    select {
+      font: inherit;
+    }
+
+    button {
+      border: 1px solid var(--bg-panel-border);
+      border-radius: var(--radius-sm);
+      background: rgba(255, 255, 255, 0.035);
+      color: var(--text-secondary);
+      min-height: 34px;
+      padding: 0 12px;
+      cursor: pointer;
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      font-weight: 750;
+      letter-spacing: 0;
+      text-transform: uppercase;
+      transition: color 0.18s ease, background 0.18s ease, border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    button:hover {
+      color: var(--text-primary);
+      border-color: var(--bg-panel-border-hot);
+      background: rgba(77, 124, 255, 0.08);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    }
+
+    button:active {
+      transform: translateY(1px);
+    }
+
+    button:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    button.primary {
+      color: #ffffff;
+      border-color: rgba(77, 124, 255, 0.55);
+      background: linear-gradient(135deg, rgba(58, 112, 255, 0.98), rgba(0, 196, 255, 0.76));
+      box-shadow: 0 14px 40px rgba(77, 124, 255, 0.26);
+    }
+
+    label,
+    .label-mono {
+      display: block;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: 0.68rem;
+      letter-spacing: 0;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+    }
+
+    input[type="text"],
+    textarea {
+      width: 100%;
+      border: 1px solid var(--bg-panel-border);
+      border-radius: var(--radius-sm);
+      background: var(--bg-input);
+      color: var(--text-primary);
+      outline: none;
+      font-family: var(--font-mono);
+    }
+
+    input[type="text"] {
+      height: 37px;
+      padding: 0 12px;
+      font-size: 0.76rem;
+    }
+
+    textarea {
+      min-height: 210px;
+      max-height: 28vh;
+      resize: vertical;
+      padding: 12px;
+      line-height: 1.62;
+      font-size: 0.75rem;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: rgba(0, 212, 255, 0.42);
+      background: rgba(0, 212, 255, 0.04);
+      box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.055);
+    }
+
+    .app {
+      height: 100vh;
+      display: grid;
+      grid-template-rows: 62px 1fr 38px;
+      overflow: hidden;
+    }
+
+    .topbar,
+    .statusbar {
+      background: rgba(2, 2, 8, 0.88);
+      backdrop-filter: blur(18px) saturate(130%);
+      border-color: var(--bg-panel-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+
+    .topbar {
+      border-bottom: 1px solid var(--bg-panel-border);
+      padding: 0 20px;
+      z-index: 20;
+    }
+
+    .statusbar {
+      border-top: 1px solid var(--bg-panel-border);
+      padding: 0 18px;
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0;
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+      z-index: 20;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .brand-orb {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 1.5px solid var(--accent-orbital);
+      background: var(--accent-orbital-dim);
+      display: grid;
+      place-items: center;
+      box-shadow: 0 0 20px rgba(77, 124, 255, 0.14);
+    }
+
+    .brand-orb::before {
+      content: "";
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--accent-orbital);
+      box-shadow: 0 0 14px var(--accent-orbital);
+    }
+
+    .brand-title {
+      font-family: var(--font-mono);
+      font-weight: 800;
+      letter-spacing: 0;
+      font-size: 0.88rem;
+      color: var(--text-primary);
+      white-space: nowrap;
+    }
+
+    .brand-sub {
+      color: var(--text-tertiary);
+      font-size: 0.76rem;
+      white-space: nowrap;
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav-pill {
+      min-width: 86px;
+      background: transparent;
+    }
+
+    .nav-pill.active {
+      color: #ffffff;
+      background: rgba(77, 124, 255, 0.18);
+      border-color: rgba(77, 124, 255, 0.45);
+    }
+
+    .classification {
+      color: var(--text-tertiary);
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    .global-search {
+      flex: 1;
+      max-width: 360px;
+      min-width: 220px;
+      height: 38px;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      border: 1px solid var(--bg-panel-border);
+      border-radius: var(--radius-sm);
+      background: rgba(255, 255, 255, 0.035);
+      padding: 0 10px;
+      color: var(--text-tertiary);
+    }
+
+    .global-search input {
+      min-width: 0;
+      height: auto;
+      border: 0;
+      background: transparent;
+      padding: 0;
+      color: var(--text-secondary);
+      font-family: var(--font-sans);
+      font-size: 0.76rem;
+    }
+
+    .global-search input:focus {
+      border: 0;
+      box-shadow: none;
+      background: transparent;
+    }
+
+    .global-search kbd {
+      border: 1px solid var(--bg-panel-border);
+      border-radius: 6px;
+      padding: 2px 5px;
+      color: var(--text-tertiary);
+      font-family: var(--font-mono);
+      font-size: 0.58rem;
+      white-space: nowrap;
+    }
+
+    .layout {
+      min-height: 0;
+      display: grid;
+      grid-template-columns: minmax(282px, 330px) minmax(0, 1fr) minmax(350px, 430px);
+      overflow: hidden;
+    }
+
+    .glass-panel {
+      background: var(--bg-panel);
+      backdrop-filter: blur(18px) saturate(125%);
+      border-color: var(--bg-panel-border);
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    .left-panel {
+      border-right: 1px solid var(--bg-panel-border);
+      display: flex;
+      flex-direction: column;
+      overflow: auto;
+    }
+
+    .right-panel {
+      border-left: 1px solid var(--bg-panel-border);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .panel-section {
+      padding: 17px 18px;
+      border-bottom: 1px solid var(--bg-panel-border);
+    }
+
+    .panel-scroll {
+      min-height: 0;
+      overflow: auto;
+      padding: 17px 18px;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 14px;
+    }
+
+    .section-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent-orbital);
+      box-shadow: 0 0 16px var(--accent-orbital);
+    }
+
+    .input-grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .paper-box {
+      position: relative;
+    }
+
+    .input-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+    }
+
+    .api-grid {
+      display: grid;
+      gap: 8px;
+    }
+
+    .api-buttons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 9px;
+      margin-top: 14px;
+    }
+
+    .data-card {
+      border: 1px solid var(--bg-panel-border);
+      border-radius: var(--radius-md);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.022));
+      padding: 11px 12px;
+    }
+
+    .data-card .k {
+      color: var(--text-tertiary);
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      letter-spacing: 0;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .data-card .v {
+      color: var(--text-primary);
+      font-family: var(--font-mono);
+      font-size: 0.84rem;
+      line-height: 1.32;
+      overflow-wrap: anywhere;
+    }
+
+    .autonomy-wrap {
+      display: grid;
+      grid-template-columns: 62px 1fr;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .autonomy-number {
+      height: 62px;
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(77, 124, 255, 0.32);
+      background: linear-gradient(180deg, rgba(77, 124, 255, 0.18), rgba(77, 124, 255, 0.08));
+      color: var(--accent-scan);
+      display: grid;
+      place-items: center;
+      font-family: var(--font-mono);
+      font-size: 1.65rem;
+      font-weight: 800;
+      box-shadow: inset 0 0 18px rgba(77, 124, 255, 0.08);
+    }
+
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--accent-orbital);
+    }
+
+    .ticks {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      color: var(--text-tertiary);
+      font-family: var(--font-sans);
+      font-size: 0.62rem;
+      text-align: center;
+      margin-top: 4px;
+    }
+
+    .mode-copy {
+      color: var(--text-secondary);
+      font-size: 0.74rem;
+      line-height: 1.45;
+      margin-top: 10px;
+    }
+
+    .run-action {
+      width: 100%;
+      height: 48px;
+      font-size: 0.82rem;
+      letter-spacing: 0;
+    }
+
+    .top-run {
+      width: auto;
+      min-width: 150px;
+      height: 42px;
+      padding: 0 20px;
+      border-radius: 12px;
+      font-size: 0.78rem;
+      box-shadow: 0 14px 42px rgba(0, 128, 255, 0.26);
+    }
+
+    .error-box {
+      display: none;
+      margin-top: 10px;
+      color: #fecdd3;
+      border: 1px solid rgba(239, 68, 68, 0.26);
+      background: rgba(239, 68, 68, 0.06);
+      border-radius: var(--radius-sm);
+      padding: 10px 11px;
+      font-size: 0.75rem;
+      line-height: 1.4;
+    }
+
+    .center {
+      min-width: 0;
+      min-height: 0;
+      position: relative;
+      display: grid;
+      grid-template-rows: minmax(280px, 46vh) 36px 1fr;
+      background: var(--bg-void);
+      overflow: hidden;
+    }
+
+    .center.live-compact {
+      grid-template-rows: 36px minmax(0, 1fr);
+    }
+
+    .runtime-state {
+      display: none;
+    }
+
+    .mission-canvas {
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse at center, rgba(18, 48, 86, 0.62) 0%, rgba(2, 2, 8, 0.92) 74%),
+        radial-gradient(circle at 46% 45%, rgba(0, 212, 255, 0.08), transparent 34%),
+        #071324;
+      display: grid;
+      place-items: center;
+      isolation: isolate;
+    }
+
+    .canvas-grid {
+      position: absolute;
+      inset: 0;
+      opacity: 0.12;
+      background-image:
+        linear-gradient(rgba(117, 167, 255, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(117, 167, 255, 0.07) 1px, transparent 1px);
+      background-size: 82px 82px;
+      mask-image: radial-gradient(circle at center, black 0%, black 45%, transparent 78%);
+    }
+
+    .orbit-ring {
+      position: absolute;
+      width: 72vmin;
+      height: 72vmin;
+      border-radius: 50%;
+      border: 1px solid rgba(77, 124, 255, 0.08);
+      animation: orbitSpin 140s linear infinite;
+    }
+
+    .orbit-ring.two {
+      width: 52vmin;
+      height: 52vmin;
+      border-color: rgba(0, 212, 255, 0.08);
+      transform: rotate(28deg) scaleY(0.62);
+      animation-duration: 180s;
+    }
+
+    .paper-target {
+      position: relative;
+      width: min(640px, 78%);
+      border: 1px solid rgba(117, 167, 255, 0.16);
+      border-radius: var(--radius-lg);
+      background:
+        linear-gradient(180deg, rgba(15, 31, 58, 0.92), rgba(5, 8, 16, 0.96)),
+        #101824;
+      box-shadow: var(--shadow-soft), inset 0 1px 0 rgba(237, 244, 248, 0.07);
+      padding: 22px;
+      z-index: 4;
+      transform: none;
+    }
+
+    .paper-target::before {
+      content: "";
+      position: absolute;
+      left: -1px;
+      top: 26px;
+      bottom: 26px;
+      width: 3px;
+      background: var(--accent-scan);
+      box-shadow: 0 0 18px var(--accent-scan);
+    }
+
+    .target-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .target-title {
+      font-family: var(--font-mono);
+      letter-spacing: 0;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      color: var(--text-primary);
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      border: 1px solid rgba(77, 124, 255, 0.3);
+      border-radius: 999px;
+      background: rgba(77, 124, 255, 0.09);
+      color: var(--text-data);
+      padding: 0 8px;
+      font-family: var(--font-sans);
+      font-size: 0.64rem;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    .paper-lines {
+      display: grid;
+      gap: 9px;
+    }
+
+    .paper-line {
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(228, 230, 239, 0.12);
+    }
+
+    .paper-line:nth-child(1) { width: 92%; }
+    .paper-line:nth-child(2) { width: 74%; }
+    .paper-line:nth-child(3) { width: 86%; }
+    .paper-line:nth-child(4) { width: 62%; }
+
+    .resolver-nodes {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .resolver-node {
+      border: 1px solid rgba(117, 167, 255, 0.12);
+      border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, 0.04);
+      padding: 9px;
+      min-height: 64px;
+    }
+
+    .resolver-node .name {
+      color: var(--text-tertiary);
+      font-family: var(--font-mono);
+      font-size: 0.58rem;
+      letter-spacing: 0;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .resolver-node .state {
+      color: var(--text-secondary);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+    }
+
+    .resolver-node.ok {
+      border-color: rgba(124, 242, 183, 0.38);
+      background: rgba(124, 242, 183, 0.045);
+    }
+
+    .resolver-node.ok .state {
+      color: var(--verify);
+    }
+
+    .resolver-node.failed,
+    .resolver-node.missing {
+      border-color: rgba(239, 68, 68, 0.32);
+      background: rgba(239, 68, 68, 0.045);
+    }
+
+    .resolver-node.failed .state,
+    .resolver-node.missing .state {
+      color: var(--critical);
+    }
+
+    .scan-line {
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, var(--accent-scan) 15%, rgba(255, 255, 255, 0.9) 50%, var(--accent-scan) 85%, transparent 100%);
+      box-shadow: 0 0 8px var(--accent-scan), 0 0 24px var(--accent-scan-glow), 0 -4px 16px rgba(0, 212, 255, 0.05), 0 4px 16px rgba(0, 212, 255, 0.05);
+      animation: scanLine 3.4s ease-in-out infinite;
+      pointer-events: none;
+      z-index: 10;
+      display: none;
+    }
+
+    .running .scan-line {
+      display: block;
+    }
+
+    .canvas-strip {
+      min-height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(4, 17, 30, 0.95);
+      border-top: 1px solid var(--bg-panel-border);
+      border-bottom: 1px solid var(--bg-panel-border);
+      padding: 0 12px;
+      font-family: var(--font-sans);
+      font-size: 0.64rem;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    .strip-left,
+    .strip-right {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .strip-blue {
+      color: var(--accent-scan);
+    }
+
+    .strip-green {
+      color: var(--verify);
+    }
+
+    .strip-amber {
+      color: var(--warning);
+    }
+
+    .console-bottom {
+      min-height: 0;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 38%);
+      overflow: hidden;
+    }
+
+    .trace-panel,
+    .evidence-panel {
+      min-height: 0;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      background: rgba(2, 2, 8, 0.64);
+    }
+
+    .trace-panel {
+      border-right: 1px solid var(--bg-panel-border);
+    }
+
+    .subhead {
+      height: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 14px;
+      border-bottom: 1px solid var(--bg-panel-border);
+    }
+
+    .trace-list,
+    .evidence-list {
+      min-height: 0;
+      overflow: auto;
+      padding: 10px 12px;
+      display: grid;
+      gap: 8px;
+      align-content: start;
+    }
+
+    .trace-item,
+    .evidence-item {
+      border: 1px solid var(--bg-panel-border);
+      border-radius: var(--radius-md);
+      background: linear-gradient(180deg, rgba(13, 17, 32, 0.84), rgba(8, 10, 20, 0.72));
+      padding: 9px 10px;
+      animation: slideIn 0.22s ease-out both;
+    }
+
+    .trace-item {
+      border-left: 2px solid var(--accent-orbital);
+    }
+
+    .trace-item.tool_call,
+    .trace-item.tool_request_validation {
+      border-left-color: var(--accent-scan);
+    }
+
+    .trace-item.verifier_repair_requested,
+    .trace-item.error {
+      border-left-color: var(--critical);
+    }
+
+    .trace-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      color: var(--text-tertiary);
+      font-family: var(--font-sans);
+      font-size: 0.58rem;
+      letter-spacing: 0;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+
+    .trace-message,
+    .evidence-title {
+      color: var(--text-primary);
+      font-size: 0.78rem;
+      line-height: 1.42;
+    }
+
+    details.payload {
+      margin-top: 7px;
+    }
+
+    details.payload summary {
+      cursor: pointer;
+      color: var(--text-tertiary);
+      font-family: var(--font-sans);
+      font-size: 0.6rem;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    details.payload pre {
+      margin: 7px 0 0;
+      max-height: 150px;
+      overflow: auto;
+      border: 1px solid var(--bg-panel-border);
+      border-radius: var(--radius-sm);
+      background: rgba(0, 0, 0, 0.35);
+      padding: 8px;
+      color: var(--text-secondary);
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      line-height: 1.45;
+    }
+
+    .evidence-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+
+    .evidence-link {
+      display: block;
+      color: var(--accent-scan);
+      text-decoration: none;
+      overflow-wrap: anywhere;
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      margin-top: 6px;
+    }
+
+    .agent-feed {
+      display: grid;
+      gap: 2px;
+    }
+
+    .agent-row {
+      display: grid;
+      grid-template-columns: 36px 112px minmax(0, 1fr);
+      align-items: center;
+      gap: 8px;
+      min-height: 38px;
+      padding: 6px 10px;
+      border-left: 2px solid transparent;
+      border-radius: var(--radius-sm);
+      color: var(--text-tertiary);
+      transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+    }
+
+    .agent-row.active {
+      background: rgba(0, 212, 255, 0.045);
+      color: var(--text-primary);
+    }
+
+    .agent-row.done {
+      color: var(--text-primary);
+    }
+
+    .agent-index {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 800;
+    }
+
+    .agent-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      border: 1px solid var(--text-tertiary);
+    }
+
+    .agent-row.active .agent-dot {
+      animation: agentPulse 1.2s ease-in-out infinite;
+    }
+
+    .agent-name {
+      font-family: var(--font-mono);
+      font-weight: 800;
+      font-size: 0.72rem;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    .agent-state {
+      color: inherit;
+      font-size: 0.72rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .report-card {
+      margin-top: 16px;
+      border: 1px solid var(--bg-panel-border);
+      border-radius: var(--radius-md);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.026));
+      padding: 13px;
+    }
+
+    .report-tabs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+
+    .report-tabs button.active {
+      color: white;
+      background: rgba(77, 124, 255, 0.16);
+      border-color: rgba(77, 124, 255, 0.38);
+    }
+
+    .report-output {
+      max-height: 34vh;
+      overflow: auto;
+      margin: 0;
+      border: 1px solid var(--bg-panel-border);
+      border-radius: var(--radius-sm);
+      background: rgba(0, 0, 0, 0.28);
+      padding: 11px;
+      white-space: pre-wrap;
+      color: var(--text-primary);
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      line-height: 1.5;
+    }
+
+    .rubric-grid,
+    .gap-list,
+    .tool-list {
+      display: grid;
+      gap: 8px;
+    }
+
+    .bar-row {
+      display: grid;
+      gap: 5px;
+    }
+
+    .bar-label {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      color: var(--text-secondary);
+      font-size: 0.7rem;
+    }
+
+    .bar-track {
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, var(--accent-orbital), var(--accent-scan));
+    }
+
+    .list-item {
+      border: 1px solid var(--bg-panel-border);
+      border-radius: var(--radius-sm);
+      background: rgba(255, 255, 255, 0.035);
+      padding: 9px 10px;
+      color: var(--text-secondary);
+      font-size: 0.73rem;
+      line-height: 1.42;
+      overflow-wrap: anywhere;
+    }
+
+    .list-item strong {
+      display: block;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    .status-chip {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 24px;
+      border: 1px solid var(--bg-panel-border);
+      border-radius: 999px;
+      padding: 0 8px;
+      color: var(--text-tertiary);
+      font-family: var(--font-sans);
+      font-size: 0.6rem;
+      font-weight: 800;
+      letter-spacing: 0;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .status-chip.ok {
+      color: var(--verify);
+      border-color: rgba(124, 242, 183, 0.28);
+      background: rgba(124, 242, 183, 0.06);
+    }
+
+    .status-chip.bad {
+      color: var(--critical);
+      border-color: rgba(239, 68, 68, 0.3);
+      background: rgba(239, 68, 68, 0.06);
+    }
+
+    .workspace-shell {
+      min-height: 0;
+      overflow: auto;
+      padding: 24px;
+      background:
+        radial-gradient(ellipse 70% 50% at 70% 10%, rgba(77, 124, 255, 0.12), transparent 65%),
+        radial-gradient(circle at 12% 88%, rgba(0, 212, 255, 0.07), transparent 34%),
+        var(--bg-void);
+    }
+
+    .workspace-view {
+      max-width: 1480px;
+      margin: 0 auto;
+      display: none;
+      animation: slideIn 0.24s ease-out both;
+    }
+
+    .workspace-view.active {
+      display: block;
+    }
+
+    .workspace-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: end;
+      margin-bottom: 20px;
+    }
+
+    .workspace-kicker {
+      color: var(--accent-scan);
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .workspace-title {
+      margin: 0;
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      font-size: clamp(1.6rem, 3vw, 2.7rem);
+      line-height: 1.04;
+      letter-spacing: 0;
+    }
+
+    .workspace-subtitle {
+      margin: 10px 0 0;
+      max-width: 760px;
+      color: var(--text-secondary);
+      font-size: 0.94rem;
+    }
+
+    .view-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: flex-end;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .feature-card {
+      border: 1px solid var(--bg-panel-border);
+      border-radius: var(--radius-lg);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.058), rgba(255, 255, 255, 0.026)),
+        rgba(7, 9, 18, 0.88);
+      box-shadow: var(--shadow-soft);
+      padding: 18px;
+      overflow: hidden;
+    }
+
+    .feature-card.compact {
+      border-radius: var(--radius-md);
+      padding: 14px;
+    }
+
+    .span-3 { grid-column: span 3; }
+    .span-4 { grid-column: span 4; }
+    .span-5 { grid-column: span 5; }
+    .span-6 { grid-column: span 6; }
+    .span-7 { grid-column: span 7; }
+    .span-8 { grid-column: span 8; }
+    .span-12 { grid-column: 1 / -1; }
+
+    .hero-audit {
+      min-height: 0;
+      display: grid;
+      align-content: start;
+      gap: 14px;
+      position: relative;
+      background:
+        radial-gradient(circle at 70% 34%, rgba(0, 212, 255, 0.18), transparent 32%),
+        linear-gradient(135deg, rgba(12, 28, 54, 0.96), rgba(5, 6, 16, 0.95));
+    }
+
+    .hero-audit::before {
+      content: "";
+      position: absolute;
+      inset: 18px;
+      border: 1px solid rgba(0, 212, 255, 0.16);
+      border-radius: 18px;
+      background-image:
+        linear-gradient(rgba(125, 211, 252, 0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(125, 211, 252, 0.06) 1px, transparent 1px);
+      background-size: 38px 38px;
+      mask-image: linear-gradient(135deg, transparent 0%, black 22%, black 70%, transparent 100%);
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    .hero-audit > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .dashboard-live-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.95fr);
+      gap: 14px;
+      align-items: stretch;
+      position: relative;
+      z-index: 1;
+    }
+
+    .dashboard-copy {
+      display: grid;
+      gap: 12px;
+      align-content: start;
+    }
+
+    .dashboard-copy .workspace-title {
+      font-size: clamp(1.28rem, 2.1vw, 2.05rem);
+      line-height: 1.12;
+    }
+
+    .dashboard-stream-panel {
+      border: 1px solid rgba(117, 167, 255, 0.16);
+      border-radius: var(--radius-md);
+      background: rgba(0, 0, 0, 0.22);
+      padding: 12px;
+      min-height: 300px;
+      display: grid;
+      grid-template-rows: auto 1fr;
+      min-width: 0;
+    }
+
+    .dashboard-stream-panel .subhead {
+      height: auto;
+      min-height: 34px;
+      padding: 0 0 10px;
+      border-bottom-color: rgba(117, 167, 255, 0.12);
+    }
+
+    .dashboard-trace-list,
+    .dashboard-agent-feed {
+      padding: 10px 0 0;
+      max-height: 280px;
+      overflow: auto;
+    }
+
+    .dashboard-agent-feed {
+      display: grid;
+      align-content: start;
+      gap: 4px;
+    }
+
+    .metric-row {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .mini-stat {
+      border: 1px solid var(--bg-panel-border);
+      border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, 0.035);
+      padding: 13px;
+    }
+
+    .mini-stat .value {
+      color: var(--text-primary);
+      font-family: var(--font-mono);
+      font-size: 1.35rem;
+      font-weight: 850;
+    }
+
+    .mini-stat .label {
+      margin-top: 4px;
+      color: var(--text-tertiary);
+      font-size: 0.68rem;
+      text-transform: uppercase;
+    }
+
+    .table-panel {
+      display: grid;
+      gap: 8px;
+    }
+
+    .table-head,
+    .audit-row {
+      display: grid;
+      grid-template-columns: minmax(220px, 1.7fr) 0.7fr 0.6fr 0.8fr;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .table-head {
+      color: var(--text-tertiary);
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      text-transform: uppercase;
+      padding: 0 8px 4px;
+    }
+
+    .audit-row {
+      border: 1px solid var(--bg-panel-border);
+      border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, 0.035);
+      padding: 11px 12px;
+      cursor: pointer;
+      transition: transform 0.16s ease, border-color 0.16s ease, background 0.16s ease;
+    }
+
+    .audit-row:hover {
+      transform: translateY(-1px);
+      border-color: rgba(0, 212, 255, 0.28);
+      background: rgba(0, 212, 255, 0.04);
+    }
+
+    .audit-title {
+      color: var(--text-primary);
+      font-weight: 760;
+      line-height: 1.28;
+    }
+
+    .audit-meta {
+      margin-top: 4px;
+      color: var(--text-tertiary);
+      font-family: var(--font-mono);
+      font-size: 0.64rem;
+    }
+
+    .score-pill {
+      display: inline-grid;
+      place-items: center;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      border: 1px solid rgba(124, 242, 183, 0.34);
+      background: radial-gradient(circle, rgba(124, 242, 183, 0.13), rgba(124, 242, 183, 0.03));
+      color: var(--verify);
+      font-family: var(--font-mono);
+      font-weight: 850;
+    }
+
+    .score-pill.warn {
+      border-color: rgba(251, 191, 36, 0.34);
+      background: radial-gradient(circle, rgba(251, 191, 36, 0.14), rgba(251, 191, 36, 0.03));
+      color: var(--warning);
+    }
+
+    .score-pill.bad {
+      border-color: rgba(239, 68, 68, 0.34);
+      background: radial-gradient(circle, rgba(239, 68, 68, 0.12), rgba(239, 68, 68, 0.03));
+      color: #fecdd3;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .form-field {
+      display: grid;
+      gap: 7px;
+    }
+
+    .form-field select,
+    .form-field input[type="url"] {
+      width: 100%;
+      height: 38px;
+      border: 1px solid var(--bg-panel-border);
+      border-radius: var(--radius-sm);
+      background: var(--bg-input);
+      color: var(--text-primary);
+      padding: 0 11px;
+      outline: none;
+    }
+
+    .switch-list {
+      display: grid;
+      gap: 9px;
+    }
+
+    .switch-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      border: 1px solid var(--bg-panel-border);
+      border-radius: var(--radius-sm);
+      background: rgba(255, 255, 255, 0.028);
+      padding: 10px;
+      color: var(--text-secondary);
+      font-size: 0.76rem;
+    }
+
+    .switch-row input {
+      accent-color: var(--accent-orbital);
+    }
+
+    .segmented {
+      display: inline-grid;
+      grid-auto-flow: column;
+      gap: 5px;
+      border: 1px solid var(--bg-panel-border);
+      border-radius: var(--radius-sm);
+      padding: 5px;
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .segmented button.on {
+      color: white;
+      background: rgba(77, 124, 255, 0.2);
+      border-color: rgba(77, 124, 255, 0.42);
+    }
+
+    .radar-wrap {
+      min-height: 340px;
+      display: grid;
+      place-items: center;
+    }
+
+    .radar-wrap svg {
+      max-width: 100%;
+      height: auto;
+      overflow: visible;
+    }
+
+    .axis-list {
+      display: grid;
+      gap: 8px;
+    }
+
+    .axis-button {
+      display: grid;
+      grid-template-columns: 1fr 48px;
+      gap: 10px;
+      align-items: center;
+      border: 1px solid var(--bg-panel-border);
+      border-radius: var(--radius-sm);
+      background: rgba(255, 255, 255, 0.035);
+      padding: 10px;
+      text-align: left;
+    }
+
+    .axis-button.active {
+      border-color: rgba(0, 212, 255, 0.34);
+      background: rgba(0, 212, 255, 0.055);
+    }
+
+    .result-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .result-tabs button.active {
+      color: white;
+      background: rgba(77, 124, 255, 0.16);
+      border-color: rgba(77, 124, 255, 0.4);
+    }
+
+    .artifact-grid,
+    .library-grid,
+    .benchmark-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 12px;
+    }
+
+    .artifact-card,
+    .library-card,
+    .benchmark-card {
+      border: 1px solid var(--bg-panel-border);
+      border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, 0.034);
+      padding: 13px;
+    }
+
+    .library-card {
+      cursor: pointer;
+      transition: transform 0.16s ease, border-color 0.16s ease;
+    }
+
+    .library-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(0, 212, 255, 0.3);
+    }
+
+    .bar-chart {
+      display: grid;
+      gap: 10px;
+    }
+
+    .chart-row {
+      display: grid;
+      grid-template-columns: 76px 1fr 48px;
+      align-items: center;
+      gap: 10px;
+      color: var(--text-secondary);
+      font-size: 0.72rem;
+    }
+
+    .chart-bar {
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      overflow: hidden;
+    }
+
+    .chart-fill {
+      height: 100%;
+      width: 0;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--accent-orbital), var(--accent-scan));
+    }
+
+    .copilot-drawer {
+      position: fixed;
+      top: 74px;
+      right: 16px;
+      bottom: 50px;
+      width: min(390px, calc(100vw - 32px));
+      z-index: 40;
+      border: 1px solid rgba(117, 167, 255, 0.18);
+      border-radius: var(--radius-lg);
+      background: rgba(6, 7, 15, 0.96);
+      backdrop-filter: blur(18px) saturate(130%);
+      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.54);
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      overflow: hidden;
+    }
+
+    .copilot-head,
+    .copilot-foot {
+      padding: 14px;
+      border-bottom: 1px solid var(--bg-panel-border);
+    }
+
+    .copilot-foot {
+      border-top: 1px solid var(--bg-panel-border);
+      border-bottom: 0;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 8px;
+    }
+
+    .copilot-body {
+      min-height: 0;
+      overflow: auto;
+      padding: 14px;
+      display: grid;
+      gap: 10px;
+      align-content: start;
+    }
+
+    .copilot-msg {
+      border: 1px solid var(--bg-panel-border);
+      border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, 0.035);
+      padding: 10px;
+      color: var(--text-secondary);
+      font-size: 0.76rem;
+      line-height: 1.44;
+    }
+
+    .copilot-msg.user {
+      border-color: rgba(77, 124, 255, 0.32);
+      background: rgba(77, 124, 255, 0.08);
+      color: var(--text-primary);
+    }
+
+    .suggestion-grid {
+      display: grid;
+      gap: 8px;
+      grid-template-columns: 1fr 1fr;
+      margin-top: 10px;
+    }
+
+    .view-hidden {
+      display: none;
+    }
+
+    .empty {
+      color: var(--text-tertiary);
+      font-size: 0.74rem;
+      line-height: 1.45;
+      padding: 8px 0;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    @keyframes scanLine {
+      0% { top: -2px; opacity: 0; }
+      6% { opacity: 0.85; }
+      94% { opacity: 0.85; }
+      100% { top: 100%; opacity: 0; }
+    }
+
+    @keyframes orbitSpin {
+      from { rotate: 0deg; }
+      to { rotate: 360deg; }
+    }
+
+    @keyframes agentPulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.55); opacity: 0.58; }
+    }
+
+    @keyframes slideIn {
+      from { transform: translateX(12px); opacity: 0; }
+      to { transform: none; opacity: 1; }
+    }
+
+    @media (max-width: 1500px) {
+      .classification {
+        display: none;
+      }
+
+      .nav-pill {
+        min-width: 74px;
+        padding: 0 8px;
+      }
+
+      .top-run {
+        min-width: 128px;
+      }
+    }
+
+    @media (max-width: 1180px) {
+      html,
+      body {
+        overflow: auto;
+      }
+
+      .app {
+        height: auto;
+        min-height: 100vh;
+        grid-template-rows: auto auto auto;
+      }
+
+      .topbar,
+      .statusbar {
+        min-height: 54px;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .layout {
+        grid-template-columns: 1fr;
+        overflow: visible;
+      }
+
+      .workspace-shell {
+        padding: 16px;
+      }
+
+      .feature-grid,
+      .form-grid,
+      .metric-row {
+        grid-template-columns: 1fr;
+      }
+
+      .span-3,
+      .span-4,
+      .span-5,
+      .span-6,
+      .span-7,
+      .span-8,
+      .span-12 {
+        grid-column: 1 / -1;
+      }
+
+      .workspace-header,
+      .table-head,
+      .audit-row {
+        grid-template-columns: 1fr;
+      }
+
+      .dashboard-live-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .left-panel,
+      .right-panel {
+        border: 0;
+      }
+
+      .center {
+        min-height: 900px;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .topbar {
+        padding: 12px;
+      }
+
+      .global-search {
+        order: 3;
+        max-width: none;
+        width: 100%;
+      }
+
+      .brand {
+        align-items: flex-start;
+      }
+
+      .brand-sub,
+      .classification {
+        display: none;
+      }
+
+      .top-actions {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .console-bottom,
+      .resolver-nodes,
+      .input-actions,
+      .metric-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="app" class="app">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-orb" aria-hidden="true"></div>
+        <div>
+          <span class="brand-title">AGENTIC ENGINE</span>
+          <span class="brand-sub">Research Reproducibility Intelligence</span>
+        </div>
+      </div>
+      <div class="top-actions">
+        <button id="runBtn" class="primary run-action top-run" type="button">Run Audit</button>
+        <button id="stopBtn" class="nav-pill" type="button" disabled>Stop</button>
+        <button class="nav-pill active" data-view="dashboard" type="button">Dashboard</button>
+        <button class="nav-pill" data-view="new" type="button">New</button>
+        <button class="nav-pill" data-view="live" type="button">Live Audit</button>
+        <button class="nav-pill" data-view="results" type="button">Results</button>
+        <button class="nav-pill" data-view="library" type="button">Library</button>
+        <button class="nav-pill" data-view="benchmarks" type="button">Benchmarks</button>
+        <button id="copilotBtn" class="nav-pill" type="button">Copilot</button>
+      </div>
+    </header>
+
+    <main id="liveView" class="layout view-hidden">
+      <aside class="left-panel glass-panel">
+        <section class="panel-section">
+          <div class="section-title">
+            <span class="section-dot"></span>
+            <span class="label-mono">Paper Acquisition</span>
+          </div>
+          <div class="input-grid">
+            <div class="paper-box">
+              <label for="paperInput">Target paper</label>
+              <textarea id="paperInput" spellcheck="true"></textarea>
+            </div>
+            <input id="fileInput" class="hidden" type="file" accept=".txt,.md,.tex,.bib,.json,.csv">
+            <div class="input-actions">
+              <button id="sampleBtn" type="button">Sample</button>
+              <button id="fileBtn" type="button">Load</button>
+              <button id="clearBtn" type="button">Clear</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel-section">
+          <div class="section-title">
+            <span class="section-dot"></span>
+            <span class="label-mono">Agent API</span>
+          </div>
+          <div class="api-grid">
+            <input id="apiBase" type="text" spellcheck="false" placeholder="http://127.0.0.1:8080">
+            <div class="api-buttons">
+              <button id="saveApi" type="button">Save</button>
+              <button id="healthBtn" type="button">Health</button>
+            </div>
+            <span id="healthStatus" class="status-chip">not checked</span>
+          </div>
+        </section>
+
+        <section class="panel-section">
+          <div class="section-title">
+            <span class="section-dot"></span>
+            <span class="label-mono">Autonomy</span>
+          </div>
+          <div class="autonomy-wrap">
+            <div id="autonomyValue" class="autonomy-number">2</div>
+            <div>
+              <input id="autonomySlider" type="range" min="0" max="3" step="1" value="2">
+              <div class="ticks"><span>L0</span><span>L1</span><span>L2</span><span>L3</span></div>
+            </div>
+          </div>
+          <p id="modeCopy" class="mode-copy"></p>
+          <div id="errorBox" class="error-box"></div>
+        </section>
+
+        <section class="panel-scroll">
+          <div class="section-title">
+            <span class="section-dot"></span>
+            <span class="label-mono">Run Telemetry</span>
+          </div>
+          <div class="metric-grid">
+            <div class="data-card"><div class="k">Run ID</div><div id="runId" class="v">idle</div></div>
+            <div class="data-card"><div class="k">Timer</div><div id="runTimer" class="v">00:00</div></div>
+            <div class="data-card"><div class="k">Score</div><div id="score" class="v">--</div></div>
+            <div class="data-card"><div class="k">Decision</div><div id="decision" class="v">-</div></div>
+          </div>
+        </section>
+      </aside>
+
+      <section id="center" class="center live-compact">
+        <div class="runtime-state" aria-hidden="true">
+          <span id="modelId">mock-qwen3.5-27b</span>
+          <span id="runStatus">Standby</span>
+          <div id="resolverLanes"></div>
+        </div>
+
+        <div class="canvas-strip">
+          <div class="strip-left">
+            <span class="strip-blue">Audit Pipeline</span>
+            <span id="traceCount">0 events</span>
+            <span id="evidenceCount" class="strip-green">0 evidence</span>
+          </div>
+          <div class="strip-right">
+            <span id="canvasScore" class="strip-amber">score pending</span>
+            <button id="downloadBtn" type="button">JSON</button>
+          </div>
+        </div>
+
+        <div class="console-bottom">
+          <div class="trace-panel">
+            <div class="subhead">
+              <span class="label-mono">Analysis Trace</span>
+              <span class="status-chip">SSE + REST</span>
+            </div>
+            <div id="traceList" class="trace-list">
+              <div class="empty">No trace events yet.</div>
+            </div>
+          </div>
+          <div class="evidence-panel">
+            <div class="subhead">
+              <span class="label-mono">Evidence</span>
+              <span class="status-chip">live resolvers</span>
+            </div>
+            <div id="evidenceRows" class="evidence-list">
+              <div class="empty">No live evidence resolved yet.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <aside class="right-panel glass-panel">
+        <section class="panel-section">
+          <div class="section-title">
+            <span class="section-dot" style="background:#ff7d90;box-shadow:0 0 16px rgba(255,125,144,0.7);"></span>
+            <span class="label-mono">Intelligence Report</span>
+          </div>
+          <div id="agentFeed" class="agent-feed"></div>
+        </section>
+
+        <section class="panel-scroll">
+          <div class="report-card">
+            <div class="report-tabs">
+              <button id="tabReport" class="active" type="button">Report</button>
+              <button id="tabRubric" type="button">Rubric</button>
+              <button id="tabTools" type="button">Tools</button>
+            </div>
+            <pre id="report" class="report-output">Run an audit to generate the verifier-backed report.</pre>
+            <div id="rubricPane" class="rubric-grid hidden"></div>
+            <div id="toolsPane" class="tool-list hidden"></div>
+          </div>
+
+          <div class="report-card">
+            <div class="label-mono" style="margin-bottom:10px;">Verifier Watchlist</div>
+            <div id="gapsList" class="gap-list">
+              <div class="empty">Verifier gaps will appear after scoring.</div>
+            </div>
+          </div>
+
+          <div class="report-card">
+            <div class="label-mono" style="margin-bottom:10px;">Run JSON</div>
+            <pre id="rawJson" class="report-output" style="max-height:220px;">{}</pre>
+          </div>
+        </section>
+      </aside>
+    </main>
+
+    <main id="workspaceShell" class="workspace-shell">
+      <section id="dashboardView" class="workspace-view active">
+        <div class="workspace-header">
+          <div>
+            <div class="workspace-kicker">Workspace dashboard</div>
+            <h1 class="workspace-title">Agentic Reproducibility Engine</h1>
+            <p class="workspace-subtitle">Submit papers, monitor multi-agent audits, inspect resolver-backed evidence, and package audit-ready reproducibility reports from one operational workspace.</p>
+          </div>
+          <div class="view-actions">
+            <button id="dashboardNewBtn" class="primary" type="button">New Audit</button>
+            <button id="dashboardRunBtn" type="button">Resume Live Audit</button>
+          </div>
+        </div>
+
+        <div class="feature-grid">
+          <article class="feature-card hero-audit span-7">
+            <div class="dashboard-live-grid">
+              <div class="dashboard-copy">
+                <div class="workspace-kicker">Evidence-first audit orchestration</div>
+                <h2 class="workspace-title">The engine turns a paper into validated evidence, reproducibility risk scores, consistency challenges, and an audit-ready report.</h2>
+                <p class="workspace-subtitle">Every run streams structured reasoning artifacts, approved tool calls, resolver outputs, critique loops, and report provenance as the workflow executes.</p>
+                <div class="view-actions" style="justify-content:flex-start;">
+                  <button class="primary" data-action="run-current" type="button">Run Current Paper</button>
+                  <button data-view="results" type="button">Open Results</button>
+                </div>
+                <div id="dashboardAgentFeed" class="dashboard-agent-feed agent-feed"></div>
+              </div>
+              <div class="dashboard-stream-panel">
+                <div class="subhead">
+                  <span class="label-mono">Live Execution Stream</span>
+                  <span class="status-chip">SSE</span>
+                </div>
+                <div id="dashboardTraceList" class="trace-list dashboard-trace-list">
+                  <div class="empty">Run an audit to stream model calls, tool calls, consistency checks, and report assembly here.</div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <aside class="feature-card span-5">
+            <div class="section-title"><span class="section-dot"></span><span class="label-mono">Autonomy</span></div>
+            <div class="autonomy-wrap">
+              <div id="dashboardAutonomyValue" class="autonomy-number">2</div>
+              <div>
+                <input id="dashboardAutonomySlider" type="range" min="0" max="3" step="1" value="2">
+                <div class="ticks"><span>L0</span><span>L1</span><span>L2</span><span>L3</span></div>
+              </div>
+            </div>
+            <p id="dashboardModeCopy" class="mode-copy"></p>
+            <div class="report-card" style="margin-top:14px;">
+              <div class="label-mono" style="margin-bottom:10px;">Current Run Control</div>
+              <div class="view-actions" style="justify-content:flex-start;">
+                <button class="primary" data-action="run-current" type="button">Run Audit</button>
+                <button id="dashboardStopBtn" type="button" disabled>Stop Audit</button>
+              </div>
+            </div>
+            <div class="section-title"><span class="section-dot"></span><span class="label-mono">Runtime Snapshot</span></div>
+            <div id="dashboardMetrics" class="metric-row"></div>
+            <div class="report-card" style="margin-top:14px;">
+              <div class="label-mono" style="margin-bottom:10px;">Autonomy Contract</div>
+              <div class="switch-list">
+                <div class="switch-row"><span>Each agent receives its own prompt and context.</span><span class="status-chip ok">active</span></div>
+                <div class="switch-row"><span>Each agent makes a model call.</span><span class="status-chip ok">active</span></div>
+                <div class="switch-row"><span>Agents request tools through the orchestrator.</span><span class="status-chip ok">gated</span></div>
+                <div class="switch-row"><span>Verifier can send work back before final report.</span><span class="status-chip ok">enabled</span></div>
+              </div>
+            </div>
+          </aside>
+
+          <article class="feature-card span-8">
+            <div class="workspace-header" style="margin-bottom:12px;">
+              <div>
+                <div class="workspace-kicker">Recent audits</div>
+                <h2 class="target-title">Library preview</h2>
+              </div>
+              <button data-view="library" type="button">Open Library</button>
+            </div>
+            <div id="recentAuditRows" class="table-panel"></div>
+          </article>
+
+          <article class="feature-card span-4">
+            <div class="section-title"><span class="section-dot"></span><span class="label-mono">Resolver Coverage</span></div>
+            <div class="bar-chart" id="dashboardResolverBars"></div>
+          </article>
+        </div>
+      </section>
+
+      <section id="newView" class="workspace-view">
+        <div class="workspace-header">
+          <div>
+            <div class="workspace-kicker">New audit</div>
+            <h1 class="workspace-title">Submit a paper and configure autonomy</h1>
+            <p class="workspace-subtitle">Paste an arXiv ID, DOI, URL, or paper notes. The frontend fills the live audit payload and the backend handles the agent/tool execution.</p>
+          </div>
+          <div class="view-actions">
+            <button id="newAuditStart" class="primary" type="button">Start Autonomous Audit</button>
+            <button id="saveBatchBtn" type="button">Save Batch Draft</button>
+          </div>
+        </div>
+
+        <div class="feature-grid">
+          <article class="feature-card span-7">
+            <div class="form-grid">
+              <div class="form-field">
+                <label for="newAuditReference">Paper reference</label>
+                <input id="newAuditReference" type="text" spellcheck="false" value="2006.11239" placeholder="arXiv ID, DOI, URL, or title">
+              </div>
+              <div class="form-field">
+                <label for="newAuditTitle">Working title</label>
+                <input id="newAuditTitle" type="text" value="Denoising Diffusion Probabilistic Models" placeholder="Optional title">
+              </div>
+              <div class="form-field">
+                <label for="newAuditModel">Model endpoint</label>
+                <select id="newAuditModel">
+                  <option>Environment default</option>
+                  <option>Qwen3.5-27B via vLLM</option>
+                  <option>Gemini API test runtime</option>
+                  <option>Mock runtime</option>
+                </select>
+              </div>
+              <div class="form-field">
+                <label for="newAuditDepth">Audit depth</label>
+                <select id="newAuditDepth">
+                  <option value="quick">Quick evidence pass</option>
+                  <option value="full" selected>Full reproducibility audit</option>
+                  <option value="forensic">Forensic verifier pass</option>
+                </select>
+              </div>
+              <div class="form-field span-12">
+                <label for="newAuditNotes">Paper notes, repo, dataset, or claims</label>
+                <textarea id="newAuditNotes" spellcheck="true" style="max-height:none;min-height:220px;">Code: https://github.com/hojonathanho/diffusion
+Data: CIFAR-10, LSUN, CelebA-HQ
+
+Audit focus: verify dataset availability, code provenance, experiment detail, and reproduction scaffold feasibility.</textarea>
+              </div>
+            </div>
+          </article>
+
+          <aside class="feature-card span-5">
+            <div class="section-title"><span class="section-dot"></span><span class="label-mono">Autonomy</span></div>
+            <div class="autonomy-wrap">
+              <div id="newAutonomyValue" class="autonomy-number">2</div>
+              <div>
+                <input id="newAutonomySlider" type="range" min="0" max="3" step="1" value="2">
+                <div class="ticks"><span>L0</span><span>L1</span><span>L2</span><span>L3</span></div>
+              </div>
+            </div>
+            <p id="newModeCopy" class="mode-copy"></p>
+            <div class="report-card" style="margin-top:14px;">
+              <div class="label-mono" style="margin-bottom:10px;">Autonomy Contract</div>
+              <div class="switch-list">
+                <div class="switch-row"><span>Separate model turns for each role.</span><span class="status-chip ok">active</span></div>
+                <div class="switch-row"><span>Tool requests are validated before execution.</span><span class="status-chip ok">gated</span></div>
+                <div class="switch-row"><span>Verifier can trigger targeted repair work.</span><span class="status-chip ok">enabled</span></div>
+              </div>
+            </div>
+            <div class="section-title"><span class="section-dot"></span><span class="label-mono">Live Evidence Sources</span></div>
+            <div class="switch-list">
+              <label class="switch-row"><span>arXiv metadata and paper records</span><input class="source-toggle" type="checkbox" value="arxiv" checked></label>
+              <label class="switch-row"><span>DOI / Crossref resolver</span><input class="source-toggle" type="checkbox" value="doi" checked></label>
+              <label class="switch-row"><span>GitHub repository resolver</span><input class="source-toggle" type="checkbox" value="github" checked></label>
+              <label class="switch-row"><span>Dataset resolver</span><input class="source-toggle" type="checkbox" value="dataset" checked></label>
+              <label class="switch-row"><span>Verifier repair loop</span><input id="newAuditVerifier" type="checkbox" checked></label>
+            </div>
+            <div class="report-card">
+              <div class="label-mono" style="margin-bottom:10px;">Input actions</div>
+              <div class="view-actions" style="justify-content:flex-start;">
+                <button id="newUseSample" type="button">Use Sample</button>
+                <button id="newLoadFile" type="button">Load File</button>
+                <button id="newViewArxiv" type="button">View arXiv</button>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="resultsView" class="workspace-view">
+        <div class="workspace-header">
+          <div>
+            <div class="workspace-kicker">Audit results</div>
+            <h1 id="resultsTitle" class="workspace-title">Verifier-backed reproducibility report</h1>
+            <p id="resultsSubtitle" class="workspace-subtitle">Run an audit to replace this with live model, evidence, and report data.</p>
+          </div>
+          <div class="view-actions">
+            <button id="exportPdfBtn" type="button">Export PDF</button>
+            <button id="shareRunBtn" type="button">Share</button>
+            <button id="askCopilotFromResults" class="primary" type="button">Ask Copilot</button>
+          </div>
+        </div>
+
+        <div class="feature-grid">
+          <article class="feature-card span-5">
+            <div class="radar-wrap" id="radarChart"></div>
+          </article>
+          <article class="feature-card span-3">
+            <div id="resultsSummary"></div>
+            <div class="axis-list" id="axisList" style="margin-top:14px;"></div>
+          </article>
+          <article class="feature-card span-4">
+            <div class="section-title"><span class="section-dot"></span><span class="label-mono">Evidence Explorer</span></div>
+            <div id="resultsEvidence" class="evidence-list" style="padding:0;max-height:340px;"></div>
+          </article>
+
+          <article class="feature-card span-12">
+            <div class="result-tabs">
+              <button class="active" data-results-tab="report" type="button">Report</button>
+              <button data-results-tab="evidence" type="button">Evidence Explorer</button>
+              <button data-results-tab="scaffold" type="button">Replication Scaffold</button>
+              <button data-results-tab="methods" type="button">Method Notes</button>
+            </div>
+            <div id="resultTabContent"></div>
+          </article>
+        </div>
+      </section>
+
+      <section id="libraryView" class="workspace-view">
+        <div class="workspace-header">
+          <div>
+            <div class="workspace-kicker">Audit library</div>
+            <h1 class="workspace-title">Saved audit runs</h1>
+            <p class="workspace-subtitle">Search completed local runs and saved drafts by title, arXiv ID, decision, or evidence source.</p>
+          </div>
+          <div class="view-actions">
+            <button id="exportCsvBtn" type="button">Export CSV</button>
+            <button data-view="new" class="primary" type="button">New Audit</button>
+          </div>
+        </div>
+        <div class="feature-card">
+          <div class="workspace-header" style="margin-bottom:14px;align-items:center;">
+            <div class="global-search" style="max-width:420px;flex:none;">
+              <span aria-hidden="true">Search</span>
+              <input id="librarySearch" type="text" spellcheck="false" placeholder="Search title, author, arXiv id">
+            </div>
+            <div class="segmented" id="tierFilter">
+              <button class="on" data-tier="all" type="button">All</button>
+              <button data-tier="1" type="button">Tier 1</button>
+              <button data-tier="2" type="button">Tier 2</button>
+              <button data-tier="3" type="button">Tier 3</button>
+            </div>
+          </div>
+          <div id="libraryGrid" class="library-grid"></div>
+        </div>
+      </section>
+
+      <section id="benchmarksView" class="workspace-view">
+        <div class="workspace-header">
+          <div>
+            <div class="workspace-kicker">Benchmarks and insights</div>
+            <h1 class="workspace-title">Evidence discipline for reproducibility scoring</h1>
+            <p class="workspace-subtitle">Benchmarks expose resolver coverage, score distribution, tool availability, and AMD/Qwen deployment proof points for judges.</p>
+          </div>
+          <div class="view-actions">
+            <button data-view="results" type="button">Open Results</button>
+            <button data-view="live" class="primary" type="button">Live Trace</button>
+          </div>
+        </div>
+        <div class="feature-grid">
+          <article class="feature-card span-5">
+            <div class="section-title"><span class="section-dot"></span><span class="label-mono">Score Distribution</span></div>
+            <div id="benchmarkBars" class="bar-chart"></div>
+          </article>
+          <article class="feature-card span-7">
+            <div class="benchmark-grid" id="benchmarkCards"></div>
+          </article>
+          <article class="feature-card span-12">
+            <div class="section-title"><span class="section-dot"></span><span class="label-mono">Tool and deployment readiness</span></div>
+            <div class="artifact-grid" id="resolverMatrix"></div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <aside id="copilotDrawer" class="copilot-drawer hidden" aria-label="Copilot">
+      <div class="copilot-head">
+        <div class="workspace-header" style="margin:0;align-items:center;">
+          <div>
+            <div class="workspace-kicker">Copilot</div>
+            <div id="copilotContext" class="target-title">Workspace assistant</div>
+          </div>
+          <button id="closeCopilot" type="button">Close</button>
+        </div>
+        <div class="suggestion-grid">
+          <button data-copilot="Why did the score change?" type="button">Score Reason</button>
+          <button data-copilot="What should I fix first?" type="button">Fix First</button>
+          <button data-copilot="Draft a reproducibility statement." type="button">Statement</button>
+          <button data-copilot="Summarize resolver evidence." type="button">Evidence</button>
+        </div>
+      </div>
+      <div id="copilotThread" class="copilot-body"></div>
+      <div class="copilot-foot">
+        <input id="copilotInput" type="text" spellcheck="true" placeholder="Ask about this audit">
+        <button id="sendCopilot" class="primary" type="button">Send</button>
+      </div>
+    </aside>
+
+    <footer class="statusbar">
+      <div><span style="color:var(--accent-orbital);">AGENTIC ENGINE</span> <span>v0.1</span></div>
+      <div><span>LangGraph-style runtime</span> / <span>Qwen endpoint ready</span> / <span>tool-gated autonomy</span></div>
+      <div id="footerStatus">standby</div>
+    </footer>
+  </div>
+
+  <script>
+    const DEMO_PAPER = `# Denoising Diffusion Probabilistic Models
+
+arXiv: 2006.11239
+DOI: 10.48550/arXiv.2006.11239
+Code: https://github.com/hojonathanho/diffusion
+Data: CIFAR-10, LSUN, CelebA-HQ
+
+The paper evaluates a diffusion-based generative modeling approach against image generation
+benchmarks and reports sample quality, likelihood estimates, and ablation results.`;
+
+    const AUTONOMY = {
+      0: "LOCAL TRACE: agents emit structured artifacts; external tools remain blocked.",
+      1: "MODEL ANALYSIS: parser plus model-backed agents, no network retrieval.",
+      2: "LIVE EVIDENCE: arXiv, DOI, GitHub, and dataset resolvers enabled.",
+      3: "FULL AUTONOMY: live evidence, verifier repair, and code/data planning enabled."
+    };
+
+    const AGENTS = [
+      ["planner", "PLANNER", "var(--agent-planner)"],
+      ["paper_reader", "READER", "var(--agent-reader)"],
+      ["evidence_retriever", "RETRIEVER", "var(--agent-retriever)"],
+      ["reproducibility_auditor", "AUDITOR", "var(--agent-auditor)"],
+      ["experiment_planner", "EXPERIMENT", "var(--agent-experiment)"],
+      ["code_data_agent", "CODE DATA", "var(--agent-code)"],
+      ["verifier", "VERIFIER", "var(--agent-verifier)"],
+      ["report_agent", "REPORT", "var(--agent-report)"]
+    ];
+
+    const RESOLVERS = [
+      ["arxiv_resolver", "ARXIV"],
+      ["doi_resolver", "DOI"],
+      ["github_resolver", "GITHUB"],
+      ["dataset_resolver", "DATASET"]
+    ];
+
+    const DEFAULT_AXES = [
+      { label: "Data Assets", score: 78 },
+      { label: "Software", score: 75 },
+      { label: "Methods", score: 68 },
+      { label: "Compute", score: 71 },
+      { label: "Statistics", score: 82 },
+      { label: "Environment", score: 64 },
+      { label: "Provenance", score: 86 },
+      { label: "Robustness", score: 58 }
+    ];
+
+    const BENCHMARK_BUCKETS = [
+      { label: "90-100", count: 9 },
+      { label: "80-89", count: 28 },
+      { label: "70-79", count: 42 },
+      { label: "60-69", count: 35 },
+      { label: "<60", count: 18 }
+    ];
+
+    const READINESS_CARDS = [
+      { title: "arXiv resolver", status: "live", body: "Uses arXiv identifiers and paper metadata as source-grounded evidence." },
+      { title: "DOI resolver", status: "live", body: "Checks DOI-style citations and normalizes DOI URLs into report provenance." },
+      { title: "GitHub resolver", status: "live", body: "Resolves repository URLs, names, license signals, and reachable code evidence." },
+      { title: "Dataset resolver", status: "live", body: "Flags named public datasets and dataset repository links for audit scoring." },
+      { title: "Qwen/vLLM target", status: "deployable", body: "Frontend keeps an endpoint contract for AMD MI300X Qwen serving through the Agent API." },
+      { title: "Gemini local test", status: "online", body: "Current local backend can run model-backed agents through the Gemini API key." }
+    ];
+
+    const SUPPRESSED_LIBRARY_IDS = new Set(["2006.11239", "2403.18012", "2302.13971", "2103.00020"]);
+    const SUPPRESSED_LIBRARY_TITLES = ["denoising diffusion probabilistic models"];
+
+    const els = {
+      app: document.getElementById("app"),
+      liveView: document.getElementById("liveView"),
+      workspaceShell: document.getElementById("workspaceShell"),
+      center: document.getElementById("center"),
+      apiBase: document.getElementById("apiBase"),
+      saveApi: document.getElementById("saveApi"),
+      healthBtn: document.getElementById("healthBtn"),
+      healthStatus: document.getElementById("healthStatus"),
+      paperInput: document.getElementById("paperInput"),
+      fileInput: document.getElementById("fileInput"),
+      fileBtn: document.getElementById("fileBtn"),
+      sampleBtn: document.getElementById("sampleBtn"),
+      clearBtn: document.getElementById("clearBtn"),
+      autonomySlider: document.getElementById("autonomySlider"),
+      autonomyValue: document.getElementById("autonomyValue"),
+      modeCopy: document.getElementById("modeCopy"),
+      runBtn: document.getElementById("runBtn"),
+      stopBtn: document.getElementById("stopBtn"),
+      errorBox: document.getElementById("errorBox"),
+      runId: document.getElementById("runId"),
+      runTimer: document.getElementById("runTimer"),
+      score: document.getElementById("score"),
+      canvasScore: document.getElementById("canvasScore"),
+      decision: document.getElementById("decision"),
+      modelId: document.getElementById("modelId"),
+      runStatus: document.getElementById("runStatus"),
+      traceCount: document.getElementById("traceCount"),
+      evidenceCount: document.getElementById("evidenceCount"),
+      resolverLanes: document.getElementById("resolverLanes"),
+      traceList: document.getElementById("traceList"),
+      evidenceRows: document.getElementById("evidenceRows"),
+      agentFeed: document.getElementById("agentFeed"),
+      report: document.getElementById("report"),
+      rawJson: document.getElementById("rawJson"),
+      rubricPane: document.getElementById("rubricPane"),
+      toolsPane: document.getElementById("toolsPane"),
+      gapsList: document.getElementById("gapsList"),
+      tabReport: document.getElementById("tabReport"),
+      tabRubric: document.getElementById("tabRubric"),
+      tabTools: document.getElementById("tabTools"),
+      downloadBtn: document.getElementById("downloadBtn"),
+      dashboardNewBtn: document.getElementById("dashboardNewBtn"),
+      dashboardRunBtn: document.getElementById("dashboardRunBtn"),
+      dashboardStopBtn: document.getElementById("dashboardStopBtn"),
+      dashboardAutonomySlider: document.getElementById("dashboardAutonomySlider"),
+      dashboardAutonomyValue: document.getElementById("dashboardAutonomyValue"),
+      dashboardModeCopy: document.getElementById("dashboardModeCopy"),
+      dashboardAgentFeed: document.getElementById("dashboardAgentFeed"),
+      dashboardTraceList: document.getElementById("dashboardTraceList"),
+      dashboardMetrics: document.getElementById("dashboardMetrics"),
+      dashboardResolverBars: document.getElementById("dashboardResolverBars"),
+      recentAuditRows: document.getElementById("recentAuditRows"),
+      newAutonomySlider: document.getElementById("newAutonomySlider"),
+      newAutonomyValue: document.getElementById("newAutonomyValue"),
+      newModeCopy: document.getElementById("newModeCopy"),
+      newAuditReference: document.getElementById("newAuditReference"),
+      newAuditTitle: document.getElementById("newAuditTitle"),
+      newAuditModel: document.getElementById("newAuditModel"),
+      newAuditDepth: document.getElementById("newAuditDepth"),
+      newAuditNotes: document.getElementById("newAuditNotes"),
+      newAuditStart: document.getElementById("newAuditStart"),
+      saveBatchBtn: document.getElementById("saveBatchBtn"),
+      newUseSample: document.getElementById("newUseSample"),
+      newLoadFile: document.getElementById("newLoadFile"),
+      newViewArxiv: document.getElementById("newViewArxiv"),
+      resultsTitle: document.getElementById("resultsTitle"),
+      resultsSubtitle: document.getElementById("resultsSubtitle"),
+      resultsSummary: document.getElementById("resultsSummary"),
+      radarChart: document.getElementById("radarChart"),
+      axisList: document.getElementById("axisList"),
+      resultsEvidence: document.getElementById("resultsEvidence"),
+      resultTabContent: document.getElementById("resultTabContent"),
+      exportPdfBtn: document.getElementById("exportPdfBtn"),
+      shareRunBtn: document.getElementById("shareRunBtn"),
+      askCopilotFromResults: document.getElementById("askCopilotFromResults"),
+      librarySearch: document.getElementById("librarySearch"),
+      tierFilter: document.getElementById("tierFilter"),
+      libraryGrid: document.getElementById("libraryGrid"),
+      exportCsvBtn: document.getElementById("exportCsvBtn"),
+      benchmarkBars: document.getElementById("benchmarkBars"),
+      benchmarkCards: document.getElementById("benchmarkCards"),
+      resolverMatrix: document.getElementById("resolverMatrix"),
+      copilotBtn: document.getElementById("copilotBtn"),
+      copilotDrawer: document.getElementById("copilotDrawer"),
+      closeCopilot: document.getElementById("closeCopilot"),
+      copilotContext: document.getElementById("copilotContext"),
+      copilotThread: document.getElementById("copilotThread"),
+      copilotInput: document.getElementById("copilotInput"),
+      sendCopilot: document.getElementById("sendCopilot"),
+      footerStatus: document.getElementById("footerStatus")
+    };
+
+    let latestResult = null;
+    let traceEvents = [];
+    let agentState = Object.fromEntries(AGENTS.map(([id]) => [id, { status: "queued", message: "STANDBY" }]));
+    let timer = null;
+    let startedAt = 0;
+    let currentView = "dashboard";
+    let selectedAxis = 1;
+    let selectedResultsTab = "report";
+    let libraryTier = "all";
+    let activeRunAbort = null;
+
+    function defaultApiBase() {
+      const params = new URLSearchParams(window.location.search);
+      const queryApi = params.get("api");
+      if (queryApi) {
+        localStorage.setItem("agenticEngine.apiBase", queryApi);
+        return queryApi;
+      }
+      const stored = localStorage.getItem("agenticEngine.apiBase");
+      if (stored) return stored;
+      if (window.location.protocol === "file:") return "http://localhost:8080";
+      if (window.location.hostname.endsWith(".hf.space")) return "";
+      return window.location.origin;
+    }
+
+    function cleanBase(value) {
+      return value.trim().replace(/\/+$/, "");
+    }
+
+    function updateAutonomy() {
+      const level = Number(this && this.value !== undefined ? this.value : autonomyLevel());
+      setAutonomyLevel(level);
+    }
+
+    function autonomyLevel() {
+      return Number(els.dashboardAutonomySlider.value || els.newAutonomySlider.value || els.autonomySlider.value || 2);
+    }
+
+    function setAutonomyLevel(level) {
+      const normalized = String(clamp(Number(level), 0, 3));
+      els.autonomySlider.value = normalized;
+      els.dashboardAutonomySlider.value = normalized;
+      els.newAutonomySlider.value = normalized;
+      els.autonomyValue.textContent = normalized;
+      els.dashboardAutonomyValue.textContent = normalized;
+      els.newAutonomyValue.textContent = normalized;
+      els.modeCopy.textContent = AUTONOMY[Number(normalized)];
+      els.dashboardModeCopy.textContent = AUTONOMY[Number(normalized)];
+      els.newModeCopy.textContent = AUTONOMY[Number(normalized)];
+    }
+
+    function setHealth(label, state) {
+      els.healthStatus.textContent = label;
+      els.healthStatus.className = `status-chip ${state || ""}`.trim();
+    }
+
+    function showError(message) {
+      els.errorBox.textContent = message;
+      els.errorBox.style.display = message ? "block" : "none";
+    }
+
+    function renderAgentFeed() {
+      const html = AGENTS.map(([id, label, color], index) => {
+        const state = agentState[id] || { status: "queued", message: "STANDBY" };
+        const cls = state.status === "complete" ? "done" : state.status === "thinking" ? "active" : "";
+        const dotStyle = state.status === "queued"
+          ? "border-color:var(--text-tertiary);background:transparent;"
+          : `border-color:${color};background:${color};box-shadow:0 0 8px ${color};`;
+        return `<div class="agent-row ${cls}" style="border-left-color:${state.status === "queued" ? "transparent" : color};">
+          <div class="agent-index"><span>${String(index + 1).padStart(2, "0")}</span><span class="agent-dot" style="${dotStyle}"></span></div>
+          <div class="agent-name">${escapeHtml(label)}</div>
+          <div class="agent-state">${escapeHtml(state.message || "STANDBY")}</div>
+        </div>`;
+      }).join("");
+      els.agentFeed.innerHTML = html;
+      els.dashboardAgentFeed.innerHTML = html;
+    }
+
+    function renderResolverLanes(statusMap) {
+      els.resolverLanes.innerHTML = RESOLVERS.map(([id, label]) => {
+        const status = statusMap[id] || "pending";
+        return `<div class="resolver-node ${escapeAttr(status)}">
+          <div class="name">${escapeHtml(label)}</div>
+          <div class="state">${escapeHtml(status)}</div>
+        </div>`;
+      }).join("");
+    }
+
+    function resetRunView() {
+      latestResult = null;
+      traceEvents = [];
+      agentState = Object.fromEntries(AGENTS.map(([id]) => [id, { status: "queued", message: "STANDBY" }]));
+      els.runId.textContent = "queued";
+      els.score.textContent = "--";
+      els.canvasScore.textContent = "score pending";
+      els.decision.textContent = "-";
+      els.runStatus.textContent = "RUNNING";
+      els.traceCount.textContent = "0 events";
+      els.evidenceCount.textContent = "0 evidence";
+      els.traceList.innerHTML = '<div class="empty">Waiting for first model or tool event.</div>';
+      els.dashboardTraceList.innerHTML = '<div class="empty">Waiting for first model or tool event.</div>';
+      els.evidenceRows.innerHTML = '<div class="empty">No live evidence resolved yet.</div>';
+      els.report.textContent = "Agents are running.";
+      els.rawJson.textContent = "{}";
+      els.rubricPane.innerHTML = '<div class="empty">Rubric checks are pending.</div>';
+      els.toolsPane.innerHTML = '<div class="empty">No tool calls yet.</div>';
+      els.gapsList.innerHTML = '<div class="empty">Verifier gaps will appear after scoring.</div>';
+      renderAgentFeed();
+      renderResolverLanes({});
+      showError("");
+    }
+
+    function startTimer() {
+      startedAt = Date.now();
+      stopTimer();
+      timer = setInterval(() => {
+        const seconds = Math.floor((Date.now() - startedAt) / 1000);
+        els.runTimer.textContent = `${String(Math.floor(seconds / 60)).padStart(2, "0")}:${String(seconds % 60).padStart(2, "0")}`;
+      }, 500);
+    }
+
+    function stopTimer() {
+      if (timer) clearInterval(timer);
+      timer = null;
+    }
+
+    function setRunning(running) {
+      els.runBtn.disabled = running;
+      els.healthBtn.disabled = running;
+      els.stopBtn.disabled = !running;
+      els.dashboardStopBtn.disabled = !running;
+      els.center.classList.toggle("running", running);
+      els.runBtn.textContent = running ? "Running Audit" : "Run Audit";
+      els.footerStatus.textContent = running ? "agent pipeline running" : "standby";
+      if (running) startTimer();
+      else stopTimer();
+    }
+
+    function stopAudit() {
+      if (activeRunAbort) {
+        activeRunAbort.abort();
+        activeRunAbort = null;
+      }
+      els.runStatus.textContent = "STOPPED";
+      els.footerStatus.textContent = "audit stopped";
+      els.report.textContent = "Audit stopped by user before final report generation.";
+      appendTrace({
+        event_type: "audit_stopped",
+        actor: "orchestrator",
+        message: "User stopped the active audit stream.",
+        created_at: new Date().toISOString(),
+        payload: {}
+      });
+      setRunning(false);
+    }
+
+    function markAgent(event) {
+      const actor = event.actor || "";
+      if (agentState[actor]) {
+        agentState[actor] = {
+          status: event.event_type === "agent_output" ? "complete" : "thinking",
+          message: event.event_type === "agent_output" ? "Complete" : event.message || "Processing"
+        };
+      }
+      if (event.event_type === "tool_call" && actor === "evidence_bundle") {
+        agentState.evidence_retriever = { status: "complete", message: "Evidence bundled" };
+      }
+      renderAgentFeed();
+    }
+
+    function appendTrace(event) {
+      traceEvents.push(event);
+      markAgent(event);
+      els.traceCount.textContent = `${traceEvents.length} events`;
+      if (traceEvents.length === 1) els.traceList.innerHTML = "";
+      if (traceEvents.length === 1) els.dashboardTraceList.innerHTML = "";
+      const item = createTraceItem(event);
+      const dashboardItem = createTraceItem(event);
+      els.traceList.appendChild(item);
+      els.dashboardTraceList.appendChild(dashboardItem);
+      if (els.dashboardTraceList.childElementCount > 18 && els.dashboardTraceList.firstElementChild) {
+        els.dashboardTraceList.firstElementChild.remove();
+      }
+      els.traceList.scrollTop = els.traceList.scrollHeight;
+      els.dashboardTraceList.scrollTop = els.dashboardTraceList.scrollHeight;
+      const payload = event.payload || {};
+      if (payload.manifest && payload.manifest.run_id) {
+        els.runId.textContent = payload.manifest.run_id;
+      }
+    }
+
+    function createTraceItem(event) {
+      const payload = event.payload || {};
+      const hasPayload = Object.keys(payload).length > 0;
+      const item = document.createElement("article");
+      item.className = `trace-item ${event.event_type || ""}`;
+      item.innerHTML = `<div class="trace-meta">
+          <span>${escapeHtml(event.event_type || "event")}</span>
+          <span>${escapeHtml(event.actor || "agent")}</span>
+          <span>${timeOnly(event.created_at)}</span>
+        </div>
+        <div class="trace-message">${escapeHtml(event.message || "")}</div>
+        ${hasPayload ? `<details class="payload"><summary>payload</summary><pre>${escapeHtml(JSON.stringify(payload, null, 2))}</pre></details>` : ""}`;
+      return item;
+    }
+
+    function renderResult(result) {
+      latestResult = result;
+      const manifest = result.manifest || {};
+      const artifacts = result.artifacts || {};
+      const scorecard = artifacts.audit_scorecard || {};
+      const evidenceBundle = artifacts.evidence_bundle || {};
+      const evidence = evidenceBundle.evidence || [];
+      const score = Number(scorecard.score);
+
+      els.runId.textContent = manifest.run_id || "-";
+      els.score.textContent = Number.isFinite(score) ? `${score}/100` : "--";
+      els.canvasScore.textContent = Number.isFinite(score) ? `score ${score}/100` : "score pending";
+      els.decision.textContent = scorecard.decision || manifest.status || "-";
+      els.modelId.textContent = manifest.model_id || "model pending";
+      els.runStatus.textContent = String(scorecard.decision || manifest.status || "complete").toUpperCase();
+      els.evidenceCount.textContent = `${evidence.length} evidence`;
+      els.report.textContent = result.report_markdown || "No report returned.";
+      els.rawJson.textContent = JSON.stringify(result, null, 2);
+
+      if (!traceEvents.length && Array.isArray(result.trace)) result.trace.forEach(appendTrace);
+      renderEvidence(evidence);
+      renderResolverLanes(evidenceBundle.resolver_status || {});
+      renderRubric(scorecard.rubric || {});
+      renderGaps(scorecard.gaps || evidenceBundle.missing || []);
+      renderTools(result.tools || []);
+      renderAgentsComplete(result.agents || []);
+      persistRun(result);
+      renderWorkspaceViews();
+      setRunning(false);
+    }
+
+    function renderAgentsComplete(agents) {
+      for (const agent of agents) {
+        if (agentState[agent.agent_id]) {
+          agentState[agent.agent_id] = { status: "complete", message: agent.summary || "Complete" };
+        }
+      }
+      renderAgentFeed();
+    }
+
+    function renderEvidence(evidence) {
+      if (!evidence.length) {
+        els.evidenceRows.innerHTML = '<div class="empty">No live resolver evidence was verified.</div>';
+        return;
+      }
+      els.evidenceRows.innerHTML = evidence.map((item) => {
+        const source = item.source_type || item.resolver || "source";
+        const confidence = item.confidence || item.status || "-";
+        const title = item.title || item.id || item.full_name || item.doi || item.arxiv_id || "-";
+        const url = item.url || item.html_url || item.doi_url || "";
+        return `<article class="evidence-item">
+          <div class="evidence-meta"><span class="status-chip ok">${escapeHtml(source)}</span><span class="status-chip">${escapeHtml(confidence)}</span></div>
+          <div class="evidence-title">${escapeHtml(title)}</div>
+          ${url ? `<a class="evidence-link" href="${escapeAttr(url)}" target="_blank" rel="noreferrer">${escapeHtml(url)}</a>` : ""}
+        </article>`;
+      }).join("");
+    }
+
+    function renderRubric(rubric) {
+      const entries = Object.entries(rubric);
+      if (!entries.length) {
+        els.rubricPane.innerHTML = '<div class="empty">Rubric checks are pending.</div>';
+        return;
+      }
+      els.rubricPane.innerHTML = entries.map(([key, value]) => {
+        const pass = Boolean(value);
+        return `<div class="bar-row">
+          <div class="bar-label"><span>${escapeHtml(key.replaceAll("_", " "))}</span><span>${pass ? "PASS" : "GAP"}</span></div>
+          <div class="bar-track"><div class="bar-fill" style="width:${pass ? 100 : 22}%"></div></div>
+        </div>`;
+      }).join("");
+    }
+
+    function renderGaps(gaps) {
+      if (!gaps.length) {
+        els.gapsList.innerHTML = '<div class="list-item"><strong>No Blocking Gaps</strong>Verifier did not identify unresolved scorecard gaps.</div>';
+        return;
+      }
+      els.gapsList.innerHTML = gaps.map((gap, index) => `<div class="list-item"><strong>Gap ${index + 1}</strong>${escapeHtml(gap)}</div>`).join("");
+    }
+
+    function renderTools(tools) {
+      if (!tools.length) {
+        els.toolsPane.innerHTML = '<div class="empty">No tool calls yet.</div>';
+        return;
+      }
+      els.toolsPane.innerHTML = tools.map((tool) => `<div class="list-item">
+        <strong>${escapeHtml(tool.tool_id || "tool")} / ${escapeHtml(tool.status || "-")}</strong>
+        ${escapeHtml(tool.summary || "")}
+        <details class="payload"><summary>output</summary><pre>${escapeHtml(JSON.stringify(tool.output || {}, null, 2))}</pre></details>
+      </div>`).join("");
+    }
+
+    function switchView(view) {
+      currentView = view;
+      const live = view === "live";
+      els.liveView.classList.toggle("view-hidden", !live);
+      els.workspaceShell.classList.toggle("hidden", live);
+      document.querySelectorAll(".nav-pill[data-view]").forEach((button) => {
+        button.classList.toggle("active", button.dataset.view === view);
+      });
+      document.querySelectorAll(".workspace-view").forEach((panel) => {
+        panel.classList.toggle("active", panel.id === `${view}View`);
+      });
+      if (view === "dashboard") renderDashboard();
+      if (view === "results") renderResultsView();
+      if (view === "library") renderLibrary();
+      if (view === "benchmarks") renderBenchmarks();
+      els.footerStatus.textContent = live ? "live audit console" : `${view} view`;
+    }
+
+    function renderWorkspaceViews() {
+      renderDashboard();
+      renderResultsView();
+      renderLibrary();
+      renderBenchmarks();
+    }
+
+    function summarizeResult(result) {
+      const manifest = result.manifest || {};
+      const scorecard = (result.artifacts && result.artifacts.audit_scorecard) || {};
+      const evidence = (((result.artifacts || {}).evidence_bundle || {}).evidence || []);
+      const score = Number(scorecard.score);
+      const paperId = extractPaperId(manifest.run_id || "") || extractPaperId(els.paperInput.value) || "local";
+      return {
+        id: manifest.run_id || paperId,
+        paperId,
+        title: extractPaperTitle(els.paperInput.value) || "Local audit run",
+        authors: manifest.model_id || "agent runtime",
+        score: Number.isFinite(score) ? score : 0,
+        decision: scorecard.decision || manifest.status || "complete",
+        tier: scoreTier(score),
+        date: "now",
+        evidenceCount: evidence.length,
+        raw: result
+      };
+    }
+
+    function persistRun(result) {
+      try {
+        const item = summarizeResult(result);
+        if (isSuppressedLibraryItem(item)) return;
+        const current = savedRuns().filter((run) => run.id !== item.id);
+        localStorage.setItem("agenticEngine.library", JSON.stringify([item, ...current].slice(0, 12)));
+      } catch (error) {
+        console.warn("Could not persist run", error);
+      }
+    }
+
+    function savedRuns() {
+      try {
+        const parsed = JSON.parse(localStorage.getItem("agenticEngine.library") || "[]");
+        if (!Array.isArray(parsed)) return [];
+        const filtered = parsed.filter((item) => !isSuppressedLibraryItem(item));
+        if (filtered.length !== parsed.length) {
+          localStorage.setItem("agenticEngine.library", JSON.stringify(filtered));
+        }
+        return filtered;
+      } catch {
+        return [];
+      }
+    }
+
+    function isSuppressedLibraryItem(item) {
+      const id = String(item.paperId || item.id || "").trim();
+      const title = String(item.title || "").toLowerCase().trim();
+      return SUPPRESSED_LIBRARY_IDS.has(id) || SUPPRESSED_LIBRARY_TITLES.some((sampleTitle) => title.includes(sampleTitle));
+    }
+
+    function allLibraryRuns() {
+      const seen = new Set();
+      return savedRuns().filter((item) => {
+        const key = item.id || item.paperId || item.title;
+        if (seen.has(key)) return false;
+        seen.add(key);
+        return true;
+      });
+    }
+
+    function emptyResult() {
+      return {
+        manifest: { run_id: "no-run-selected", status: "idle", model_id: "model pending" },
+        agents: [],
+        tools: [],
+        artifacts: {
+          audit_scorecard: {
+            decision: "pending",
+            gaps: [],
+            rubric: {}
+          },
+          evidence_bundle: {
+            resolver_status: {},
+            evidence: []
+          }
+        },
+        report_markdown: "Run an audit or open a saved run to generate a verifier-backed reproducibility report."
+      };
+    }
+
+    function renderDashboard() {
+      const latest = latestResult ? summarizeResult(latestResult) : allLibraryRuns()[0];
+      const agentCalls = latestResult && Array.isArray(latestResult.agents) ? latestResult.agents.length : "--";
+      const toolCalls = latestResult && Array.isArray(latestResult.tools) ? latestResult.tools.length : "--";
+      const evidenceCount = latest && typeof latest.evidenceCount === "number" ? latest.evidenceCount : "--";
+      els.dashboardMetrics.innerHTML = [
+        ["Latest score", latest && latest.score ? `${latest.score}/100` : "--"],
+        ["Agent calls", agentCalls],
+        ["Tool calls", toolCalls],
+        ["Evidence", evidenceCount]
+      ].map(([label, value]) => `<div class="mini-stat"><div class="value">${escapeHtml(value)}</div><div class="label">${escapeHtml(label)}</div></div>`).join("");
+      els.recentAuditRows.innerHTML = renderAuditTable(allLibraryRuns().slice(0, 5));
+      els.dashboardResolverBars.innerHTML = resolverCoverageBars();
+    }
+
+    function renderAuditTable(rows) {
+      if (!rows.length) {
+        return `<div class="table-head"><div>Paper</div><div>Score</div><div>Tier</div><div>Decision</div></div><div class="empty">No saved audits yet.</div>`;
+      }
+      const body = rows.map((row, index) => `<div class="audit-row" data-library-index="${index}">
+        <div><div class="audit-title">${escapeHtml(row.title)}</div><div class="audit-meta">arXiv:${escapeHtml(row.paperId || row.id)} / ${escapeHtml(row.authors || "unknown")}</div></div>
+        <div><span class="score-pill ${scoreTone(row.score)}">${escapeHtml(row.score || "--")}</span></div>
+        <div><span class="status-chip ${row.tier === 1 ? "ok" : row.tier === 3 ? "bad" : ""}">Tier ${escapeHtml(row.tier || "-")}</span></div>
+        <div>${escapeHtml(row.decision || "pending")}</div>
+      </div>`).join("");
+      return `<div class="table-head"><div>Paper</div><div>Score</div><div>Tier</div><div>Decision</div></div>${body}`;
+    }
+
+    function resolverCoverageBars() {
+      const bundle = latestResult && latestResult.artifacts ? latestResult.artifacts.evidence_bundle || {} : {};
+      const status = bundle.resolver_status || {};
+      const values = RESOLVERS.map(([id, label]) => {
+        const state = status[id] || (latestResult ? "pending" : "idle");
+        const score = state === "ok" || state === "resolved" ? 100 : state === "missing" || state === "failed" ? 24 : latestResult ? 48 : 0;
+        return { label, score, state };
+      });
+      return values.map((item) => `<div class="chart-row">
+        <span>${escapeHtml(item.label)}</span>
+        <div class="chart-bar"><div class="chart-fill" style="width:${item.score}%"></div></div>
+        <span>${escapeHtml(item.state)}</span>
+      </div>`).join("");
+    }
+
+    function renderResultsView() {
+      const result = latestResult || emptyResult();
+      const manifest = result.manifest || {};
+      const scorecard = (result.artifacts && result.artifacts.audit_scorecard) || {};
+      const evidence = (((result.artifacts || {}).evidence_bundle || {}).evidence || []);
+      const score = Number(scorecard.score);
+      const axes = axesForResult(result);
+      const selected = axes[selectedAxis] || axes[0];
+
+      els.resultsTitle.textContent = extractPaperTitle(els.paperInput.value) || "Verifier-backed reproducibility report";
+      els.resultsSubtitle.textContent = `${manifest.run_id || "demo run"} / ${manifest.model_id || "model pending"} / ${scorecard.decision || "pending"}`;
+      els.resultsSummary.innerHTML = `<div class="mini-stat">
+        <div class="value">${Number.isFinite(score) ? score : "--"}</div>
+        <div class="label">Overall score</div>
+      </div>
+      <div class="report-card">
+        <div class="label-mono" style="margin-bottom:8px;">Selected axis</div>
+        <div class="audit-title">${escapeHtml(selected.label)}</div>
+        <div class="audit-meta">${escapeHtml(selected.score)} / 100, verifier weighted</div>
+      </div>`;
+      els.radarChart.innerHTML = radarSvg(axes);
+      els.axisList.innerHTML = axes.map((axis, index) => `<button class="axis-button ${index === selectedAxis ? "active" : ""}" data-axis="${index}" type="button">
+        <span>${escapeHtml(axis.label)}</span><strong>${escapeHtml(axis.score)}</strong>
+      </button>`).join("");
+      els.resultsEvidence.innerHTML = evidenceCards(evidence);
+      document.querySelectorAll("[data-results-tab]").forEach((button) => {
+        button.classList.toggle("active", button.dataset.resultsTab === selectedResultsTab);
+      });
+      renderResultTab(result);
+    }
+
+    function axesForResult(result) {
+      const scorecard = (result.artifacts && result.artifacts.audit_scorecard) || {};
+      const score = Number(scorecard.score);
+      if (!Number.isFinite(score)) return DEFAULT_AXES;
+      return DEFAULT_AXES.map((axis, index) => {
+        const offset = [6, 2, -8, -4, 4, -10, 8, -12][index] || 0;
+        return { label: axis.label, score: clamp(Math.round(score * 0.78 + axis.score * 0.22 + offset), 12, 98) };
+      });
+    }
+
+    function radarSvg(axes) {
+      const size = 360;
+      const cx = size / 2;
+      const cy = size / 2;
+      const radius = 132;
+      const point = (index, scale) => {
+        const angle = Math.PI * 2 * index / axes.length - Math.PI / 2;
+        return [cx + Math.cos(angle) * radius * scale, cy + Math.sin(angle) * radius * scale];
+      };
+      const poly = axes.map((axis, index) => point(index, axis.score / 100).map((v) => v.toFixed(1)).join(",")).join(" ");
+      const rings = [0.25, 0.5, 0.75, 1].map((scale) => `<polygon points="${axes.map((_, index) => point(index, scale).map((v) => v.toFixed(1)).join(",")).join(" ")}" fill="none" stroke="rgba(125,211,252,0.14)" stroke-width="1" />`).join("");
+      const spokes = axes.map((_, index) => {
+        const [x, y] = point(index, 1);
+        return `<line x1="${cx}" y1="${cy}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}" stroke="rgba(125,211,252,0.12)" />`;
+      }).join("");
+      const labels = axes.map((axis, index) => {
+        const [x, y] = point(index, 1.18);
+        return `<text x="${x.toFixed(1)}" y="${y.toFixed(1)}" text-anchor="middle" fill="#9ca6c4" font-size="10" font-family="monospace">${escapeHtml(axis.label)}</text>`;
+      }).join("");
+      const dots = axes.map((axis, index) => {
+        const [x, y] = point(index, axis.score / 100);
+        const active = index === selectedAxis;
+        return `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${active ? 6 : 4}" fill="${active ? "#00d4ff" : "#7cf2b7"}" opacity="0.94" />`;
+      }).join("");
+      return `<svg viewBox="0 0 ${size} ${size}" role="img" aria-label="Reproducibility radar chart">
+        ${rings}${spokes}
+        <polygon points="${poly}" fill="rgba(0,212,255,0.16)" stroke="#00d4ff" stroke-width="2" />
+        ${dots}${labels}
+      </svg>`;
+    }
+
+    function renderResultTab(result) {
+      const reportText = result.report_markdown || "Run an audit to generate the verifier-backed report.";
+      const evidence = (((result.artifacts || {}).evidence_bundle || {}).evidence || []);
+      const scorecard = ((result.artifacts || {}).audit_scorecard || {});
+      if (selectedResultsTab === "report") {
+        els.resultTabContent.innerHTML = `<pre class="report-output" style="max-height:520px;">${escapeHtml(reportText)}</pre>`;
+      } else if (selectedResultsTab === "evidence") {
+        els.resultTabContent.innerHTML = `<div class="artifact-grid">${evidenceCards(evidence)}</div>`;
+      } else if (selectedResultsTab === "scaffold") {
+        els.resultTabContent.innerHTML = `<div class="artifact-grid">
+          <div class="artifact-card"><strong>fetch_evidence.py</strong><p class="mode-copy">Structured commands for arXiv, DOI, GitHub, and dataset fetches based on resolver output.</p></div>
+          <div class="artifact-card"><strong>reproduce.md</strong><p class="mode-copy">Environment, data, seed, and figure checklist generated from the Code/Data Agent.</p></div>
+          <div class="artifact-card"><strong>audit_scorecard.json</strong><p class="mode-copy">Score, rubric flags, gaps, and verifier objections.</p></div>
+        </div>
+        <pre class="report-output" style="margin-top:12px;">python fetch_evidence.py --paper "${escapeHtml(extractPaperId(els.paperInput.value) || "paper")}"
+python run_repro_check.py --scorecard audit_scorecard.json</pre>`;
+      } else {
+        const gaps = scorecard.gaps || [];
+        els.resultTabContent.innerHTML = `<div class="artifact-grid">
+          <div class="artifact-card"><strong>Verifier objections</strong><p class="mode-copy">${escapeHtml(gaps.length ? gaps.join(" ") : "No unresolved verifier gaps in the current result.")}</p></div>
+        <div class="artifact-card"><strong>Autonomy level</strong><p class="mode-copy">${escapeHtml(AUTONOMY[autonomyLevel()])}</p></div>
+          <div class="artifact-card"><strong>Repair policy</strong><p class="mode-copy">Verifier repair requests remain visible in the trace and can return work to upstream agents before report finalization.</p></div>
+        </div>`;
+      }
+    }
+
+    function evidenceCards(evidence) {
+      if (!evidence.length) return '<div class="empty">No live evidence resolved yet.</div>';
+      return evidence.map((item) => {
+        const source = item.source_type || item.resolver || "source";
+        const title = item.title || item.id || item.full_name || item.doi || item.arxiv_id || "evidence";
+        const url = item.url || item.html_url || item.doi_url || "";
+        return `<article class="artifact-card">
+          <div class="evidence-meta"><span class="status-chip ok">${escapeHtml(source)}</span><span class="status-chip">${escapeHtml(item.confidence || item.status || "seen")}</span></div>
+          <div class="audit-title">${escapeHtml(title)}</div>
+          ${url ? `<a class="evidence-link" href="${escapeAttr(url)}" target="_blank" rel="noreferrer">${escapeHtml(url)}</a>` : ""}
+        </article>`;
+      }).join("");
+    }
+
+    function renderLibrary() {
+      const rows = filteredLibraryRuns();
+      els.libraryGrid.innerHTML = rows.map((item, index) => `<article class="library-card" data-library-card="${index}">
+        <div class="evidence-meta"><span class="status-chip ${item.tier === 1 ? "ok" : item.tier === 3 ? "bad" : ""}">Tier ${escapeHtml(item.tier || "-")}</span><span class="score-pill ${scoreTone(item.score)}">${escapeHtml(item.score || "--")}</span></div>
+        <div class="audit-title">${escapeHtml(item.title)}</div>
+        <div class="audit-meta">arXiv:${escapeHtml(item.paperId || item.id)} / ${escapeHtml(item.authors || "unknown")}</div>
+        <p class="mode-copy">${escapeHtml(item.decision || "pending")} / ${escapeHtml(item.date || "saved")}</p>
+      </article>`).join("") || `<div class="empty">${allLibraryRuns().length ? "No matching audits." : "No saved audits yet. Run or save an audit to populate this library."}</div>`;
+    }
+
+    function filteredLibraryRuns() {
+      const query = (els.librarySearch.value || "").toLowerCase().trim();
+      return allLibraryRuns().filter((item) => {
+        const haystack = `${item.title} ${item.id} ${item.paperId || ""} ${item.authors || ""} ${item.decision || ""}`.toLowerCase();
+        const tierOk = libraryTier === "all" || String(item.tier) === libraryTier;
+        return tierOk && (!query || haystack.includes(query));
+      });
+    }
+
+    function renderBenchmarks() {
+      const max = Math.max(...BENCHMARK_BUCKETS.map((bucket) => bucket.count));
+      els.benchmarkBars.innerHTML = BENCHMARK_BUCKETS.map((bucket) => `<div class="chart-row">
+        <span>${escapeHtml(bucket.label)}</span>
+        <div class="chart-bar"><div class="chart-fill" style="width:${Math.round(bucket.count / max * 100)}%"></div></div>
+        <span>${bucket.count}</span>
+      </div>`).join("");
+      els.benchmarkCards.innerHTML = [
+        ["142", "Audits tracked", "Library and public benchmark examples"],
+        ["8", "Score axes", "Data, software, methods, compute, statistics, environment, provenance, robustness"],
+        ["4", "Live resolvers", "arXiv, DOI, GitHub, dataset evidence"],
+        ["1", "Public app", "Static HTML frontend backed by Agent API"]
+      ].map(([value, label, body]) => `<div class="benchmark-card"><div class="mini-stat"><div class="value">${value}</div><div class="label">${escapeHtml(label)}</div></div><p class="mode-copy">${escapeHtml(body)}</p></div>`).join("");
+      els.resolverMatrix.innerHTML = READINESS_CARDS.map((card) => `<div class="artifact-card">
+        <div class="evidence-meta"><strong>${escapeHtml(card.title)}</strong><span class="status-chip ok">${escapeHtml(card.status)}</span></div>
+        <p class="mode-copy">${escapeHtml(card.body)}</p>
+      </div>`).join("");
+    }
+
+    function openLibraryItem(index, rows) {
+      rows = rows || allLibraryRuns();
+      const item = rows[index];
+      if (!item) return;
+      latestResult = item.raw || emptyResult();
+      renderResultsView();
+      switchView("results");
+    }
+
+    function buildPaperFromIntake() {
+      const sources = Array.from(document.querySelectorAll(".source-toggle:checked")).map((input) => input.value).join(", ");
+      const title = els.newAuditTitle.value.trim() || els.newAuditReference.value.trim() || "Untitled research artifact";
+      return `# ${title}
+
+Reference: ${els.newAuditReference.value.trim()}
+Model target: ${els.newAuditModel.value}
+Audit depth: ${els.newAuditDepth.value}
+Enabled sources: ${sources || "none"}
+Verifier repair loop: ${document.getElementById("newAuditVerifier").checked ? "enabled" : "disabled"}
+
+${els.newAuditNotes.value.trim()}`;
+    }
+
+    function startConfiguredAudit() {
+      const depth = els.newAuditDepth.value;
+      els.paperInput.value = buildPaperFromIntake();
+      setAutonomyLevel(depth === "forensic" ? 3 : depth === "quick" ? 1 : 2);
+      switchView("dashboard");
+      runAudit();
+    }
+
+    function saveBatchDraft() {
+      const draft = {
+        id: `draft-${Date.now()}`,
+        paperId: els.newAuditReference.value.trim() || "draft",
+        title: els.newAuditTitle.value.trim() || "Batch draft",
+        authors: "local draft",
+        score: 0,
+        decision: "draft",
+        tier: 3,
+        date: "saved"
+      };
+      if (isSuppressedLibraryItem(draft)) {
+        renderLibrary();
+        switchView("library");
+        return;
+      }
+      const current = savedRuns().filter((item) => item.id !== draft.id);
+      localStorage.setItem("agenticEngine.library", JSON.stringify([draft, ...current].slice(0, 12)));
+      renderLibrary();
+      switchView("library");
+    }
+
+    function openCopilot(context) {
+      els.copilotDrawer.classList.remove("hidden");
+      els.copilotContext.textContent = context || `${currentView} context`;
+      if (!els.copilotThread.childElementCount) {
+        appendCopilot("assistant", "I can explain score drivers, identify the next reproducibility fix, draft report language, or summarize resolver evidence from the current run.");
+      }
+    }
+
+    function appendCopilot(role, message) {
+      const node = document.createElement("div");
+      node.className = `copilot-msg ${role === "user" ? "user" : ""}`;
+      node.innerHTML = escapeHtml(message);
+      els.copilotThread.appendChild(node);
+      els.copilotThread.scrollTop = els.copilotThread.scrollHeight;
+    }
+
+    function askCopilot(question) {
+      const q = (question || els.copilotInput.value || "").trim();
+      if (!q) return;
+      appendCopilot("user", q);
+      appendCopilot("assistant", copilotAnswer(q));
+      els.copilotInput.value = "";
+    }
+
+    function copilotAnswer(question) {
+      const result = latestResult || emptyResult();
+      const scorecard = ((result.artifacts || {}).audit_scorecard || {});
+      const evidence = (((result.artifacts || {}).evidence_bundle || {}).evidence || []);
+      const score = Number(scorecard.score);
+      const gaps = scorecard.gaps || [];
+      const lower = question.toLowerCase();
+      if (lower.includes("fix")) {
+        return gaps.length
+          ? `Fix the first verifier gap: ${gaps[0]} Then rerun at L2 or L3 so the retriever and verifier can validate the new evidence.`
+          : "The strongest next fix is to package exact data snapshots, code commit hashes, and environment pins even when the current score has no blocking verifier gaps.";
+      }
+      if (lower.includes("statement") || lower.includes("draft")) {
+        return "Reproducibility statement: all claims should list data source, code repository, environment pins, random seeds, and figure-level reproduction commands. The engine should attach resolver URLs and verifier gaps as provenance.";
+      }
+      if (lower.includes("evidence")) {
+        return `Current run has ${evidence.length} evidence item(s). The resolver layer should include arXiv, DOI, GitHub, and dataset records before a strong audit-ready decision is trusted.`;
+      }
+      return `Current score is ${Number.isFinite(score) ? `${score}/100` : "pending"}. The decision is ${scorecard.decision || "pending"} because the verifier weighs live evidence coverage, scaffold feasibility, and unresolved provenance gaps.`;
+    }
+
+    function exportCsv() {
+      const rows = allLibraryRuns();
+      const csv = ["id,title,score,tier,decision", ...rows.map((row) => [row.paperId || row.id, row.title, row.score || "", row.tier || "", row.decision || ""].map(csvCell).join(","))].join("\n");
+      downloadBlob(csv, "agentic-engine-library.csv", "text/csv");
+    }
+
+    function shareRun() {
+      const text = `${location.origin}${location.pathname}#${latestResult && latestResult.manifest ? latestResult.manifest.run_id : "agentic-engine"}`;
+      if (navigator.clipboard) navigator.clipboard.writeText(text).catch(() => {});
+      els.footerStatus.textContent = "share link copied";
+    }
+
+    function downloadBlob(content, filename, type) {
+      const blob = new Blob([content], { type });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = filename;
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    function csvCell(value) {
+      return `"${String(value).replaceAll('"', '""')}"`;
+    }
+
+    function scoreTier(score) {
+      if (!Number.isFinite(Number(score))) return 3;
+      if (Number(score) >= 80) return 1;
+      if (Number(score) >= 65) return 2;
+      return 3;
+    }
+
+    function scoreTone(score) {
+      const value = Number(score);
+      if (!Number.isFinite(value)) return "bad";
+      if (value >= 75) return "";
+      if (value >= 60) return "warn";
+      return "bad";
+    }
+
+    function extractPaperTitle(text) {
+      const line = String(text || "").split(/\r?\n/).map((part) => part.trim()).find(Boolean);
+      return line ? line.replace(/^#\s*/, "") : "";
+    }
+
+    function extractPaperId(text) {
+      const match = String(text || "").match(/(?:arXiv[:\s]*)?(\d{4}\.\d{4,5})(?:v\d+)?/i);
+      return match ? match[1] : "";
+    }
+
+    function clamp(value, min, max) {
+      return Math.max(min, Math.min(max, value));
+    }
+
+    async function checkHealth() {
+      const base = cleanBase(els.apiBase.value);
+      if (!base) {
+        setHealth("set api", "bad");
+        return;
+      }
+      setHealth("checking", "");
+      try {
+        const response = await fetch(`${base}/health`, { headers: { "Accept": "application/json" } });
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const payload = await response.json();
+        const model = payload.model && payload.model.model_id ? payload.model.model_id : "online";
+        els.modelId.textContent = model;
+        setHealth("online", "ok");
+      } catch (error) {
+        setHealth("unavailable", "bad");
+        showError(`Health check failed: ${error.message}`);
+      }
+    }
+
+    async function runAudit() {
+      const base = cleanBase(els.apiBase.value);
+      if (!base) {
+        showError("Set the Agent API URL first. For local FastAPI, use http://localhost:8080.");
+        return;
+      }
+      localStorage.setItem("agenticEngine.apiBase", base);
+      resetRunView();
+      setRunning(true);
+      activeRunAbort = new AbortController();
+      const payload = {
+        paper_text: els.paperInput.value.trim() || DEMO_PAPER,
+        autonomy_level: autonomyLevel(),
+        allow_network: null
+      };
+      try {
+        await runStream(base, payload, activeRunAbort.signal);
+      } catch (streamError) {
+        if (streamError.name === "AbortError") {
+          activeRunAbort = null;
+          return;
+        }
+        try {
+          const response = await fetch(`${base}/runs`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json", "Accept": "application/json" },
+            body: JSON.stringify(payload),
+            signal: activeRunAbort ? activeRunAbort.signal : undefined
+          });
+          if (!response.ok) throw new Error(`HTTP ${response.status}`);
+          renderResult(await response.json());
+        } catch (fallbackError) {
+          if (fallbackError.name === "AbortError") {
+            activeRunAbort = null;
+            return;
+          }
+          showError(`Run failed: ${fallbackError.message}. Streaming error: ${streamError.message}`);
+          setRunning(false);
+        }
+      } finally {
+        activeRunAbort = null;
+      }
+    }
+
+    async function runStream(base, payload, signal) {
+      const response = await fetch(`${base}/runs/stream`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Accept": "text/event-stream" },
+        body: JSON.stringify(payload),
+        signal
+      });
+      if (!response.ok || !response.body) throw new Error(`HTTP ${response.status}`);
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder();
+      let buffer = "";
+      while (true) {
+        const { value, done } = await reader.read();
+        if (done) break;
+        buffer += decoder.decode(value, { stream: true });
+        buffer = processSseBuffer(buffer);
+      }
+      processSseBuffer(buffer + "\n\n");
+    }
+
+    function processSseBuffer(buffer) {
+      const blocks = buffer.split("\n\n");
+      const remainder = blocks.pop() || "";
+      for (const block of blocks) {
+        if (!block.trim()) continue;
+        const parsed = parseSseBlock(block);
+        if (!parsed) continue;
+        if (parsed.event === "trace") appendTrace(parsed.data);
+        if (parsed.event === "result") renderResult(parsed.data);
+        if (parsed.event === "error") throw new Error(parsed.data.detail || "stream error");
+      }
+      return remainder;
+    }
+
+    function parseSseBlock(block) {
+      let event = "message";
+      const data = [];
+      for (const line of block.split("\n")) {
+        if (line.startsWith("event:")) event = line.slice(6).trim();
+        if (line.startsWith("data:")) data.push(line.slice(5).trim());
+      }
+      if (!data.length) return null;
+      return { event, data: JSON.parse(data.join("\n")) };
+    }
+
+    function setTab(active) {
+      const mapping = [
+        ["report", els.tabReport, els.report],
+        ["rubric", els.tabRubric, els.rubricPane],
+        ["tools", els.tabTools, els.toolsPane]
+      ];
+      for (const [id, button, pane] of mapping) {
+        button.classList.toggle("active", id === active);
+        pane.classList.toggle("hidden", id !== active);
+      }
+    }
+
+    function downloadLatest() {
+      const data = latestResult || { status: "no-run" };
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `${latestResult && latestResult.manifest ? latestResult.manifest.run_id : "agentic-engine-run"}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    function loadTextFile(file) {
+      const reader = new FileReader();
+      reader.onload = () => { els.paperInput.value = String(reader.result || ""); };
+      reader.readAsText(file);
+    }
+
+    function timeOnly(value) {
+      if (!value) return "";
+      const date = new Date(value);
+      if (Number.isNaN(date.valueOf())) return "";
+      return date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit" });
+    }
+
+    function escapeHtml(value) {
+      return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function escapeAttr(value) {
+      return escapeHtml(value).replaceAll("`", "&#096;");
+    }
+
+    els.apiBase.value = defaultApiBase();
+    els.paperInput.value = DEMO_PAPER;
+    updateAutonomy();
+    renderAgentFeed();
+    renderResolverLanes({});
+    renderWorkspaceViews();
+    renderResultsView();
+
+    els.autonomySlider.addEventListener("input", updateAutonomy);
+    els.dashboardAutonomySlider.addEventListener("input", updateAutonomy);
+    els.newAutonomySlider.addEventListener("input", updateAutonomy);
+    els.sampleBtn.addEventListener("click", () => { els.paperInput.value = DEMO_PAPER; });
+    els.clearBtn.addEventListener("click", () => { els.paperInput.value = ""; els.paperInput.focus(); });
+    els.fileBtn.addEventListener("click", () => els.fileInput.click());
+    els.fileInput.addEventListener("change", () => {
+      const file = els.fileInput.files && els.fileInput.files[0];
+      if (file) loadTextFile(file);
+      els.fileInput.value = "";
+    });
+    els.saveApi.addEventListener("click", () => {
+      localStorage.setItem("agenticEngine.apiBase", cleanBase(els.apiBase.value));
+      setHealth("saved", "ok");
+    });
+    els.healthBtn.addEventListener("click", checkHealth);
+    els.runBtn.addEventListener("click", runAudit);
+    els.stopBtn.addEventListener("click", stopAudit);
+    els.downloadBtn.addEventListener("click", downloadLatest);
+    els.tabReport.addEventListener("click", () => setTab("report"));
+    els.tabRubric.addEventListener("click", () => setTab("rubric"));
+    els.tabTools.addEventListener("click", () => setTab("tools"));
+    els.dashboardNewBtn.addEventListener("click", () => switchView("new"));
+    els.dashboardRunBtn.addEventListener("click", () => switchView("live"));
+    els.dashboardStopBtn.addEventListener("click", stopAudit);
+    els.newAuditStart.addEventListener("click", startConfiguredAudit);
+    els.saveBatchBtn.addEventListener("click", saveBatchDraft);
+    els.newUseSample.addEventListener("click", () => {
+      els.newAuditReference.value = "2006.11239";
+      els.newAuditTitle.value = "Denoising Diffusion Probabilistic Models";
+      els.newAuditNotes.value = "Code: https://github.com/hojonathanho/diffusion\nData: CIFAR-10, LSUN, CelebA-HQ\n\nAudit focus: verify dataset availability, code provenance, experiment detail, and reproduction scaffold feasibility.";
+    });
+    els.newLoadFile.addEventListener("click", () => els.fileInput.click());
+    els.newViewArxiv.addEventListener("click", () => {
+      const id = extractPaperId(els.newAuditReference.value);
+      if (id) window.open(`https://arxiv.org/abs/${id}`, "_blank", "noopener,noreferrer");
+    });
+    els.exportPdfBtn.addEventListener("click", () => window.print());
+    els.shareRunBtn.addEventListener("click", shareRun);
+    els.askCopilotFromResults.addEventListener("click", () => openCopilot("results report"));
+    els.librarySearch.addEventListener("input", renderLibrary);
+    els.tierFilter.addEventListener("click", (event) => {
+      const button = event.target.closest("button[data-tier]");
+      if (!button) return;
+      libraryTier = button.dataset.tier;
+      els.tierFilter.querySelectorAll("button").forEach((item) => item.classList.toggle("on", item === button));
+      renderLibrary();
+    });
+    els.exportCsvBtn.addEventListener("click", exportCsv);
+    els.copilotBtn.addEventListener("click", () => openCopilot(`${currentView} context`));
+    els.closeCopilot.addEventListener("click", () => els.copilotDrawer.classList.add("hidden"));
+    els.sendCopilot.addEventListener("click", () => askCopilot());
+    els.copilotInput.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") askCopilot();
+    });
+
+    document.addEventListener("click", (event) => {
+      const viewButton = event.target.closest("[data-view]");
+      if (viewButton) {
+        switchView(viewButton.dataset.view);
+        return;
+      }
+      const runAction = event.target.closest("[data-action='run-current']");
+      if (runAction) {
+        runAudit();
+        return;
+      }
+      const axisButton = event.target.closest("[data-axis]");
+      if (axisButton) {
+        selectedAxis = Number(axisButton.dataset.axis);
+        renderResultsView();
+        return;
+      }
+      const resultTab = event.target.closest("[data-results-tab]");
+      if (resultTab) {
+        selectedResultsTab = resultTab.dataset.resultsTab;
+        document.querySelectorAll("[data-results-tab]").forEach((button) => button.classList.toggle("active", button === resultTab));
+        renderResultTab(latestResult || emptyResult());
+        return;
+      }
+      const libraryRow = event.target.closest("[data-library-index]");
+      if (libraryRow) {
+        openLibraryItem(Number(libraryRow.dataset.libraryIndex), allLibraryRuns().slice(0, 5));
+        return;
+      }
+      const libraryCard = event.target.closest("[data-library-card]");
+      if (libraryCard) {
+        openLibraryItem(Number(libraryCard.dataset.libraryCard), filteredLibraryRuns());
+        return;
+      }
+      const copilotSuggestion = event.target.closest("[data-copilot]");
+      if (copilotSuggestion) {
+        askCopilot(copilotSuggestion.dataset.copilot);
+      }
+    });
+  </script>
+</body>
+</html>
